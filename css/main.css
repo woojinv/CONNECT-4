@@ -13,43 +13,43 @@ body {
 }
 
 #start-new-game {
-    background-color:aqua;
+  background-color: aqua;
 }
 
 #header {
-    background-color:aquamarine;
+  background-color: aquamarine;
 }
 
 #player-turn {
-    background-color:beige;
+  background-color: beige;
 }
 
 #game-container {
-    background-color:rgb(184, 241, 117);
-    grid-column: 2 / 3;
+  background-color: rgb(184, 241, 117);
+  grid-column: 2 / 3;
 }
 
 #game-grid {
-    background-color:blanchedalmond;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    width: 800px;
-    height: 600px;
-    justify-items: center;
+  background-color: blanchedalmond;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 800px;
+  height: 600px;
+  justify-items: center;
 }
 
 .game-slot {
-    background-color:darkcyan;
-    border: solid;
-    border-radius: 50%;
-    text-align: center;
-    height: 50px;
-    width: 50px;
+  background-color: rgb(255, 255, 255);
+  border: solid;
+  border-radius: 50%;
+  text-align: center;
+  height: 75px;
+  width: 75px;
 }
 
 .flex-ctr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
