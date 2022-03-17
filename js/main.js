@@ -6,6 +6,7 @@ console.log("JS linked");
 let currentPlayer;
 let piecesInARow;
 let gameStatusActive;
+let changedGameSlot;
 
 const gameGrid = {
   column1: {
@@ -175,9 +176,6 @@ function initialize() {
 function render() {
   console.log("render is working");
   // function to place the piece. 
-    if (gameStatusActive === true) {
-
-    }
 
 
 }
