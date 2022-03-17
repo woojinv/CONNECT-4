@@ -16,10 +16,16 @@ let column6Height;
 let column7Height;
 
 /*----- cached element references -----*/
+let column1El = document.querySelectorAll('.column-1');
+
 /*----- event listeners -----*/
+// column1El.addEventListener('click', testEventLlistener)
+
+
+
 /*----- functions -----*/
 
-// INITIALIZE
+// FUNCTION 1: INITIALIZE
 initialize();
 
 function initialize() {
@@ -38,8 +44,12 @@ function initialize() {
   render();
 }
 
-
-// RENDER
+// FUNCTION 2: RENDER
 function render() {
-    console.log("render is working")
+  console.log("render is working");
+}
+
+
+function testEventLlistener() {
+    console.log("event listener working");
 }
