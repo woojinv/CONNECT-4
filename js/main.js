@@ -231,8 +231,10 @@ function initialize() {
 // FUNCTION 2: RENDER
 function render() {
   console.log("render is working");
+  
   // function to place the piece. 
-
+    let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
+    changedGameSlotEl.style.background = "red";
 
 }
 
