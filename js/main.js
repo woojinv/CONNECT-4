@@ -151,13 +151,13 @@ let gameSlot7_6El = document.querySelector('#gs7-6')
 
 
 /*----- event listeners -----*/
-column1El.addEventListener('click', testEventLlistener);
-column2El.addEventListener('click', testEventLlistener);
+column1El.addEventListener('click', placePiece);
 column3El.addEventListener('click', testEventLlistener);
 column4El.addEventListener('click', testEventLlistener);
 column5El.addEventListener('click', testEventLlistener);
 column6El.addEventListener('click', testEventLlistener);
 column7El.addEventListener('click', testEventLlistener);
+column2El.addEventListener('click', testEventLlistener);
 
 
 
@@ -194,6 +194,6 @@ function testEventLlistener() {
 
 
 // FUNCTION 3: PLACE PIECE
-function placePiece() {
-
+function placePiece(e) {
+    console.log(e.target)
 }
