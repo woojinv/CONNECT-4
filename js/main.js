@@ -90,13 +90,13 @@ const gameGrid = {
 
 
 /*----- cached element references -----*/
-let column1El = document.querySelector('#column-1');
-let column2El = document.querySelector('#column-2');
-let column3El = document.querySelector('#column-3');
-let column4El = document.querySelector('#column-4');
-let column5El = document.querySelector('#column-5');
-let column6El = document.querySelector('#column-6');
-let column7El = document.querySelector('#column-7');
+let column1El = document.querySelector('#column1');
+let column2El = document.querySelector('#column2');
+let column3El = document.querySelector('#column3');
+let column4El = document.querySelector('#column4');
+let column5El = document.querySelector('#column5');
+let column6El = document.querySelector('#column6');
+let column7El = document.querySelector('#column7');
 
 // game slot selectors
 let gameSlot1_1El = document.querySelector('#gs1-1')
@@ -195,11 +195,16 @@ function testEventLlistener() {
 
 // FUNCTION 3: PLACE PIECE
 function placePiece(e) {
-    if (e.target.classList[1] === "column") {
-        console.log(e.target.id)
-    } else {
-        console.log(e.target.classList[2]);
-    }
-   
+    let column = getColumn(e);
+    console.log(gameGrid[column].gameSlotStatus[6])
     
+}
+
+
+function getColumn(e) { // retrieves the column of the selected game slot or column. 
+    if (e.target.classList[1] === "column") {
+        return e.target.id;
+    } else {
+        return e.target.classList[2];
+    }
 }
