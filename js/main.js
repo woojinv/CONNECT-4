@@ -16,10 +16,22 @@ let column6Height;
 let column7Height;
 
 /*----- cached element references -----*/
-let column1El = document.querySelectorAll('.column-1');
+let column1El = document.querySelector('#column-1');
+let column2El = document.querySelector('#column-2');
+let column3El = document.querySelector('#column-3');
+let column4El = document.querySelector('#column-4');
+let column5El = document.querySelector('#column-5');
+let column6El = document.querySelector('#column-6');
+let column7El = document.querySelector('#column-7');
 
 /*----- event listeners -----*/
-// column1El.addEventListener('click', testEventLlistener)
+column1El.addEventListener('click', testEventLlistener);
+column2El.addEventListener('click', testEventLlistener);
+column3El.addEventListener('click', testEventLlistener);
+column4El.addEventListener('click', testEventLlistener);
+column5El.addEventListener('click', testEventLlistener);
+column6El.addEventListener('click', testEventLlistener);
+column7El.addEventListener('click', testEventLlistener);
 
 
 
