@@ -98,12 +98,55 @@ let column5El = document.querySelector('#column-5');
 let column6El = document.querySelector('#column-6');
 let column7El = document.querySelector('#column-7');
 
-let gameSlot1_1El = document.querySelector('#1-1')
-let gameSlot1_2El = document.querySelector('#1-2')
-let gameSlot1_3El = document.querySelector('#1-3')
-let gameSlot1_4El = document.querySelector('#1-4')
-let gameSlot1_5El = document.querySelector('#1-5')
-let gameSlot1_6El = document.querySelector('#1-6')
+// game slot selectors
+let gameSlot1_1El = document.querySelector('#gs1-1')
+let gameSlot1_2El = document.querySelector('#gs1-2')
+let gameSlot1_3El = document.querySelector('#gs1-3')
+let gameSlot1_4El = document.querySelector('#gs1-4')
+let gameSlot1_5El = document.querySelector('#gs1-5')
+let gameSlot1_6El = document.querySelector('#gs1-6')
+
+let gameSlot2_2El = document.querySelector('#gs2-2')
+let gameSlot2_3El = document.querySelector('#gs2-3')
+let gameSlot2_1El = document.querySelector('#gs2-1')
+let gameSlot2_4El = document.querySelector('#gs2-4')
+let gameSlot2_5El = document.querySelector('#gs2-5')
+let gameSlot2_6El = document.querySelector('#gs2-6')
+
+let gameSlot3_1El = document.querySelector('#gs3-1')
+let gameSlot3_2El = document.querySelector('#gs3-2')
+let gameSlot3_3El = document.querySelector('#gs3-3')
+let gameSlot3_4El = document.querySelector('#gs3-4')
+let gameSlot3_5El = document.querySelector('#gs3-5')
+let gameSlot3_6El = document.querySelector('#gs3-6')
+
+let gameSlot4_1El = document.querySelector('#gs4-1')
+let gameSlot4_2El = document.querySelector('#gs4-2')
+let gameSlot4_3El = document.querySelector('#gs4-3')
+let gameSlot4_4El = document.querySelector('#gs4-4')
+let gameSlot4_5El = document.querySelector('#gs4-5')
+let gameSlot4_6El = document.querySelector('#gs4-6')
+
+let gameSlot5_1El = document.querySelector('#gs5-1')
+let gameSlot5_2El = document.querySelector('#gs5-2')
+let gameSlot5_3El = document.querySelector('#gs5-3')
+let gameSlot5_4El = document.querySelector('#gs5-4')
+let gameSlot5_5El = document.querySelector('#gs5-5')
+let gameSlot5_6El = document.querySelector('#gs5-6')
+
+let gameSlot6_1El = document.querySelector('#gs6-1')
+let gameSlot6_2El = document.querySelector('#gs6-2')
+let gameSlot6_3El = document.querySelector('#gs6-3')
+let gameSlot6_4El = document.querySelector('#gs6-4')
+let gameSlot6_5El = document.querySelector('#gs6-5')
+let gameSlot6_6El = document.querySelector('#gs6-6')
+
+let gameSlot7_1El = document.querySelector('#gs7-1')
+let gameSlot7_2El = document.querySelector('#gs7-2')
+let gameSlot7_3El = document.querySelector('#gs7-3')
+let gameSlot7_4El = document.querySelector('#gs7-4')
+let gameSlot7_5El = document.querySelector('#gs7-5')
+let gameSlot7_6El = document.querySelector('#gs7-6')
 
 
 
