@@ -196,8 +196,8 @@ function testEventLlistener() {
 // FUNCTION 3: PLACE PIECE
 function placePiece(e) {
     let column = getColumn(e);
-    console.log(gameGrid[column].gameSlotStatus[6])
-    
+    let emptyGameSlotIndex = getEmptyGameSlotIndex(column)
+    console.log(emptyGameSlotIndex);    
 }
 
 
@@ -206,5 +206,14 @@ function getColumn(e) { // retrieves the column of the selected game slot or col
         return e.target.id;
     } else {
         return e.target.classList[2];
+    }
+}
+
+function getEmptyGameSlotIndex(column) {
+    let gameSlotStatus = gameGrid[column].gameSlotStatus;
+    for (let i = 6; i >= 0; i--) {
+        if (gameSlotStatus[i] === null) {
+            return i;
+        }
     }
 }
