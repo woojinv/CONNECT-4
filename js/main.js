@@ -266,8 +266,9 @@ function updateStateVariables(e) {
   gameGrid[column].height += 1;
   console.log(emptyGameSlotIndex);
 
-  let changedGameSlot = 
   // update changedGameSlot
+  changedGameSlot = gameGrid[column].gameSlotId[emptyGameSlotIndex];
+  
 
 
 
