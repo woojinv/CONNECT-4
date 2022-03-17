@@ -34,4 +34,12 @@ function initialize() {
   column5Height = 0;
   column6Height = 0;
   column7Height = 0;
+
+  render();
+}
+
+
+// RENDER
+function render() {
+    console.log("render is working")
 }
