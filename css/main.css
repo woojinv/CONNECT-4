@@ -7,3 +7,27 @@ body {
   margin: 0;
   font-family: Helvetica;
 }
+
+#start-new-game {
+    background-color:aqua;
+}
+
+#header {
+    background-color:aquamarine;
+}
+
+#player-turn {
+    background-color:beige;
+}
+
+#game-container {
+    background-color:rgb(184, 241, 117);
+}
+
+#game-grid {
+    background-color:blanchedalmond;
+}
+
+.game-slot {
+    background-color:darkcyan;
+}
