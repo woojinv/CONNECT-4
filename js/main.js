@@ -15,6 +15,55 @@ let column5Height;
 let column6Height;
 let column7Height;
 
+let gameSlot1_1;
+let gameSlot1_2;
+let gameSlot1_3;
+let gameSlot1_4;
+let gameSlot1_5;
+let gameSlot1_6;
+
+let gameSlot2_1;
+let gameSlot2_2;
+let gameSlot2_3;
+let gameSlot2_4;
+let gameSlot2_5;
+let gameSlot2_6;
+
+let gameSlot3_1;
+let gameSlot3_2;
+let gameSlot3_3;
+let gameSlot3_4;
+let gameSlot3_5;
+let gameSlot3_6;
+
+let gameSlot4_1;
+let gameSlot4_2;
+let gameSlot4_3;
+let gameSlot4_4;
+let gameSlot4_5;
+let gameSlot4_6;
+
+let gameSlot5_1;
+let gameSlot5_2;
+let gameSlot5_3;
+let gameSlot5_4;
+let gameSlot5_5;
+let gameSlot5_6;
+
+let gameSlot6_1;
+let gameSlot6_2;
+let gameSlot6_3;
+let gameSlot6_4;
+let gameSlot6_5;
+let gameSlot6_6;
+
+let gameSlot7_1;
+let gameSlot7_2;
+let gameSlot7_3;
+let gameSlot7_4;
+let gameSlot7_5;
+let gameSlot7_6;
+
 /*----- cached element references -----*/
 let column1El = document.querySelector('#column-1');
 let column2El = document.querySelector('#column-2');
@@ -64,4 +113,10 @@ function render() {
 
 function testEventLlistener() {
     console.log("event listener working");
+}
+
+
+// FUNCTION 3: PLACE PIECE
+function placePiece() {
+
 }
