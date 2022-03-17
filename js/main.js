@@ -195,5 +195,11 @@ function testEventLlistener() {
 
 // FUNCTION 3: PLACE PIECE
 function placePiece(e) {
-    console.log(e.target)
+    if (e.target.classList[1] === "column") {
+        console.log(e.target.id)
+    } else {
+        console.log(e.target.classList[2]);
+    }
+   
+    
 }
