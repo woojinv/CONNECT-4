@@ -164,13 +164,6 @@ function initialize() {
   piecesInARow = 0;
   gameStatusActive = true;
 
-  column1Height = 0;
-  column2Height = 0;
-  column3Height = 0;
-  column4Height = 0;
-  column5Height = 0;
-  column6Height = 0;
-  column7Height = 0;
 
   render();
 }
