@@ -32,14 +32,20 @@ body {
 #game-grid {
     background-color:blanchedalmond;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    width: 1000px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 800px;
     height: 600px;
+    justify-items: center;
 }
 
 .game-slot {
     background-color:darkcyan;
+    border: solid;
+    border-radius: 50%;
+    text-align: center;
+    height: 50px;
+    width: 50px;
 }
 
 .flex-ctr {
