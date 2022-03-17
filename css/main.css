@@ -6,6 +6,10 @@
 body {
   margin: 0;
   font-family: Helvetica;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 3fr;
 }
 
 #start-new-game {
@@ -22,12 +26,24 @@ body {
 
 #game-container {
     background-color:rgb(184, 241, 117);
+    grid-column: 2 / 3;
 }
 
 #game-grid {
     background-color:blanchedalmond;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    width: 1000px;
+    height: 600px;
 }
 
 .game-slot {
     background-color:darkcyan;
 }
+
+.flex-ctr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
