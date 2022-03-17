@@ -159,7 +159,6 @@ column2El.addEventListener("click", testEventLlistener);
 
 // FUNCTION 1: INITIALIZE
 initialize();
-
 function initialize() {
   currentPlayer = 1;
   piecesInARow = 0;
@@ -176,15 +175,37 @@ function initialize() {
   render();
 }
 
+
+
+
 // FUNCTION 2: RENDER
 function render() {
   console.log("render is working");
   // function to place the piece. 
+    if (gameStatusActive === true) {
+
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 function testEventLlistener() {
   console.log("event listener working");
 }
+
+
 
 // FUNCTION 3: CHANGE GAME SLOT STATUS
 function changeGameSlotStatus(e) {
@@ -192,7 +213,12 @@ function changeGameSlotStatus(e) {
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
 
   gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
+  gameGrid[column].height += 1;
   console.log(emptyGameSlotIndex);
+
+
+
+  render();
 }
 
 // RETRIEVES THE COLUMN of the selected game slot or column.
@@ -202,6 +228,7 @@ function getColumn(e) {
   } else {
     return e.target.classList[2];
   }
+
 }
 
 // RETRIEVES THE INDEX of the first game slot that is empty, starting from the bottom of a column.
