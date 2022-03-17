@@ -220,6 +220,7 @@ function initialize() {
   currentPlayer = 1;
   piecesInARow = 0;
   gameStatusActive = true;
+  changedGameSlot = null;
 
 
   render();
@@ -231,11 +232,12 @@ function initialize() {
 // FUNCTION 2: RENDER
 function render() {
   console.log("render is working");
-  
+
   // function to place the piece. 
     let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
-    changedGameSlotEl.style.background = "red";
-
+        if (changedGameSlot !== null) {
+        changedGameSlotEl.style.background = "red";
+        }
 }
 
 
