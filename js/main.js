@@ -1,4 +1,3 @@
-console.log("JS linked");
 /*----- constants -----*/
 const gameSlotIds = {
   column1: {
@@ -58,6 +57,7 @@ const gameSlotIds = {
     6: "gs7-6",
   },
 };
+
 
 /*----- app's state (variables) -----*/
 let currentPlayer;
@@ -201,8 +201,6 @@ function initialize() {
 
 // FUNCTION 2: RENDER
 function render() {
-  console.log("render is working");
-
   // Place piece of currentPlayer
   let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
   if (changedGameSlot !== null) {
@@ -221,11 +219,7 @@ function render() {
   }
 }
 
-function testEventLlistener() {
-  console.log("event listener working");
-}
-
-// FUNCTION 3: CHANGE GAME SLOT STATUS
+// FUNCTION 3: CHANGE STATUS OF STATE VARIABLES ON CLICK
 function updateStateVariables(e) {
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
@@ -233,23 +227,18 @@ function updateStateVariables(e) {
   // update game slot status
   gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
 
-  // update colum height
+  // update column height
   gameGrid[column].height += 1;
-  console.log(emptyGameSlotIndex);
 
   // update changedGameSlot
   changedGameSlot = gameSlotIds[column][emptyGameSlotIndex];
 
-  // update currentPlayer
-  if (currentPlayer === 1) {
-    currentPlayer = 2;
-  } else if (currentPlayer === 2) {
-    currentPlayer = 1;
-  }
-
+  updateCurrentPlayer();
   render();
 }
 
+
+/*----- helper functions -----*/
 // RETRIEVES THE COLUMN of the selected game slot or column.
 function getColumn(e) {
   if (e.target.classList[1] === "column") {
@@ -266,5 +255,14 @@ function getEmptyGameSlotIndex(column) {
     if (gameSlotStatus[i] === null) {
       return i;
     }
+  }
+}
+
+// UPDATES current player
+function updateCurrentPlayer() {
+  if (currentPlayer === 1) {
+    currentPlayer = 2;
+  } else if (currentPlayer === 2) {
+    currentPlayer = 1;
   }
 }
