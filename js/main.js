@@ -416,6 +416,7 @@ function checkWinCondition() {
   
   {
     console.log("player 1 wins")
+    gameStatusActive = false;
   } else if (
   // column 1
   (column1[1] === 2 && column1[2] === 2 && column1[3] === 2 && column1[4] === 2) 
@@ -531,6 +532,7 @@ function checkWinCondition() {
   
   {
     console.log("player 2 wins")
+    gameStatusActive = false;
   }
 
 }
