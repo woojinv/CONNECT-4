@@ -154,6 +154,8 @@ let column6El = document.querySelector("#column6");
 let column7El = document.querySelector("#column7");
 
 let currentPlayerEl = document.querySelector('#current-player');
+let startNewGameEl = document.querySelector('#start-new-game');
+let gameSlotEls = document.querySelectorAll('.game-slot');
 
 // game slot selectors
 let gameSlot1_1El = document.querySelector("#gs1-1");
@@ -215,6 +217,8 @@ column7El.addEventListener("click", updateStateVariables);
 column2El.addEventListener("click", updateStateVariables);
 
 /*----- functions -----*/
+// START NEW GAME FUNCTION
+startNewGameEl.addEventListener('click', initialize);
 
 // FUNCTION 1: INITIALIZE
 initialize();
@@ -223,6 +227,11 @@ function initialize() {
   piecesInARow = 0;
   gameStatusActive = true;
   changedGameSlot = null;
+
+  // Clear all game slots
+  gameSlotEls.forEach(elem => {
+    elem.style.background = "white";
+  })
 
 
   render();
@@ -245,7 +254,7 @@ function render() {
           }
         }
 
-  // Display playerTurn
+  // Display who's turn is next
         if (currentPlayer === 1) {
           currentPlayerEl.style.background = "red";
         } else if (currentPlayer === 2) {
