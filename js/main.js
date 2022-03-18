@@ -290,37 +290,11 @@ function checkForMatches(column, gameSlot) {
   let columnToLeftExists = checkIfColumnToLeftExists(currentIndex);
   let columnToRightExists = checkIfColumnToRightExists(currentIndex);
 
-  if (columnToLeftExists) {
+  if (columnToLeftExists && columnToRightExists) {
     checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot);
+    checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot);
+    checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot);
   };
-
-
-  // // DOWN
-  // if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
-  //   piecesInARow = 1;
-  //   piecesInARow++;
-  // }
-
-  // // DOWN / RIGHT
-  // if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
-  //   piecesInARow = 1;
-  //   piecesInARow++;
-    
-  // }
-
-  // // RIGHT
-  // if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
-  //   piecesInARow = 1;
-  //   piecesInARow++;
-   
-  // }
-
-  // // UP / RIGHT
-  // if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
-  //   piecesInARow = 1;
-  //   piecesInARow++;
-   
-  // }
   
   console.log(piecesInARow);
 
@@ -345,7 +319,7 @@ function checkIfColumnToRightExists(index) {
   }
 }
 
-// function to check columns to the left
+// function to check columns to the RIGHT
 function checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot) {
   // LEFT and UP
  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
@@ -364,4 +338,33 @@ function checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
   } 
+}
+
+// function to check columns to the RIGHT
+function checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot) {
+// RIGHT and DOWN
+  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+    piecesInARow = 1;
+    piecesInARow++;
+  }
+
+  // RIGHT
+  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
+    piecesInARow = 1;
+    piecesInARow++;
+  }
+
+  // UP / RIGHT
+  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
+    piecesInARow = 1;
+    piecesInARow++;
+  }
+}
+
+// function to check DOWN game slots
+function checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot) {
+  if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+    piecesInARow = 1;
+    piecesInARow++;
+  }
 }
