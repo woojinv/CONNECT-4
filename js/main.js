@@ -290,10 +290,6 @@ function checkForMatches(column, gameSlot) {
   if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
-    if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 2]){
-      piecesInARow = 2;
-      piecesInARow++;
-    }
 
   }
 
@@ -301,59 +297,41 @@ function checkForMatches(column, gameSlot) {
   if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
-    if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot - 1] === gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot - 2]) {
-      piecesInARow = 2;
-      piecesInARow++;
-    }
+    
   }
 
   // LEFT
   if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
-    if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot] === gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot]) {
-      piecesInARow = 2;
-      piecesInARow++;
-    }
+   
   }
 
   // DOWN / LEFT
   if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
-  } if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot + 1] === gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot + 2]) {
-    piecesInARow = 2;
-    piecesInARow++;
-  }
+  } 
 
   // DOWN / RIGHT
   if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
-    if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === gameGrid[columnNumbersArr[currentIndex + 2]].gameSlotStatus[gameSlot + 2]) {
-      piecesInARow = 2;
-      piecesInARow++;
-    }
+    
   }
 
   // RIGHT
   if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
-    if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === gameGrid[columnNumbersArr[currentIndex + 2]].gameSlotStatus[gameSlot]) {
-      piecesInARow = 2;
-      piecesInARow++;
-    }
+   
   }
 
   // UP / RIGHT
   if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
-    if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === gameGrid[columnNumbersArr[currentIndex + 2]].gameSlotStatus[gameSlot - 2]) {
-      piecesInARow = 2;
-      piecesInARow++;
-    }
+   
   }
   
   console.log(piecesInARow);
