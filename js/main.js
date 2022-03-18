@@ -294,7 +294,13 @@ function checkForMatches(column, gameSlot) {
     checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot);
     checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot);
     checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot);
-  };
+  } else if (columnToLeftExists === false) {
+    checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot);
+    checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot);
+  } else if (columnToRightExists === false) {
+    checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot);
+    checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot);
+  }
   
   console.log(piecesInARow);
 
@@ -319,6 +325,7 @@ function checkIfColumnToRightExists(index) {
   }
 }
 
+
 // function to check columns to the RIGHT
 function checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot) {
   // LEFT and UP
@@ -340,6 +347,7 @@ function checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot) {
   } 
 }
 
+
 // function to check columns to the RIGHT
 function checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot) {
 // RIGHT and DOWN
@@ -360,6 +368,7 @@ function checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot) {
     piecesInARow++;
   }
 }
+
 
 // function to check DOWN game slots
 function checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot) {
