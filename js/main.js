@@ -233,10 +233,14 @@ function initialize() {
 function render() {
   console.log("render is working");
 
-  // function to place the piece. 
+  // Place piece of currentPlayer 
     let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
         if (changedGameSlot !== null) {
+          if (currentPlayer === 2) {
         changedGameSlotEl.style.background = "red";
+          } else if (currentPlayer === 1) {
+            changedGameSlotEl.style.background = "yellow";
+          }
         }
 }
 
@@ -272,6 +276,14 @@ function updateStateVariables(e) {
 
   // update changedGameSlot
   changedGameSlot = gameGrid[column].gameSlotId[emptyGameSlotIndex];
+
+  // update currentPlayer
+  if (currentPlayer === 1) {
+    currentPlayer = 2;
+  } else if (currentPlayer === 2) {
+    currentPlayer = 1;
+  }
+  
   
 
 
