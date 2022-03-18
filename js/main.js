@@ -184,6 +184,13 @@ function initialize() {
     gameGrid[`column${i}`].height = 0;
   };
 
+  // Reset gameSlotStatus
+  for (let i = 1; i <= 7; i++) {
+    for (let j = 1; j <=6; j++) {
+      gameGrid[`column${i}`].gameSlotStatus[j] = null;
+    }
+  }
+
   // Clear all game slots
   gameSlotEls.forEach(elem => {
     elem.style.background = "white";
