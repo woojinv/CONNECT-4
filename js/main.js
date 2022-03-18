@@ -58,7 +58,6 @@ const gameSlotIds = {
   },
 };
 
-
 /*----- app's state (variables) -----*/
 let currentPlayer;
 let piecesInARow;
@@ -228,7 +227,9 @@ function updateStateVariables(e) {
   gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
 
   // update column height
-  gameGrid[column].height += 1;
+  if (gameGrid[column].height < 6) {
+    gameGrid[column].height += 1;
+  } else return;
 
   // update changedGameSlot
   changedGameSlot = gameSlotIds[column][emptyGameSlotIndex];
@@ -236,7 +237,6 @@ function updateStateVariables(e) {
   updateCurrentPlayer();
   render();
 }
-
 
 /*----- helper functions -----*/
 // RETRIEVES THE COLUMN of the selected game slot or column.
