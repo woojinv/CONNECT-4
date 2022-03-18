@@ -355,6 +355,24 @@ function updateStateVariables(e) {
       ) {
         piecesInARow = 1;
         piecesInARow++;
+
+        changeIfColumnToLeftExists(currentIndex - 1);
+        if (columnToLeftExists === true) {
+          if (gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot] ===
+            currentGameSlotStatus) {
+              piecesInARow = 2;
+              piecesInARow++;
+
+              changeIfColumnToLeftExists(currentIndex - 2);
+              if (columnToLeftExists === true) {
+                if (gameGrid[columnNumbersArr[currentIndex - 3]].gameSlotStatus[gameSlot] ===
+                  currentGameSlotStatus) {
+                    piecesInARow = 3;
+                    piecesInARow++;
+                }
+              }
+            }
+        }
       }
 
       // LEFT and DOWN
