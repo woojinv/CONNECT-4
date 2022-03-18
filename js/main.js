@@ -229,7 +229,6 @@ function updateStateVariables(e) {
   } else if (currentPlayer === 1) {
     gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
   };
-  
 
   // update column height
   if (gameGrid[column].height < 6) {
@@ -238,6 +237,11 @@ function updateStateVariables(e) {
 
   // update changedGameSlot
   changedGameSlot = gameSlotIds[column][emptyGameSlotIndex];
+
+
+  // FUNCTION TO CHECK FOR MATCHES
+  checkForMatches(column, emptyGameSlotIndex);
+
 
   updateCurrentPlayer();
   render();
@@ -270,4 +274,18 @@ function updateCurrentPlayer() {
   } else if (currentPlayer === 2) {
     currentPlayer = 1;
   }
+}
+
+
+// CHECK SURROUNDING SLOTS FOR MATCHES
+function checkForMatches(column, gameSlot) {
+  let currentGameSlotStatus = gameGrid[column].gameSlotStatus[gameSlot];
+  if (gameGrid[column].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+    console.log(true);
+  }
+  
+  
+  // console.log(currentGameSlotStatus);
+  // console.log(gameGrid[column].gameSlotStatus[gameSlot + 1]);
+  // console.log(gameSlot);
 }
