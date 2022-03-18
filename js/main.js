@@ -153,6 +153,8 @@ let column5El = document.querySelector("#column5");
 let column6El = document.querySelector("#column6");
 let column7El = document.querySelector("#column7");
 
+let currentPlayerEl = document.querySelector('#current-player');
+
 // game slot selectors
 let gameSlot1_1El = document.querySelector("#gs1-1");
 let gameSlot1_2El = document.querySelector("#gs1-2");
@@ -241,6 +243,13 @@ function render() {
           } else if (currentPlayer === 1) {
             changedGameSlotEl.style.background = "yellow";
           }
+        }
+
+  // Display playerTurn
+        if (currentPlayer === 1) {
+          currentPlayerEl.style.background = "red";
+        } else if (currentPlayer === 2) {
+          currentPlayerEl.style.background = "yellow";
         }
 }
 
