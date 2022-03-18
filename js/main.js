@@ -223,8 +223,13 @@ function updateStateVariables(e) {
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
 
-  // update game slot status
-  gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
+  // update game slot status based on player
+  if (currentPlayer === 2) {
+    gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 2;
+  } else if (currentPlayer === 1) {
+    gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
+  };
+  
 
   // update column height
   if (gameGrid[column].height < 6) {
