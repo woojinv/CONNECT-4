@@ -58,6 +58,8 @@ const gameSlotIds = {
   },
 };
 
+const columnNumbersArr = ['column1', 'column2', 'column3', 'column4', 'column5', 'column6', 'column7']
+
 /*----- app's state (variables) -----*/
 let currentPlayer;
 let piecesInARow;
@@ -281,11 +283,43 @@ function updateCurrentPlayer() {
 function checkForMatches(column, gameSlot) {
   piecesInARow = 1; 
   let currentGameSlotStatus = gameGrid[column].gameSlotStatus[gameSlot];
-  if (gameGrid[column].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+  let currentIndex = columnNumbersArr.indexOf(column);
+
+  // DOWN
+  if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
     piecesInARow++;
   }
-  console.log(piecesInARow)
+
+  // UP / LEFT
+  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
+    piecesInARow++;
+  }
+
+  // LEFT
+  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
+    piecesInARow++;
+  }
+
+  // DOWN / LEFT
+  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+    piecesInARow++;
+  }
+
+  // DOWN / RIGHT
+  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+    piecesInARow++;
+  }
+
+  // RIGHT
+  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
+    piecesInARow++;
+  }
+
+  // UP / RIGHT
+  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
+    piecesInARow++;
+  }
   
-  
+  console.log(piecesInARow);
 
 }
