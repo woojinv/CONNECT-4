@@ -164,6 +164,7 @@ let column5El = document.querySelector("#column5");
 let column6El = document.querySelector("#column6");
 let column7El = document.querySelector("#column7");
 
+let mainDisplayEl = document.querySelector('#main-display');
 let currentPlayerEl = document.querySelector("#current-player");
 let startNewGameEl = document.querySelector("#start-new-game");
 let gameSlotEls = document.querySelectorAll(".game-slot");
@@ -216,19 +217,21 @@ function render() {
   // Place piece of currentPlayer
   let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
   if (changedGameSlot !== null) {
-    if (currentPlayer === 2) {
+    if (currentPlayer === 1) {
       changedGameSlotEl.style.background = "red";
-    } else if (currentPlayer === 1) {
+    } else if (currentPlayer === 2) {
       changedGameSlotEl.style.background = "yellow";
     }
   }
 
   // Display who's turn is next
-  if (currentPlayer === 1) {
+  if (currentPlayer === 2) {
     currentPlayerEl.style.background = "red";
-  } else if (currentPlayer === 2) {
+  } else if (currentPlayer === 1) {
     currentPlayerEl.style.background = "yellow";
   }
+
+  
 }
 
 // FUNCTION 3: CHANGE STATUS OF STATE VARIABLES ON CLICK
