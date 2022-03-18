@@ -233,6 +233,11 @@ function render() {
 
 // FUNCTION 3: CHANGE STATUS OF STATE VARIABLES ON CLICK
 function updateStateVariables(e) {
+  
+  if (gameStatusActive === false) {
+    initialize();
+  } else if (gameStatusActive === true) {
+
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
   let currentIndex = columnNumbersArr.indexOf(column);
@@ -257,6 +262,7 @@ function updateStateVariables(e) {
 
   updateCurrentPlayer();
   render();
+}
 }
 
 /*----- helper functions -----*/
