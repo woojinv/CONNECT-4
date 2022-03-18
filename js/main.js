@@ -291,6 +291,7 @@ function checkForMatches(column, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
     if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 2]){
+      piecesInARow = 2;
       piecesInARow++;
     }
 
@@ -301,6 +302,7 @@ function checkForMatches(column, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
     if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot - 1] === gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot - 2]) {
+      piecesInARow = 2;
       piecesInARow++;
     }
   }
@@ -310,6 +312,7 @@ function checkForMatches(column, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
     if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot] === gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot]) {
+      piecesInARow = 2;
       piecesInARow++;
     }
   }
@@ -319,6 +322,7 @@ function checkForMatches(column, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
   } if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot + 1] === gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot + 2]) {
+    piecesInARow = 2;
     piecesInARow++;
   }
 
@@ -327,6 +331,7 @@ function checkForMatches(column, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
     if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === gameGrid[columnNumbersArr[currentIndex + 2]].gameSlotStatus[gameSlot + 2]) {
+      piecesInARow = 2;
       piecesInARow++;
     }
   }
@@ -336,6 +341,7 @@ function checkForMatches(column, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
     if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === gameGrid[columnNumbersArr[currentIndex + 2]].gameSlotStatus[gameSlot]) {
+      piecesInARow = 2;
       piecesInARow++;
     }
   }
@@ -345,6 +351,7 @@ function checkForMatches(column, gameSlot) {
     piecesInARow = 1;
     piecesInARow++;
     if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === gameGrid[columnNumbersArr[currentIndex + 2]].gameSlotStatus[gameSlot - 2]) {
+      piecesInARow = 2;
       piecesInARow++;
     }
   }
