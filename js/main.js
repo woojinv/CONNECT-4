@@ -286,54 +286,78 @@ function checkForMatches(column, gameSlot) {
   let currentGameSlotStatus = gameGrid[column].gameSlotStatus[gameSlot];
   let currentIndex = columnNumbersArr.indexOf(column);
 
-  // DOWN
-  if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
-    piecesInARow = 1;
-    piecesInARow++;
+  let columnToLeftExists = checkIfColumnToLeftExists(currentIndex);
+  let columnToRightExists = checkIfColumnToRightExists(currentIndex);
 
-  }
+  console.log(columnToLeftExists);
+  console.log(columnToRightExists);
+  
 
-  // UP / LEFT
-  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
-    piecesInARow = 1;
-    piecesInARow++;
+  // // UP / LEFT
+  //  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
+  //   piecesInARow = 1;
+  //   piecesInARow++;
+  // }
+
+
+  // // LEFT
+  // if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
+  //   piecesInARow = 1;
+  //   piecesInARow++;
+   
+  // }
+
+  // // DOWN / LEFT
+  // if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+  //   piecesInARow = 1;
+  //   piecesInARow++;
+  // } 
+
+  // // DOWN
+  // if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+  //   piecesInARow = 1;
+  //   piecesInARow++;
+  // }
+
+  // // DOWN / RIGHT
+  // if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
+  //   piecesInARow = 1;
+  //   piecesInARow++;
     
-  }
+  // }
 
-  // LEFT
-  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
-    piecesInARow = 1;
-    piecesInARow++;
+  // // RIGHT
+  // if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
+  //   piecesInARow = 1;
+  //   piecesInARow++;
    
-  }
+  // }
 
-  // DOWN / LEFT
-  if (gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
-    piecesInARow = 1;
-    piecesInARow++;
-  } 
-
-  // DOWN / RIGHT
-  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
-    piecesInARow = 1;
-    piecesInARow++;
-    
-  }
-
-  // RIGHT
-  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] === currentGameSlotStatus) {
-    piecesInARow = 1;
-    piecesInARow++;
+  // // UP / RIGHT
+  // if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
+  //   piecesInARow = 1;
+  //   piecesInARow++;
    
-  }
-
-  // UP / RIGHT
-  if (gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot - 1] === currentGameSlotStatus) {
-    piecesInARow = 1;
-    piecesInARow++;
-   
-  }
+  // }
   
   console.log(piecesInARow);
 
+}
+
+
+// FUNCTION TO CHECK IF COLUMN TO LEFT EXISTS
+function checkIfColumnToLeftExists(index) {
+  if (gameGrid[columnNumbersArr[index - 1]] === undefined) {
+    return false;
+  } else if (gameGrid[columnNumbersArr[index - 1]] !== undefined) {
+    return true;
+  }
+}
+
+function checkIfColumnToRightExists(index) {
+  if (gameGrid[columnNumbersArr[index + 1]] === undefined) {
+    return false;
+  } else if (gameGrid[columnNumbersArr[index + 1]] !== undefined) {
+    return true;
+  }
 }
