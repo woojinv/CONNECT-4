@@ -289,6 +289,10 @@ function checkForMatches(column, gameSlot) {
   if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
     piecesInARow = 1;
     piecesInARow++;
+    if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] === gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 2]){
+      piecesInARow++;
+    }
+
   }
 
   // UP / LEFT
