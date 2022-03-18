@@ -73,8 +73,7 @@ let currentPlayer;
 let piecesInARow;
 let gameStatusActive;
 let changedGameSlot;
-let columnToLeftExists;
-let columnToRightExists;
+
 
 const gameGrid = {
   column1: {
@@ -255,13 +254,6 @@ function updateStateVariables(e) {
   // update changedGameSlot
   changedGameSlot = gameSlotIds[column][emptyGameSlotIndex];
 
-  // update column existence to left/right
-  changeIfColumnToLeftExists(currentIndex);
-  changeIfColumnToRightExists(currentIndex);
-
-
-  // FUNCTION TO CHECK FOR MATCHES
-  checkForMatches(column, emptyGameSlotIndex);
 
   updateCurrentPlayer();
   render();
@@ -286,25 +278,7 @@ function updateStateVariables(e) {
           return i;
         }
       }
-    }
-
-    // function to set if column to LEFT exists
-    function changeIfColumnToLeftExists(index) {
-    if (gameGrid[columnNumbersArr[index - 1]] === undefined) {
-      columnToLeftExists = false;
-    } else if (gameGrid[columnNumbersArr[index - 1]] !== undefined) {
-      columnToLeftExists = true;
-      }
-    }
-
-    // function to set if column to RIGHT exists
-    function changeIfColumnToRightExists(index) {
-      if (gameGrid[columnNumbersArr[index + 1]] === undefined) {
-        columnToRightExists = false;
-      } else if (gameGrid[columnNumbersArr[index + 1]] !== undefined) {
-        columnToRightExists = true;
-      }
-    }
+    }   
 
     // UPDATES current player
     function updateCurrentPlayer() {
@@ -312,152 +286,6 @@ function updateStateVariables(e) {
         currentPlayer = 2;
       } else if (currentPlayer === 2) {
         currentPlayer = 1;
-      }
-    }
-
-    // CHECK SURROUNDING SLOTS FOR MATCHES
-    function checkForMatches(column, gameSlot) {
-    piecesInARow = 0;
-
-    let currentGameSlotStatus = gameGrid[column].gameSlotStatus[gameSlot];
-    let currentIndex = columnNumbersArr.indexOf(column);
-
-    if (columnToLeftExists && columnToRightExists) {
-      checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot);
-      checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot);
-      checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot);
-    } else if (columnToLeftExists === false) {
-      checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot);
-      checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot);
-    } else if (columnToRightExists === false) {
-      checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot);
-      checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot);
-    }
-
-    console.log(piecesInARow);
-    }
-
-  // HELPER FUNCTION FOR checkForMatches
-    // function to check columns to the LEFT
-    function checkLeftColumns(currentIndex, currentGameSlotStatus, gameSlot) {
-      // LEFT and UP
-      if (
-        gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[
-          gameSlot - 1
-        ] === currentGameSlotStatus
-      ) {
-        piecesInARow = 1;
-        piecesInARow++;
-      }
-
-      // LEFT
-      if (
-        gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[gameSlot] ===
-        currentGameSlotStatus
-      ) {
-        piecesInARow = 1;
-        piecesInARow++;
-
-        changeIfColumnToLeftExists(currentIndex - 1);
-        if (columnToLeftExists === true) {
-          if (gameGrid[columnNumbersArr[currentIndex - 2]].gameSlotStatus[gameSlot] ===
-            currentGameSlotStatus) {
-              piecesInARow = 2;
-              piecesInARow++;
-
-              changeIfColumnToLeftExists(currentIndex - 2);
-              if (columnToLeftExists === true) {
-                if (gameGrid[columnNumbersArr[currentIndex - 3]].gameSlotStatus[gameSlot] ===
-                  currentGameSlotStatus) {
-                    piecesInARow = 3;
-                    piecesInARow++;
-                }
-              }
-            }
-        }
-      }
-
-      // LEFT and DOWN
-      if (
-        gameGrid[columnNumbersArr[currentIndex - 1]].gameSlotStatus[
-          gameSlot + 1
-        ] === currentGameSlotStatus
-      ) {
-        piecesInARow = 1;
-        piecesInARow++;
-      }
-    }
-
-    // function to check columns to the RIGHT
-    function checkRightColumns(currentIndex, currentGameSlotStatus, gameSlot) {
-      // RIGHT and DOWN
-      if (
-        gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[
-          gameSlot + 1
-        ] === currentGameSlotStatus
-      ) {
-        piecesInARow = 1;
-        piecesInARow++;
-      }
-
-      // RIGHT
-      if (
-        gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[gameSlot] ===
-        currentGameSlotStatus
-      ) {
-        piecesInARow = 1;
-        piecesInARow++;
-
-        changeIfColumnToRightExists(currentIndex + 1);
-        if (columnToRightExists === true) {
-          if (gameGrid[columnNumbersArr[currentIndex + 2]].gameSlotStatus[gameSlot] ===
-            currentGameSlotStatus) {
-              piecesInARow = 2;
-              piecesInARow++;
-
-              changeIfColumnToRightExists(currentIndex + 2);
-              if (columnToRightExists === true) {
-                if (gameGrid[columnNumbersArr[currentIndex + 3]].gameSlotStatus[gameSlot] ===
-                  currentGameSlotStatus) {
-                    piecesInARow = 3;
-                    piecesInARow++;
-                  }
-                }
-              }
-        }
-      }
-
-      // UP / RIGHT
-      if (
-        gameGrid[columnNumbersArr[currentIndex + 1]].gameSlotStatus[
-          gameSlot - 1
-        ] === currentGameSlotStatus
-      ) {
-        piecesInARow = 1;
-        piecesInARow++;
-      }
-    }
-
-    // function to check DOWN game slots
-    function checkDownGameSlots(currentIndex, currentGameSlotStatus, gameSlot) {
-      if (
-        gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 1] ===
-        currentGameSlotStatus
-      ) {
-        piecesInARow = 1;
-        piecesInARow++;
-
-        if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 2] ===
-          currentGameSlotStatus) {
-            piecesInARow = 2;
-            piecesInARow ++;
-            
-            if (gameGrid[columnNumbersArr[currentIndex]].gameSlotStatus[gameSlot + 3] ===
-              currentGameSlotStatus) {
-                piecesInARow = 3;
-                piecesInARow ++;
-              }
-          }
       }
     }
 
