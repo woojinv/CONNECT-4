@@ -279,13 +279,13 @@ function updateCurrentPlayer() {
 
 // CHECK SURROUNDING SLOTS FOR MATCHES
 function checkForMatches(column, gameSlot) {
+  piecesInARow = 1; 
   let currentGameSlotStatus = gameGrid[column].gameSlotStatus[gameSlot];
   if (gameGrid[column].gameSlotStatus[gameSlot + 1] === currentGameSlotStatus) {
-    console.log(true);
+    piecesInARow++;
   }
+  console.log(piecesInARow)
   
   
-  // console.log(currentGameSlotStatus);
-  // console.log(gameGrid[column].gameSlotStatus[gameSlot + 1]);
-  // console.log(gameSlot);
+
 }
