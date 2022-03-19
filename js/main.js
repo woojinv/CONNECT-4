@@ -219,11 +219,17 @@ function initialize() {
 function render() {
   // Place piece of currentPlayer
   let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
-  if (changedGameSlot !== null) {
+  if (changedGameSlot !== null && gameStatusActive === true) {
     if (currentPlayer === 1) {
       changedGameSlotEl.style.background = "red";
     } else if (currentPlayer === 2) {
       changedGameSlotEl.style.background = "yellow";
+    }
+  } else if (gameStatusActive === false) {
+    if (currentPlayer === 1) {
+      changedGameSlotEl.style.background = "yellow";
+    } else if (currentPlayer === 2) {
+      changedGameSlotEl.style.background = "red";
     }
   }
 
