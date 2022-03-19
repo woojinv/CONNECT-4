@@ -192,20 +192,11 @@ function initialize() {
   changedGameSlot = null;
   resetColumnHeights();
   resetGameSlotStatus();
-  
-
-  // Clear all game slots
-  gameSlotEls.forEach((elem) => {
-    elem.style.background = "white";
-  });
-
-  // Reset main display
-  mainDisplayEl.innerText = "Connect Four"
-
+  emptyGameSlots();
+  resetMainDisplay();
   render();
 }
-
-// helper functions for initialize():
+// helper functions for initialize():~~~~~~~~~~~~~~
   function resetColumnHeights() {
     for (let i = 1; i <= 7; i++) {
       gameGrid[`column${i}`].height = 0;
@@ -219,6 +210,18 @@ function initialize() {
       }
     }
   }
+
+  function emptyGameSlots() {
+    gameSlotEls.forEach((elem) => {
+      elem.style.background = "white";
+    });
+  }
+
+  function resetMainDisplay() {
+    mainDisplayEl.innerText = "Connect Four";
+  }
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 
 
@@ -256,6 +259,9 @@ function render() {
 
   
 }
+
+
+
 
 // FUNCTION 3: CHANGE STATUS OF STATE VARIABLES ON CLICK
 function updateStateVariables(e) {
