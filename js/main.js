@@ -259,9 +259,7 @@ function render() {
   }
 
   function displayWinner() {
-    if (gameStatusActive === false) {
-      mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
-    }
+    if (gameStatusActive === false) mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -284,11 +282,7 @@ function updateStateVariables(e) {
 }
   // helper functions for updateStateVariables()
   function getColumn(e) {
-    if (e.target.classList[1] === "column") {
-      return e.target.id;
-    } else {
-      return e.target.classList[2];
-    }
+    return (e.target.classList[1] === "column") ? e.target.id : e.target.classList[2];
   }
 
   function getEmptyGameSlotIndex(column) {
