@@ -170,6 +170,7 @@ let currentPlayerEl = document.querySelector("#current-player");
 let startNewGameEl = document.querySelector("#start-new-game");
 let gameSlotEls = document.querySelectorAll(".game-slot");
 
+
 /*----- event listeners -----*/
 // event listener for each COLUMN
 column1El.addEventListener("click", updateStateVariables);
@@ -179,6 +180,7 @@ column5El.addEventListener("click", updateStateVariables);
 column6El.addEventListener("click", updateStateVariables);
 column7El.addEventListener("click", updateStateVariables);
 column2El.addEventListener("click", updateStateVariables);
+
 
 /*----- functions -----*/
 // 1. START NEW GAME FUNCTION
@@ -222,6 +224,7 @@ function initialize() {
     }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
 // 3. RENDER
 function render() {
   placePiece();
@@ -263,37 +266,46 @@ function render() {
 
 
 
-// FUNCTION 3: CHANGE STATUS OF STATE VARIABLES ON CLICK
+// 4. UPDATESTATEVARIABLES
 function updateStateVariables(e) {
-  
+  let column = getColumn(e);
+  let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
   if (gameStatusActive === false) {
     initialize();
   } else if (gameStatusActive === true) {
-
-  let column = getColumn(e);
-  let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
-
-  // update game slot status based on player
-  if (currentPlayer === 2) {
-    gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 2;
-  } else if (currentPlayer === 1) {
-    gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
+    updateGameSlotStatus(column, emptyGameSlotIndex);
+    updateColumnHeight(column);
+    updateChangedGameSlot(column, emptyGameSlotIndex);
+    checkWinCondition();
+    updateCurrentPlayer();
+    render();
+  }
+}
+  // helper functions for updateStateVariables()
+  function updateGameSlotStatus(column, emptyGameSlotIndex) {
+    if (currentPlayer === 2) {
+      gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 2;
+    } else if (currentPlayer === 1) {
+      gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
+    }
   }
 
-  // update column height
-  if (gameGrid[column].height < 6) {
-    gameGrid[column].height += 1;
-  } else return;
+  function updateColumnHeight(column) {
+    if (gameGrid[column].height < 6) {
+      gameGrid[column].height += 1;
+    } else return;
+  }
 
-  // update changedGameSlot
-  changedGameSlot = gameSlotIds[column][emptyGameSlotIndex];
+  function updateChangedGameSlot(column, emptyGameSlotIndex) {
+    changedGameSlot = gameSlotIds[column][emptyGameSlotIndex];
+  }
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  checkWinCondition();
-  updateCurrentPlayer();
-  
-  render();
-}
-}
+
+
+
+
+
 
 /*----- helper functions -----*/
   // helper function for UPDATE STATE VARIABLE
