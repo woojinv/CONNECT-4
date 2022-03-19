@@ -190,15 +190,9 @@ function initialize() {
   currentPlayer = 1;
   gameStatusActive = true;
   changedGameSlot = null;
-
   resetColumnHeights();
-
-  // Reset gameSlotStatus
-  for (let i = 1; i <= 7; i++) {
-    for (let j = 1; j <= 6; j++) {
-      gameGrid[`column${i}`].gameSlotStatus[j] = null;
-    }
-  }
+  resetGameSlotStatus();
+  
 
   // Clear all game slots
   gameSlotEls.forEach((elem) => {
@@ -211,11 +205,25 @@ function initialize() {
   render();
 }
 
-function resetColumnHeights() {
-  for (let i = 1; i <= 7; i++) {
-    gameGrid[`column${i}`].height = 0;
+// helper functions for initialize():
+  function resetColumnHeights() {
+    for (let i = 1; i <= 7; i++) {
+      gameGrid[`column${i}`].height = 0;
+    }
   }
-}
+
+  function resetGameSlotStatus() {
+    for (let i = 1; i <= 7; i++) {
+      for (let j = 1; j <= 6; j++) {
+        gameGrid[`column${i}`].gameSlotStatus[j] = null;
+      }
+    }
+  }
+
+
+
+
+
 
 // FUNCTION 2: RENDER
 function render() {
