@@ -189,8 +189,6 @@ function initialize() {
   piecesInARow = 0;
   gameStatusActive = true;
   changedGameSlot = null;
-  columnToLeftExists = null;
-  columnToRightExists = null;
 
   // Reset column heights
   for (let i = 1; i <= 7; i++) {
