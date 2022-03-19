@@ -73,7 +73,7 @@ let currentPlayer;
 let gameStatusActive;
 let changedGameSlot;
 
-
+// state variables of COLUMN HEIGHT and GAME SLOT STATUS.
 const gameGrid = {
   column1: {
     height: 0,
@@ -155,6 +155,7 @@ const gameGrid = {
 };
 
 /*----- cached element references -----*/
+// elements for each COLUMN. 
 let column1El = document.querySelector("#column1");
 let column2El = document.querySelector("#column2");
 let column3El = document.querySelector("#column3");
@@ -163,12 +164,14 @@ let column5El = document.querySelector("#column5");
 let column6El = document.querySelector("#column6");
 let column7El = document.querySelector("#column7");
 
+// elements for parts of the page.
 let mainDisplayEl = document.querySelector('#main-display');
 let currentPlayerEl = document.querySelector("#current-player");
 let startNewGameEl = document.querySelector("#start-new-game");
 let gameSlotEls = document.querySelectorAll(".game-slot");
 
 /*----- event listeners -----*/
+// event listener for each COLUMN
 column1El.addEventListener("click", updateStateVariables);
 column3El.addEventListener("click", updateStateVariables);
 column4El.addEventListener("click", updateStateVariables);
@@ -178,20 +181,17 @@ column7El.addEventListener("click", updateStateVariables);
 column2El.addEventListener("click", updateStateVariables);
 
 /*----- functions -----*/
-// START NEW GAME FUNCTION
+// 1. START NEW GAME FUNCTION
 startNewGameEl.addEventListener("click", initialize);
-
-// FUNCTION 1: INITIALIZE
 initialize();
+
+// 2. INITIALIZE
 function initialize() {
   currentPlayer = 1;
   gameStatusActive = true;
   changedGameSlot = null;
 
-  // Reset column heights
-  for (let i = 1; i <= 7; i++) {
-    gameGrid[`column${i}`].height = 0;
-  }
+  resetColumnHeights();
 
   // Reset gameSlotStatus
   for (let i = 1; i <= 7; i++) {
@@ -209,6 +209,12 @@ function initialize() {
   mainDisplayEl.innerText = "Connect Four"
 
   render();
+}
+
+function resetColumnHeights() {
+  for (let i = 1; i <= 7; i++) {
+    gameGrid[`column${i}`].height = 0;
+  }
 }
 
 // FUNCTION 2: RENDER
