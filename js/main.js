@@ -282,7 +282,7 @@ function updateStateVariables(e) {
 }
   // helper functions for updateStateVariables()
   function getColumn(e) {
-    return (e.target.classList[1] === "column") ? e.target.id : e.target.classList[2];
+    return e.target.classList[1] === "column" ? e.target.id : e.target.classList[2];
   }
 
   function getEmptyGameSlotIndex(column) {
@@ -573,7 +573,7 @@ function updateStateVariables(e) {
       console.log("player 2 wins")
       currentPlayer = 2;
       gameStatusActive = false;
-    }
+    } 
 
   }
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
