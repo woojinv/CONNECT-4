@@ -209,6 +209,9 @@ function initialize() {
     elem.style.background = "white";
   });
 
+  // Reset main display
+  mainDisplayEl.innerText = "Connect Four"
+
   render();
 }
 
@@ -231,6 +234,10 @@ function render() {
     currentPlayerEl.style.background = "yellow";
   }
 
+  if (gameStatusActive === false) {
+    mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
+  }
+
   
 }
 
@@ -243,7 +250,6 @@ function updateStateVariables(e) {
 
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
-  // let currentIndex = columnNumbersArr.indexOf(column);
 
   // update game slot status based on player
   if (currentPlayer === 2) {
@@ -262,6 +268,7 @@ function updateStateVariables(e) {
 
   checkWinCondition();
   updateCurrentPlayer();
+  
   render();
 }
 }
@@ -289,13 +296,21 @@ function updateStateVariables(e) {
 
     // UPDATES current player
     function updateCurrentPlayer() {
-      if (currentPlayer === 1) {
-        currentPlayer = 2;
-      } else if (currentPlayer === 2) {
-        currentPlayer = 1;
+      if (gameStatusActive === false) {
+        if (currentPlayer === 1) {
+          return;
+        } else if (currentPlayer === 2) {
+          return;
+          } 
+        } else if (gameStatusActive === true) {
+          if (currentPlayer === 1) {
+            currentPlayer = 2;
+          } else if (currentPlayer === 2) {
+            currentPlayer = 1;
+        }
       }
     }
-
+  
     // function to check win conditions 
     function checkWinCondition() {
       let column1 = gameGrid.column1.gameSlotStatus;
@@ -420,7 +435,11 @@ function updateStateVariables(e) {
       
       {
         console.log("player 1 wins")
+        currentPlayer = 1;
         gameStatusActive = false;
+
+
+
       } else if (
       // column 1
       (column1[1] === 2 && column1[2] === 2 && column1[3] === 2 && column1[4] === 2) 
@@ -536,11 +555,8 @@ function updateStateVariables(e) {
       
       {
         console.log("player 2 wins")
+        currentPlayer = 2;
         gameStatusActive = false;
       }
 
-}
-
-
-
-
+    }
