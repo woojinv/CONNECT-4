@@ -231,6 +231,7 @@ function render() {
   placePiece();
   displayWhoseTurn();
   displayWinner();
+  displayDraw();
 }
   // helper functions for render():~~~~~~~~~~~~~~
   function placePiece() {
@@ -260,6 +261,16 @@ function render() {
 
   function displayWinner() {
     if (gameStatusActive === false) mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
+  }
+
+  function displayDraw() {
+    let gameSlotArr = [];
+    for (let i = 1; i <= 7; i++) {
+      for (let j = 1; j <= 6; j++) {
+        gameSlotArr.push(gameGrid[`column${i}`].gameSlotStatus[j]);
+        }
+      }
+    if (gameSlotArr.includes(null) === false) mainDisplayEl.innerText = `It's a Draw!`;
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
