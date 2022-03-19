@@ -70,7 +70,6 @@ const columnNumbersArr = [
 
 /*----- app's state (variables) -----*/
 let currentPlayer;
-let piecesInARow;
 let gameStatusActive;
 let changedGameSlot;
 
@@ -186,7 +185,6 @@ startNewGameEl.addEventListener("click", initialize);
 initialize();
 function initialize() {
   currentPlayer = 1;
-  piecesInARow = 0;
   gameStatusActive = true;
   changedGameSlot = null;
 
