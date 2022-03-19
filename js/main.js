@@ -73,118 +73,121 @@ let currentPlayer;
 let gameStatusActive;
 let changedGameSlot;
 
-// state variables of COLUMN HEIGHT and GAME SLOT STATUS.
-const gameGrid = {
-  column1: {
-    height: 0,
-    gameSlotStatus: {
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
+  // COLUMN HEIGHT and GAME SLOT STATUS.
+  const gameGrid = {
+    column1: {
+      height: 0,
+      gameSlotStatus: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+      },
     },
-  },
-  column2: {
-    height: 0,
-    gameSlotStatus: {
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
+    column2: {
+      height: 0,
+      gameSlotStatus: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+      },
     },
-  },
-  column3: {
-    height: 0,
-    gameSlotStatus: {
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
+    column3: {
+      height: 0,
+      gameSlotStatus: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+      },
     },
-  },
-  column4: {
-    height: 0,
-    gameSlotStatus: {
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
+    column4: {
+      height: 0,
+      gameSlotStatus: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+      },
     },
-  },
-  column5: {
-    height: 0,
-    gameSlotStatus: {
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
+    column5: {
+      height: 0,
+      gameSlotStatus: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+      },
     },
-  },
-  column6: {
-    height: 0,
-    gameSlotStatus: {
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
+    column6: {
+      height: 0,
+      gameSlotStatus: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+      },
     },
-  },
-  column7: {
-    height: 0,
-    gameSlotStatus: {
-      1: null,
-      2: null,
-      3: null,
-      4: null,
-      5: null,
-      6: null,
+    column7: {
+      height: 0,
+      gameSlotStatus: {
+        1: null,
+        2: null,
+        3: null,
+        4: null,
+        5: null,
+        6: null,
+      },
     },
-  },
-};
+  };
 
 /*----- cached element references -----*/
-// elements for each COLUMN. 
-let column1El = document.querySelector("#column1");
-let column2El = document.querySelector("#column2");
-let column3El = document.querySelector("#column3");
-let column4El = document.querySelector("#column4");
-let column5El = document.querySelector("#column5");
-let column6El = document.querySelector("#column6");
-let column7El = document.querySelector("#column7");
+  // =each COLUMN. 
+  let column1El = document.querySelector("#column1");
+  let column2El = document.querySelector("#column2");
+  let column3El = document.querySelector("#column3");
+  let column4El = document.querySelector("#column4");
+  let column5El = document.querySelector("#column5");
+  let column6El = document.querySelector("#column6");
+  let column7El = document.querySelector("#column7");
 
-// elements for parts of the page.
-let mainDisplayEl = document.querySelector('#main-display');
-let currentPlayerEl = document.querySelector("#current-player");
-let startNewGameEl = document.querySelector("#start-new-game");
-let gameSlotEls = document.querySelectorAll(".game-slot");
+  // parts of the page.
+  let mainDisplayEl = document.querySelector('#main-display');
+  let currentPlayerEl = document.querySelector("#current-player");
+  let startNewGameEl = document.querySelector("#start-new-game");
+  let gameSlotEls = document.querySelectorAll(".game-slot");
 
 
 /*----- event listeners -----*/
-// event listener for each COLUMN
-column1El.addEventListener("click", updateStateVariables);
-column3El.addEventListener("click", updateStateVariables);
-column4El.addEventListener("click", updateStateVariables);
-column5El.addEventListener("click", updateStateVariables);
-column6El.addEventListener("click", updateStateVariables);
-column7El.addEventListener("click", updateStateVariables);
-column2El.addEventListener("click", updateStateVariables);
+  // START NEW GAME
+  startNewGameEl.addEventListener("click", initialize);
+
+  // each COLUMN
+  column1El.addEventListener("click", updateStateVariables);
+  column3El.addEventListener("click", updateStateVariables);
+  column4El.addEventListener("click", updateStateVariables);
+  column5El.addEventListener("click", updateStateVariables);
+  column6El.addEventListener("click", updateStateVariables);
+  column7El.addEventListener("click", updateStateVariables);
+  column2El.addEventListener("click", updateStateVariables);
 
 
 /*----- functions -----*/
 // 1. START NEW GAME FUNCTION
-startNewGameEl.addEventListener("click", initialize);
+
 initialize();
 
 // 2. INITIALIZE
@@ -214,9 +217,7 @@ function initialize() {
     }
 
     function emptyGameSlots() {
-      gameSlotEls.forEach((elem) => {
-        elem.style.background = "white";
-      });
+      gameSlotEls.forEach(elem => elem.style.background = "white");
     }
 
     function resetMainDisplay() {
