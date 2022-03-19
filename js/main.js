@@ -196,70 +196,70 @@ function initialize() {
   resetMainDisplay();
   render();
 }
-// helper functions for initialize():~~~~~~~~~~~~~~
-  function resetColumnHeights() {
-    for (let i = 1; i <= 7; i++) {
-      gameGrid[`column${i}`].height = 0;
+  // helper functions for initialize():~~~~~~~~~~~~~~
+    function resetColumnHeights() {
+      for (let i = 1; i <= 7; i++) {
+        gameGrid[`column${i}`].height = 0;
+      }
     }
-  }
 
-  function resetGameSlotStatus() {
-    for (let i = 1; i <= 7; i++) {
-      for (let j = 1; j <= 6; j++) {
-        gameGrid[`column${i}`].gameSlotStatus[j] = null;
+    function resetGameSlotStatus() {
+      for (let i = 1; i <= 7; i++) {
+        for (let j = 1; j <= 6; j++) {
+          gameGrid[`column${i}`].gameSlotStatus[j] = null;
+        }
+      }
+    }
+
+    function emptyGameSlots() {
+      gameSlotEls.forEach((elem) => {
+        elem.style.background = "white";
+      });
+    }
+
+    function resetMainDisplay() {
+      mainDisplayEl.innerText = "Connect Four";
+    }
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// 3. RENDER
+function render() {
+  placePiece();
+  displayWhoseTurn();
+  displayWinner();
+}
+  // helper functions for render():~~~~~~~~~~~~~~
+  function placePiece() {
+    let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
+    if (changedGameSlot !== null && gameStatusActive === true) {
+      if (currentPlayer === 1) {
+        changedGameSlotEl.style.background = "red";
+      } else if (currentPlayer === 2) {
+        changedGameSlotEl.style.background = "yellow";
+      }
+    } else if (gameStatusActive === false) {
+      if (currentPlayer === 1) {
+        changedGameSlotEl.style.background = "yellow";
+      } else if (currentPlayer === 2) {
+        changedGameSlotEl.style.background = "red";
       }
     }
   }
 
-  function emptyGameSlots() {
-    gameSlotEls.forEach((elem) => {
-      elem.style.background = "white";
-    });
-  }
-
-  function resetMainDisplay() {
-    mainDisplayEl.innerText = "Connect Four";
-  }
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
-
-
-
-// FUNCTION 2: RENDER
-function render() {
-  // Place piece of currentPlayer
-  let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
-  if (changedGameSlot !== null && gameStatusActive === true) {
-    if (currentPlayer === 1) {
-      changedGameSlotEl.style.background = "red";
-    } else if (currentPlayer === 2) {
-      changedGameSlotEl.style.background = "yellow";
-    }
-  } else if (gameStatusActive === false) {
-    if (currentPlayer === 1) {
-      changedGameSlotEl.style.background = "yellow";
-    } else if (currentPlayer === 2) {
-      changedGameSlotEl.style.background = "red";
+  function displayWhoseTurn() {
+    if (currentPlayer === 2) {
+      currentPlayerEl.style.background = "red";
+    } else if (currentPlayer === 1) {
+      currentPlayerEl.style.background = "yellow";
     }
   }
 
-  // Display who's turn is next
-  if (currentPlayer === 2) {
-    currentPlayerEl.style.background = "red";
-  } else if (currentPlayer === 1) {
-    currentPlayerEl.style.background = "yellow";
+  function displayWinner() {
+    if (gameStatusActive === false) {
+      mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
+    }
   }
-
-  if (gameStatusActive === false) {
-    mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
-  }
-
-  
-}
-
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
