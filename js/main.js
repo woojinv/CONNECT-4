@@ -193,12 +193,21 @@ let changedGameSlot;
   column7El.addEventListener("mouseover", updateStateVariablesForMouseOver);
   column2El.addEventListener("mouseover", updateStateVariablesForMouseOver);
 
+  column1El.addEventListener("mouseout", updateStateVariablesForMouseOut);
+  column3El.addEventListener("mouseout", updateStateVariablesForMouseOut);
+  column4El.addEventListener("mouseout", updateStateVariablesForMouseOut);
+  column5El.addEventListener("mouseout", updateStateVariablesForMouseOut);
+  column6El.addEventListener("mouseout", updateStateVariablesForMouseOut);
+  column7El.addEventListener("mouseout", updateStateVariablesForMouseOut);
+  column2El.addEventListener("mouseout", updateStateVariablesForMouseOut);
+
 
 function updateStateVariablesForMouseOver(e) {
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
 
   displayGhostPiece(column, emptyGameSlotIndex);
+  
 }
 
 function displayGhostPiece(column, emptyGameSlotIndex) {
@@ -206,10 +215,30 @@ function displayGhostPiece(column, emptyGameSlotIndex) {
   let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
   console.log(emptyGameSlotEl);
   if (gameStatusActive === true) {
-    if (currentPlayer === 1) {
+    if (currentPlayer === 2) {
       emptyGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
-    } else if (currentPlayer === 2) {
+    } else if (currentPlayer === 1) {
       emptyGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
+    }
+  }
+}
+
+function updateStateVariablesForMouseOut(e) {
+  let column = getColumn(e);
+  let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
+
+  removeGhostPiece(column, emptyGameSlotIndex);
+}
+
+function removeGhostPiece(column, emptyGameSlotIndex) {
+  let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
+  let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
+  console.log(emptyGameSlotEl);
+  if (gameStatusActive === true) {
+    if (currentPlayer === 1) {
+      emptyGameSlotEl.style.backgroundColor = "rgb(101	108	119	)";
+    } else if (currentPlayer === 2) {
+      emptyGameSlotEl.style.backgroundColor = "rgb(101	108	119	)	";
     }
   }
 }
