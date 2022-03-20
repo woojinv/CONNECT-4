@@ -155,7 +155,7 @@ let changedGameSlot;
   };
 
 /*----- cached element references -----*/
-  // =each COLUMN. 
+  // each COLUMN. 
   let column1El = document.querySelector("#column1");
   let column2El = document.querySelector("#column2");
   let column3El = document.querySelector("#column3");
@@ -183,6 +183,79 @@ let changedGameSlot;
   column6El.addEventListener("click", updateStateVariables);
   column7El.addEventListener("click", updateStateVariables);
   column2El.addEventListener("click", updateStateVariables);
+
+  // each COLUMN for mouseover
+  column1El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+  column3El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+  column4El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+  column5El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+  column6El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+  column7El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+  column2El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+
+
+function updateStateVariablesForMouseOver(e) {
+  let column = getColumn(e);
+  let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
+
+  displayGhostPiece(column, emptyGameSlotIndex);
+}
+
+function displayGhostPiece(column, emptyGameSlotIndex) {
+  let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
+  let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
+  console.log(emptyGameSlotEl);
+  if (gameStatusActive === true) {
+    if (currentPlayer === 1) {
+      emptyGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
+    } else if (currentPlayer === 2) {
+      emptyGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
+    }
+  }
+}
+  
+
+
+  // let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
+  //   if (changedGameSlot !== null && gameStatusActive === true) {
+  //     if (currentPlayer === 1) {
+  //       changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
+  //     } else if (currentPlayer === 2) {
+  //       changedGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
+  //     }
+  //   } else if (gameStatusActive === false) {
+  //     if (currentPlayer === 1) {
+  //       changedGameSlotEl.style.backgroundColor = "rgb(128 207 116)";
+  //     } else if (currentPlayer === 2) {
+  //       changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
+  //     }
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*----- functions -----*/
