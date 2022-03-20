@@ -244,7 +244,7 @@ function render() {
       }
     } else if (gameStatusActive === false) {
       if (currentPlayer === 1) {
-        changedGameSlotEl.style.backgroundColor = "rgb(128 207 116	)";
+        changedGameSlotEl.style.backgroundColor = "rgb(128 207 116)";
       } else if (currentPlayer === 2) {
         changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
       }
@@ -256,7 +256,7 @@ function render() {
       currentPlayerEl.style.backgroundColor = "rgb(40 107 48)";
       currentPlayerEl.style.color = "rgb(203 213 224)";
     } else if (currentPlayer === 1) {
-      currentPlayerEl.style.backgroundColor = "rgb(128 207 116	)";
+      currentPlayerEl.style.backgroundColor = "rgb(128 207 116)";
       currentPlayerEl.style.color = "rgb(46 51 57)";
     }
   }
