@@ -461,7 +461,6 @@ function updateStateVariables(e) {
   ) 
     
     {
-      console.log("player 1 wins")
       currentPlayer = 1;
       gameStatusActive = false;
 
@@ -581,7 +580,6 @@ function updateStateVariables(e) {
   ) 
     
     {
-      console.log("player 2 wins")
       currentPlayer = 2;
       gameStatusActive = false;
     } 
