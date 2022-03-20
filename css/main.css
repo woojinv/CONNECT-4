@@ -83,3 +83,6 @@ body {
 .column:hover {
   background-color:darkslateblue;
 }
+#start-new-game:hover {
+  background-color: rgb(125	156	217	);
+}
