@@ -271,6 +271,7 @@ function render() {
         }
       }
     if (gameSlotArr.includes(null) === false && mainDisplayEl.innerText !== `Player ${currentPlayer} Wins!`) mainDisplayEl.innerText = `It's a Draw!`;
+    
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
