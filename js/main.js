@@ -254,8 +254,10 @@ function render() {
   function displayWhoseTurn() {
     if (currentPlayer === 2) {
       currentPlayerEl.style.backgroundColor = "rgb(40 107 48)";
+      currentPlayerEl.style.color = "rgb(203 213 224)";
     } else if (currentPlayer === 1) {
       currentPlayerEl.style.backgroundColor = "rgb(128 207 116	)";
+      currentPlayerEl.style.color = "rgb(46 51 57)";
     }
   }
 
@@ -271,7 +273,7 @@ function render() {
         }
       }
     if (gameSlotArr.includes(null) === false && mainDisplayEl.innerText !== `Player ${currentPlayer} Wins!`) mainDisplayEl.innerText = `It's a Draw!`;
-    
+
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
