@@ -1,6 +1,7 @@
 * {
   /* height & width now includes border & padding */
   box-sizing: border-box;
+  font-family: 'Righteous', cursive;
 }
 
 body {
@@ -15,7 +16,7 @@ body {
 
 #start-new-game {
   background-color: rgb(101 153 237);
-  color: rgb(203 213 224);
+  color: rgb(255, 255, 255);
   font-size: xx-large;
   border-bottom: solid;
   border-color: rgb(150 159 170);
@@ -24,7 +25,7 @@ body {
 
 #header {
   background-color: rgb(46 51 58);
-  color: rgb(204 215 225);
+  color: rgb(255, 255, 255);
   font-size: xx-large;
   border-bottom: solid;
   border-color: rgb(150 159 170);
@@ -33,7 +34,7 @@ body {
 
 #current-player {
   background-color: beige;
-  color: rgb(203 213 224);
+  color: rgb(255, 255, 255);
   font-size: xx-large;
   border-bottom: solid;
   border-color: rgb(150 159 170);

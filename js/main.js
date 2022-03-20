@@ -301,7 +301,7 @@ function render() {
   function displayWhoseTurn() {
     if (currentPlayer === 2) {
       currentPlayerEl.style.backgroundColor = "rgb(40 107 48)";
-      currentPlayerEl.style.color = "rgb(203 213 224)";
+      currentPlayerEl.style.color = "rgb(225 225 225)";
     } else if (currentPlayer === 1) {
       currentPlayerEl.style.backgroundColor = "rgb(128 207 116)";
       currentPlayerEl.style.color = "rgb(46 51 57)";
