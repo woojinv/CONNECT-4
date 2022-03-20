@@ -172,10 +172,25 @@ let changedGameSlot;
 
 
 /*----- event listeners -----*/
-  // START NEW GAME
-  startNewGameEl.addEventListener("click", initialize);
+  // MOUSEOVER
+  column1El.addEventListener("mouseover", displayGhostPiece);
+  column3El.addEventListener("mouseover", displayGhostPiece);
+  column4El.addEventListener("mouseover", displayGhostPiece);
+  column5El.addEventListener("mouseover", displayGhostPiece);
+  column6El.addEventListener("mouseover", displayGhostPiece);
+  column7El.addEventListener("mouseover", displayGhostPiece);
+  column2El.addEventListener("mouseover", displayGhostPiece);
 
-  // each COLUMN
+  // MOUSEOUT
+  column1El.addEventListener("mouseout", removeGhostPiece);
+  column3El.addEventListener("mouseout", removeGhostPiece);
+  column4El.addEventListener("mouseout", removeGhostPiece);
+  column5El.addEventListener("mouseout", removeGhostPiece);
+  column6El.addEventListener("mouseout", removeGhostPiece);
+  column7El.addEventListener("mouseout", removeGhostPiece);
+  column2El.addEventListener("mouseout", removeGhostPiece);
+
+  // CLICK
   column1El.addEventListener("click", updateStateVariables);
   column3El.addEventListener("click", updateStateVariables);
   column4El.addEventListener("click", updateStateVariables);
@@ -184,33 +199,15 @@ let changedGameSlot;
   column7El.addEventListener("click", updateStateVariables);
   column2El.addEventListener("click", updateStateVariables);
 
-  // each COLUMN for mouseover
-  column1El.addEventListener("mouseover", updateStateVariablesForMouseOver);
-  column3El.addEventListener("mouseover", updateStateVariablesForMouseOver);
-  column4El.addEventListener("mouseover", updateStateVariablesForMouseOver);
-  column5El.addEventListener("mouseover", updateStateVariablesForMouseOver);
-  column6El.addEventListener("mouseover", updateStateVariablesForMouseOver);
-  column7El.addEventListener("mouseover", updateStateVariablesForMouseOver);
-  column2El.addEventListener("mouseover", updateStateVariablesForMouseOver);
+  // START NEW GAME
+  startNewGameEl.addEventListener("click", initialize);
 
-  column1El.addEventListener("mouseout", updateStateVariablesForMouseOut);
-  column3El.addEventListener("mouseout", updateStateVariablesForMouseOut);
-  column4El.addEventListener("mouseout", updateStateVariablesForMouseOut);
-  column5El.addEventListener("mouseout", updateStateVariablesForMouseOut);
-  column6El.addEventListener("mouseout", updateStateVariablesForMouseOut);
-  column7El.addEventListener("mouseout", updateStateVariablesForMouseOut);
-  column2El.addEventListener("mouseout", updateStateVariablesForMouseOut);
-
-
-function updateStateVariablesForMouseOver(e) {
+  
+/*----- functions -----*/
+// 1. DISPLAY GHOST PIECE
+function displayGhostPiece(e) {
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
-
-  displayGhostPiece(column, emptyGameSlotIndex);
-  
-}
-
-function displayGhostPiece(column, emptyGameSlotIndex) {
   let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
   let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
   console.log(emptyGameSlotEl);
@@ -223,14 +220,10 @@ function displayGhostPiece(column, emptyGameSlotIndex) {
   }
 }
 
-function updateStateVariablesForMouseOut(e) {
+// 2. REMOVE GHOST PIECE
+function removeGhostPiece(e) {
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
-
-  removeGhostPiece(column, emptyGameSlotIndex);
-}
-
-function removeGhostPiece(column, emptyGameSlotIndex) {
   let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
   let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
   console.log(emptyGameSlotEl);
@@ -242,57 +235,9 @@ function removeGhostPiece(column, emptyGameSlotIndex) {
     }
   }
 }
-  
 
-
-  // let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
-  //   if (changedGameSlot !== null && gameStatusActive === true) {
-  //     if (currentPlayer === 1) {
-  //       changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
-  //     } else if (currentPlayer === 2) {
-  //       changedGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
-  //     }
-  //   } else if (gameStatusActive === false) {
-  //     if (currentPlayer === 1) {
-  //       changedGameSlotEl.style.backgroundColor = "rgb(128 207 116)";
-  //     } else if (currentPlayer === 2) {
-  //       changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
-  //     }
-  //   }
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*----- functions -----*/
-// 1. START NEW GAME FUNCTION
-
+// 3. INITIALIZE
 initialize();
-
-// 2. INITIALIZE
 function initialize() {
   currentPlayer = 1;
   gameStatusActive = true;
@@ -328,7 +273,7 @@ function initialize() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-// 3. RENDER
+// 4. RENDER
 function render() {
   placePiece();
   displayWhoseTurn();
@@ -381,7 +326,7 @@ function render() {
 
 
 
-// 4. UPDATESTATEVARIABLES
+// 5. UPDATESTATEVARIABLES
 function updateStateVariables(e) {
   let column = getColumn(e);
   let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
