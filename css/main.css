@@ -1,6 +1,7 @@
 * {
   /* height & width now includes border & padding */
   box-sizing: border-box;
+  
 }
 
 body {
@@ -10,33 +11,41 @@ body {
   height: 100vh;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: 1fr 4fr;
+  background-color: rgb(43	53	71	)
 }
 
 #start-new-game {
-  background-color: aqua;
+  background-color: rgb(101	153	237		);
+  color: rgb(203	213	224	);
 }
 
 #header {
-  background-color: aquamarine;
+  background-color: rgb(46	51	58	);
+  color: rgb(204	215	225	)
 }
 
 #current-player {
   background-color: beige;
+  color:rgb(203	213	224	);
 }
 
 #game-container {
-  background-color: rgb(184, 241, 117);
+  background-color: rgb(	43	53	71	);
   grid-column: 2 / 3;
+  
 }
 
 #game-grid {
-  background-color: blanchedalmond;
+  background-color: rgb(66 73 83);
   display: flex;
   width: 800px;
   height: 600px;
   justify-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
+  border: solid;
+  border-color: rgb(150	159	170		);
+  border-width: 1px;
 }
 
 .column {
@@ -44,8 +53,9 @@ body {
 }
 
 .game-slot {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(99	108	120);
   border: solid;
+  border-color: rgb(150	159	170		);
   border-radius: 50%;
   text-align: center;
   height: 75px;

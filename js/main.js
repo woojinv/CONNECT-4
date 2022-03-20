@@ -217,7 +217,7 @@ function initialize() {
     }
 
     function emptyGameSlots() {
-      gameSlotEls.forEach(elem => elem.style.background = "white");
+      gameSlotEls.forEach(elem => elem.style.backgroundColor = "rgb(99	108	120	)");
     }
 
     function resetMainDisplay() {
@@ -238,24 +238,24 @@ function render() {
     let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
     if (changedGameSlot !== null && gameStatusActive === true) {
       if (currentPlayer === 1) {
-        changedGameSlotEl.style.background = "red";
+        changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
       } else if (currentPlayer === 2) {
-        changedGameSlotEl.style.background = "yellow";
+        changedGameSlotEl.style.backgroundColor = "rgb(128 207 116	";
       }
     } else if (gameStatusActive === false) {
       if (currentPlayer === 1) {
-        changedGameSlotEl.style.background = "yellow";
+        changedGameSlotEl.style.backgroundColor = "rgb(128 207 116	)";
       } else if (currentPlayer === 2) {
-        changedGameSlotEl.style.background = "red";
+        changedGameSlotEl.style.backgroundColor = "rgb(40 107 48";
       }
     }
   }
 
   function displayWhoseTurn() {
     if (currentPlayer === 2) {
-      currentPlayerEl.style.background = "red";
+      currentPlayerEl.style.backgroundColor = "rgb(40 107 48)";
     } else if (currentPlayer === 1) {
-      currentPlayerEl.style.background = "yellow";
+      currentPlayerEl.style.backgroundColor = "rgb(128 207 116	)";
     }
   }
 
