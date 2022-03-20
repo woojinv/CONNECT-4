@@ -17,16 +17,28 @@ body {
 #start-new-game {
   background-color: rgb(101	153	237		);
   color: rgb(203	213	224	);
+  font-size:xx-large;
+  border-bottom: solid;
+  border-color: rgb(150	159	170		);
+  border-width: 1px;
 }
 
 #header {
   background-color: rgb(46	51	58	);
-  color: rgb(204	215	225	)
+  color: rgb(204	215	225	);
+  font-size:xx-large;
+  border-bottom: solid;
+  border-color: rgb(150	159	170		);
+  border-width: 1px;
 }
 
 #current-player {
   background-color: beige;
   color:rgb(203	213	224	);
+  font-size:xx-large;
+  border-bottom: solid;
+  border-color: rgb(150	159	170		);
+  border-width: 1px;
 }
 
 #game-container {

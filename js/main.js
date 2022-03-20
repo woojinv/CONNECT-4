@@ -240,13 +240,13 @@ function render() {
       if (currentPlayer === 1) {
         changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
       } else if (currentPlayer === 2) {
-        changedGameSlotEl.style.backgroundColor = "rgb(128 207 116	";
+        changedGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
       }
     } else if (gameStatusActive === false) {
       if (currentPlayer === 1) {
         changedGameSlotEl.style.backgroundColor = "rgb(128 207 116	)";
       } else if (currentPlayer === 2) {
-        changedGameSlotEl.style.backgroundColor = "rgb(40 107 48";
+        changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
       }
     }
   }
@@ -270,7 +270,7 @@ function render() {
         gameSlotArr.push(gameGrid[`column${i}`].gameSlotStatus[j]);
         }
       }
-    if (gameSlotArr.includes(null) === false) mainDisplayEl.innerText = `It's a Draw!`;
+    if (gameSlotArr.includes(null) === false && mainDisplayEl.innerText !== `Player ${currentPlayer} Wins!`) mainDisplayEl.innerText = `It's a Draw!`;
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
