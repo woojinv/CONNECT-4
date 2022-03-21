@@ -330,8 +330,11 @@ function render() {
         gameSlotArr.push(gameGrid[`column${i}`].gameSlotStatus[j]);
         }
       }
-    if (gameSlotArr.includes(null) === false && mainDisplayEl.innerText !== `Player ${currentPlayer} Wins!`) mainDisplayEl.innerText = `It's a Draw!`;
-
+    if (gameSlotArr.includes(null) === false && mainDisplayEl.innerText !== `Player ${currentPlayer} Wins!`) {
+      mainDisplayEl.innerText = `It's a Draw!`;
+      mainDisplayEl.parentElement.style.backgroundColor = "rgb(238	225	112)";
+      mainDisplayEl.style.color = "rgb(46 51 57)";
+    }
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
