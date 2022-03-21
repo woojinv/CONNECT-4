@@ -155,14 +155,7 @@ let changedGameSlot;
   };
 
 /*----- cached element references -----*/
-  // each COLUMN. 
-  let column1El = document.querySelector("#column1");
-  let column2El = document.querySelector("#column2");
-  let column3El = document.querySelector("#column3");
-  let column4El = document.querySelector("#column4");
-  let column5El = document.querySelector("#column5");
-  let column6El = document.querySelector("#column6");
-  let column7El = document.querySelector("#column7");
+  let gameGridEl = document.querySelector("#game-grid");
 
   // parts of the page.
   let mainDisplayEl = document.querySelector('#main-display');
@@ -173,31 +166,14 @@ let changedGameSlot;
 
 /*----- event listeners -----*/
   // MOUSEOVER
-  column1El.addEventListener("mouseover", displayGhostPiece);
-  column3El.addEventListener("mouseover", displayGhostPiece);
-  column4El.addEventListener("mouseover", displayGhostPiece);
-  column5El.addEventListener("mouseover", displayGhostPiece);
-  column6El.addEventListener("mouseover", displayGhostPiece);
-  column7El.addEventListener("mouseover", displayGhostPiece);
-  column2El.addEventListener("mouseover", displayGhostPiece);
+  gameGridEl.addEventListener("mouseover", displayGhostPiece);
 
   // MOUSEOUT
-  column1El.addEventListener("mouseout", removeGhostPiece);
-  column3El.addEventListener("mouseout", removeGhostPiece);
-  column4El.addEventListener("mouseout", removeGhostPiece);
-  column5El.addEventListener("mouseout", removeGhostPiece);
-  column6El.addEventListener("mouseout", removeGhostPiece);
-  column7El.addEventListener("mouseout", removeGhostPiece);
-  column2El.addEventListener("mouseout", removeGhostPiece);
+  gameGridEl.addEventListener("mouseout", removeGhostPiece);
+  
 
   // CLICK
-  column1El.addEventListener("click", updateStateVariables);
-  column3El.addEventListener("click", updateStateVariables);
-  column4El.addEventListener("click", updateStateVariables);
-  column5El.addEventListener("click", updateStateVariables);
-  column6El.addEventListener("click", updateStateVariables);
-  column7El.addEventListener("click", updateStateVariables);
-  column2El.addEventListener("click", updateStateVariables);
+  gameGridEl.addEventListener("click", updateStateVariables);
 
   // START NEW GAME
   startNewGameEl.addEventListener("click", initialize);
@@ -206,32 +182,34 @@ let changedGameSlot;
 /*----- functions -----*/
 // 1. DISPLAY GHOST PIECE
 function displayGhostPiece(e) {
-  let column = getColumn(e);
-  let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
-  let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
-  let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
-  console.log(emptyGameSlotEl);
-  if (gameStatusActive === true) {
-    if (currentPlayer === 2) {
-      emptyGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
-    } else if (currentPlayer === 1) {
-      emptyGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
+  if (e.target.classList[1] === "column") {
+    let column = getColumn(e);
+    let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
+    let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
+    let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
+    if (gameStatusActive === true) {
+      if (currentPlayer === 2) {
+        emptyGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
+      } else if (currentPlayer === 1) {
+        emptyGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
+      }
     }
   }
 }
 
 // 2. REMOVE GHOST PIECE
 function removeGhostPiece(e) {
-  let column = getColumn(e);
-  let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
-  let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
-  let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
-  console.log(emptyGameSlotEl);
-  if (gameStatusActive === true) {
-    if (currentPlayer === 1) {
-      emptyGameSlotEl.style.backgroundColor = "rgb(101	108	119	)";
-    } else if (currentPlayer === 2) {
-      emptyGameSlotEl.style.backgroundColor = "rgb(101	108	119	)	";
+  if (e.target.classList[1] === "column") {
+    let column = getColumn(e);
+    let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
+    let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
+    let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
+    if (gameStatusActive === true) {
+      if (currentPlayer === 1) {
+        emptyGameSlotEl.style.backgroundColor = "rgb(101	108	119	)";
+      } else if (currentPlayer === 2) {
+        emptyGameSlotEl.style.backgroundColor = "rgb(101	108	119	)	";
+      }
     }
   }
 }
@@ -358,7 +336,7 @@ function updateStateVariables(e) {
     checkWinCondition();
     render();
   }
-}
+  }
   // helper functions for updateStateVariables()
   function getColumn(e) {
     return e.target.classList[1] === "column" ? e.target.id : e.target.classList[2];

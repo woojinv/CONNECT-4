@@ -1,5 +1,4 @@
 * {
-  /* height & width now includes border & padding */
   box-sizing: border-box;
   font-family: 'Righteous', cursive;
 }
@@ -38,6 +37,7 @@ body {
   border-bottom: solid;
   border-color: rgb(150 159 170);
   border-width: 1px;
+  justify-items: center;
 }
 
 #game-container {
@@ -86,3 +86,4 @@ body {
 #start-new-game:hover {
   background-color: rgb(125	156	217	);
 }
+
