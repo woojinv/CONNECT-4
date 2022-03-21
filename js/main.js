@@ -316,9 +316,13 @@ function render() {
       if (currentPlayer === 2) {
         mainDisplayEl.parentElement.style.backgroundColor = "rgb(40 107 48)";
         mainDisplayEl.style.color = "rgb(225 225 225)";
+        currentPlayerEl.style.backgroundColor = "rgb(238	225	112)";
+        currentPlayerEl.style.color = "rgb(46 51 57)";
       } else if (currentPlayer === 1) {
         mainDisplayEl.parentElement.style.backgroundColor = "rgb(128 207 116)";
         mainDisplayEl.style.color = "rgb(46 51 57)";
+        currentPlayerEl.style.backgroundColor = "rgb(238	225	112)";
+        currentPlayerEl.style.color = "rgb(46 51 57)";
       }
     }
   }
