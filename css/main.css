@@ -45,6 +45,9 @@ body {
   grid-column: 2 / 3;
 }
 
+
+
+
 #game-grid {
   background-color: rgb(66 73 83);
   display: flex;
@@ -86,4 +89,3 @@ body {
 #start-new-game:hover {
   background-color: rgb(125	156	217	);
 }
-

@@ -521,7 +521,7 @@ function updateStateVariables(e) {
 
     } else if (
     // column 1
-    (column1[1] === 2 && column1[2] === 2 && column1[3] === 2 && column1[4] === 2) 
+       (column1[1] === 2 && column1[2] === 2 && column1[3] === 2 && column1[4] === 2) 
     || (column1[2] === 2 && column1[3] === 2 && column1[4] === 2 && column1[5] === 2)
     || (column1[3] === 2 && column1[4] === 2 && column1[5] === 2 && column1[6] === 2)
 
@@ -553,7 +553,7 @@ function updateStateVariables(e) {
     // column 7
     || (column7[1] === 2 && column7[2] === 2 && column7[3] === 2 && column7[4] === 2)
     || (column7[2] === 2 && column7[3] === 2 && column7[4] === 2 && column7[5] === 2)
-    || (column7[3] === 2 && column7[4] === 12&& column7[5] === 2 && column7[6] === 2)
+    || (column7[3] === 2 && column7[4] === 2 && column7[5] === 2 && column7[6] === 2)
 
     // Row 1 (top row)
     || (gameGrid.column1.gameSlotStatus[1] === 2 && gameGrid.column2.gameSlotStatus[1] === 2 && gameGrid.column3.gameSlotStatus[1] === 2 && gameGrid.column4.gameSlotStatus[1] === 2)
@@ -624,7 +624,7 @@ function updateStateVariables(e) {
     
     || (gameGrid.column2.gameSlotStatus[1] === 2 && gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[4] === 2)
     || (gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[5] === 2)
-    || (gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[5] === 2 && gameGrid.column7.gameSlotStatus[6] === 2)
+    || (gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[5] === 2 && gameGrid.column7.gameSlotStatus[6] === 2)
     
     || (gameGrid.column3.gameSlotStatus[1] === 2 && gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[4] === 2)
     || (gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[4] === 2 && gameGrid.column7.gameSlotStatus[5] === 2)
