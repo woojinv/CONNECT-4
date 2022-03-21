@@ -73,6 +73,7 @@ const columnNumbersArr = [
 let currentPlayer;
 let gameStatusActive;
 let changedGameSlot;
+let timeRemaining;
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
   const gameGrid = {
@@ -197,7 +198,7 @@ function displayGhostPiece(e) {
     let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
     let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
     let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
-    if (gameStatusActive === true) {
+    if (gameStatusActive === true && emptyGameSlotIndex <= 6) {
       if (currentPlayer === 2) {
         emptyGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
       } else if (currentPlayer === 1) {
@@ -214,7 +215,7 @@ function removeGhostPiece(e) {
     let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
     let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
     let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
-    if (gameStatusActive === true) {
+    if (gameStatusActive === true  && emptyGameSlotIndex <= 6) {
       if (currentPlayer === 1) {
         emptyGameSlotEl.style.backgroundColor = "rgb(101	108	119	)";
       } else if (currentPlayer === 2) {
@@ -273,8 +274,8 @@ function render() {
   // helper functions for render():~~~~~~~~~~~~~~
   function placePiece() {
     let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
-    if (changedGameSlot !== null && gameStatusActive === true) {
-      if (currentPlayer === 1) {
+    if (changedGameSlot !== undefined && changedGameSlot !== null && gameStatusActive === true) {
+      if (currentPlayer === 1 ) {
         changedGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
       } else if (currentPlayer === 2) {
         changedGameSlotEl.style.backgroundColor = "rgb(128 207 116)	";
@@ -341,7 +342,7 @@ function updateStateVariables(e) {
   }
   if (gameStatusActive === false) {
     return;
-  } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot"))) {
+  } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
     updateGameSlotStatus(column, emptyGameSlotIndex);
     updateColumnHeight(column);
     updateChangedGameSlot(column, emptyGameSlotIndex);
