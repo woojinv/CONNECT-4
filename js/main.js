@@ -68,6 +68,7 @@ const columnNumbersArr = [
   "column7",
 ];
 
+
 /*----- app's state (variables) -----*/
 let currentPlayer;
 let gameStatusActive;
@@ -155,6 +156,15 @@ let changedGameSlot;
   };
 
 /*----- cached element references -----*/
+  // For checkWinCondition() function
+  let column1 = gameGrid.column1.gameSlotStatus;
+  let column2 = gameGrid.column2.gameSlotStatus;
+  let column3 = gameGrid.column3.gameSlotStatus;
+  let column4 = gameGrid.column4.gameSlotStatus;
+  let column5 = gameGrid.column5.gameSlotStatus;
+  let column6 = gameGrid.column6.gameSlotStatus;
+  let column7 = gameGrid.column7.gameSlotStatus;
+
   let gameGridEl = document.querySelector("#game-grid");
 
   // parts of the page.
@@ -182,7 +192,7 @@ let changedGameSlot;
 /*----- functions -----*/
 // 1. DISPLAY GHOST PIECE
 function displayGhostPiece(e) {
-  if (e.target.classList[1] === "column") {
+  if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
     let column = getColumn(e);
     let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
     let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
@@ -199,7 +209,7 @@ function displayGhostPiece(e) {
 
 // 2. REMOVE GHOST PIECE
 function removeGhostPiece(e) {
-  if (e.target.classList[1] === "column") {
+  if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
     let column = getColumn(e);
     let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
     let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
@@ -325,10 +335,13 @@ function render() {
 // 5. UPDATESTATEVARIABLES
 function updateStateVariables(e) {
   let column = getColumn(e);
-  let emptyGameSlotIndex = getEmptyGameSlotIndex(column);
+  let emptyGameSlotIndex;
+  if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
+    emptyGameSlotIndex = getEmptyGameSlotIndex(column);
+  }
   if (gameStatusActive === false) {
-    initialize();
-  } else if (gameStatusActive === true) {
+    return;
+  } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot"))) {
     updateGameSlotStatus(column, emptyGameSlotIndex);
     updateColumnHeight(column);
     updateChangedGameSlot(column, emptyGameSlotIndex);
@@ -386,13 +399,6 @@ function updateStateVariables(e) {
   }
 
   function checkWinCondition() {
-    let column1 = gameGrid.column1.gameSlotStatus;
-    let column2 = gameGrid.column2.gameSlotStatus;
-    let column3 = gameGrid.column3.gameSlotStatus;
-    let column4 = gameGrid.column4.gameSlotStatus;
-    let column5 = gameGrid.column5.gameSlotStatus;
-    let column6 = gameGrid.column6.gameSlotStatus;
-    let column7 = gameGrid.column7.gameSlotStatus;
 
     // column 1
     if ((column1[1] === 1 && column1[2] === 1 && column1[3] === 1 && column1[4] === 1) 
