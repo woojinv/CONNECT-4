@@ -40,9 +40,11 @@ body {
   justify-items: center;
 }
 
+
 #game-container {
   background-color: rgb(43 53 71);
   grid-column: 2 / 3;
+  
 }
 
 

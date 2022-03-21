@@ -73,7 +73,9 @@ const columnNumbersArr = [
 let currentPlayer;
 let gameStatusActive;
 let changedGameSlot;
+let gameMode;
 let timeRemaining;
+
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
   const gameGrid = {
@@ -166,13 +168,15 @@ let timeRemaining;
   let column6 = gameGrid.column6.gameSlotStatus;
   let column7 = gameGrid.column7.gameSlotStatus;
 
-  let gameGridEl = document.querySelector("#game-grid");
-
   // parts of the page.
+  let gameGridEl = document.querySelector("#game-grid");
   let mainDisplayEl = document.querySelector('#main-display');
   let currentPlayerEl = document.querySelector("#current-player");
   let startNewGameEl = document.querySelector("#start-new-game");
   let gameSlotEls = document.querySelectorAll(".game-slot");
+
+  // gameMode buttons
+  let gameModeEl = document.querySelector("#game-mode");
 
 
 /*----- event listeners -----*/
@@ -182,15 +186,69 @@ let timeRemaining;
   // MOUSEOUT
   gameGridEl.addEventListener("mouseout", removeGhostPiece);
   
-
   // CLICK
   gameGridEl.addEventListener("click", updateStateVariables);
 
   // START NEW GAME
   startNewGameEl.addEventListener("click", initialize);
 
+  // GAME MODE
+  gameModeEl.addEventListener('click', setGameMode);
+
   
 /*----- functions -----*/
+
+// SET GAME MODE
+function setGameMode(e) {
+  let gameMode = e.target.id;
+  setTimeRemaining(gameMode);
+}
+
+// START TIMER (goes inside initialize function?)
+// decrements timeRemaining?
+
+function setTimeRemaining(gameMode) {
+  if (gameMode === "easy") {
+    timeRemaining = 20;
+  } else if (gameMode === "medium") {
+    timeRemaining = 10;
+  } else if (gameMode === "hard") {
+    timeRemaining = 5;
+  }
+  console.log(timeRemaining)
+}
+
+function beginCountDown(e) {
+  
+  // make this start after the first move. 
+  let countDown = setInterval(decTimeRemaining, 1000);
+  setTimeRemaining(gameMode);
+    clearInterval(countDown);
+    
+  
+}
+
+function decTimeRemaining() {
+  if (timeRemaining > 0) {
+  timeRemaining--;
+  console.log(timeRemaining);
+  } else return;
+    mainDisplayEl.innerText = `${timeRemaining}`;
+
+  if (timeRemaining === 0) {
+    gameStatusActive = false;
+    currentPlayer = currentPlayer === 1 ? 2 : 1;
+    displayWinner();
+  }
+}
+
+
+function displayCountdown() { 
+  // changes main display to the specified timeRemaining
+
+}
+
+
 // 1. DISPLAY GHOST PIECE
 function displayGhostPiece(e) {
   if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
@@ -343,6 +401,7 @@ function updateStateVariables(e) {
   if (gameStatusActive === false) {
     return;
   } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
+    beginCountDown(e);
     updateGameSlotStatus(column, emptyGameSlotIndex);
     updateColumnHeight(column);
     updateChangedGameSlot(column, emptyGameSlotIndex);
@@ -350,6 +409,7 @@ function updateStateVariables(e) {
     checkWinCondition();
     render();
   }
+  
   }
   // helper functions for updateStateVariables()
   function getColumn(e) {
