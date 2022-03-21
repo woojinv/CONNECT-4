@@ -269,6 +269,8 @@ function initialize() {
 
     function resetMainDisplay() {
       mainDisplayEl.innerText = "Connect Four";
+      mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)";
+      mainDisplayEl.style.color = "rgb(225 225 225)";
     }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -309,7 +311,16 @@ function render() {
   }
 
   function displayWinner() {
-    if (gameStatusActive === false) mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
+    if (gameStatusActive === false) {
+      mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
+      if (currentPlayer === 2) {
+        mainDisplayEl.parentElement.style.backgroundColor = "rgb(40 107 48)";
+        mainDisplayEl.style.color = "rgb(225 225 225)";
+      } else if (currentPlayer === 1) {
+        mainDisplayEl.parentElement.style.backgroundColor = "rgb(128 207 116)";
+        mainDisplayEl.style.color = "rgb(46 51 57)";
+      }
+    }
   }
 
   function displayDraw() {
