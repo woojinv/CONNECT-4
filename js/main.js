@@ -75,6 +75,8 @@ let gameStatusActive;
 let changedGameSlot;
 let gameMode;
 let timeRemaining;
+let timePerTurn;
+let countDownIsActive;
 
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
@@ -193,62 +195,10 @@ let timeRemaining;
   startNewGameEl.addEventListener("click", initialize);
 
   // GAME MODE
-  gameModeEl.addEventListener('click', setGameMode);
+  gameModeEl.addEventListener('click', updateStateVariables);
 
   
 /*----- functions -----*/
-
-// SET GAME MODE
-function setGameMode(e) {
-  let gameMode = e.target.id;
-  setTimeRemaining(gameMode);
-}
-
-// START TIMER (goes inside initialize function?)
-// decrements timeRemaining?
-
-function setTimeRemaining(gameMode) {
-  if (gameMode === "easy") {
-    timeRemaining = 20;
-  } else if (gameMode === "medium") {
-    timeRemaining = 10;
-  } else if (gameMode === "hard") {
-    timeRemaining = 5;
-  }
-  console.log(timeRemaining)
-}
-
-function beginCountDown(e) {
-  
-  // make this start after the first move. 
-  let countDown = setInterval(decTimeRemaining, 1000);
-  setTimeRemaining(gameMode);
-    clearInterval(countDown);
-    
-  
-}
-
-function decTimeRemaining() {
-  if (timeRemaining > 0) {
-  timeRemaining--;
-  console.log(timeRemaining);
-  } else return;
-    mainDisplayEl.innerText = `${timeRemaining}`;
-
-  if (timeRemaining === 0) {
-    gameStatusActive = false;
-    currentPlayer = currentPlayer === 1 ? 2 : 1;
-    displayWinner();
-  }
-}
-
-
-function displayCountdown() { 
-  // changes main display to the specified timeRemaining
-
-}
-
-
 // 1. DISPLAY GHOST PIECE
 function displayGhostPiece(e) {
   if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
@@ -289,6 +239,7 @@ function initialize() {
   currentPlayer = 1;
   gameStatusActive = true;
   changedGameSlot = null;
+  timeRemaining = timePerTurn;
   resetColumnHeights();
   resetGameSlotStatus();
   emptyGameSlots();
@@ -357,6 +308,8 @@ function render() {
     }
   }
 
+
+
   function displayWinner() {
     if (gameStatusActive === false) {
       mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
@@ -393,6 +346,14 @@ function render() {
 
 // 5. UPDATESTATEVARIABLES
 function updateStateVariables(e) {
+  // IF a game mode button is selected.
+  if (e.target.className === "game-mode-buttons") {
+    setGameMode(e);
+    setTimeRemaining(gameMode);
+  }
+
+
+  // IF the gameGrid is selected
   let column = getColumn(e);
   let emptyGameSlotIndex;
   if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
@@ -401,17 +362,35 @@ function updateStateVariables(e) {
   if (gameStatusActive === false) {
     return;
   } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
-    beginCountDown(e);
     updateGameSlotStatus(column, emptyGameSlotIndex);
     updateColumnHeight(column);
     updateChangedGameSlot(column, emptyGameSlotIndex);
     updateCurrentPlayer();
     checkWinCondition();
+    beginCountDown();
     render();
   }
   
   }
   // helper functions for updateStateVariables()
+  function setGameMode(e) {
+    gameMode = e.target.id;
+  }
+  
+  function setTimeRemaining(gameMode) {
+    if (gameMode === "easy") {
+      timeRemaining = 20;
+      timePerTurn = 20;
+    } else if (gameMode === "medium") {
+      timeRemaining = 10;
+      timePerTurn = 10;
+    } else if (gameMode === "hard") {
+      timeRemaining = 5;
+      timePerTurn = 5;
+    }
+    console.log(timeRemaining)
+  }
+
   function getColumn(e) {
     return e.target.classList[1] === "column" ? e.target.id : e.target.classList[2];
   }
@@ -698,6 +677,45 @@ function updateStateVariables(e) {
     } 
 
   }
+
+  function beginCountDown() {
+    let countDown = setInterval(decTimeRemaining, 1000);
+  }
+
+    // helper function for beginCountDown()
+    function decTimeRemaining() {
+    
+      if (timeRemaining >= 0) {
+      countDownIsActive = true;
+      timeRemaining--;
+      console.log(timeRemaining);
+      } else return;
+
+      changeMainDisplay();
+    
+      if (timeRemaining === -1) {
+        gameStatusActive = false;
+        countDownIsActive = false;
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        displayWinner();
+      }
+    }
+
+      // helper function for decTimeRemaining()
+      function changeMainDisplay() {
+        mainDisplayEl.innerText = `${timeRemaining}`;
+      }
+
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+  
+
+
+
+
+  
+  
+  
+  
+  
   
