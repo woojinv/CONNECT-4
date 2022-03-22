@@ -77,6 +77,7 @@ let gameMode;
 let timeRemaining;
 let timePerTurn;
 let countDownIsActive;
+let countDownId;
 
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
@@ -307,8 +308,6 @@ function render() {
       currentPlayerEl.style.color = "rgb(46 51 57)";
     }
   }
-
-
 
   function displayWinner() {
     if (gameStatusActive === false) {
@@ -679,7 +678,9 @@ function updateStateVariables(e) {
   }
 
   function beginCountDown() {
-    let countDown = setInterval(decTimeRemaining, 1000);
+    if (!countDownId) {
+      countDownId = setInterval(decTimeRemaining, 1000);
+    }
   }
 
     // helper function for beginCountDown()
@@ -709,7 +710,6 @@ function updateStateVariables(e) {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   
-
 
 
 
