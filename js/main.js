@@ -357,7 +357,6 @@ function updateStateVariables(e) {
     setGameMode(e);
     setTimeRemaining(gameMode);
     stopCountDownTimer();
-
   }
 
 
@@ -722,6 +721,12 @@ function updateStateVariables(e) {
         if (timeRemaining <= 5) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.style.color = "red";
+        } else if (timeRemaining <= 10) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.style.color = "yellow";
+        } else if (timeRemaining <= 15) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.style.color = "green";
         }
         mainDisplayEl.innerText = `${timeRemaining}`;
       }
