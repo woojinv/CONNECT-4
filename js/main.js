@@ -251,10 +251,10 @@ function initialize() {
 }
   // helper functions for initialize():~~~~~~~~~~~~~~
     function stopCountDownTimer() {
+      timeRemaining = timePerTurn;
       clearInterval(countDownId);
       countDownId = null;
     }
-
 
     function resetColumnHeights() {
       for (let i = 1; i <= 7; i++) {
@@ -374,6 +374,7 @@ function updateStateVariables(e) {
     updateChangedGameSlot(column, emptyGameSlotIndex);
     updateCurrentPlayer();
     checkWinCondition();
+    stopCountDownTimer();
     beginCountDown();
     render();
   }
