@@ -15,7 +15,7 @@ body {
 
 #start-new-game {
   background-color: rgb(101 153 237);
-  color: rgb(255, 255, 255);
+  color: rgb(46 51 58);
   font-size: xx-large;
   border-bottom: solid;
   border-color: rgb(150 159 170);
@@ -42,20 +42,39 @@ body {
 
 .game-mode-buttons {
   font-size: xx-large;
-  color: white;
+  color: rgb(45	53	69);
   width: -webkit-fill-available;
+  border: solid;
+  border-color: rgb(150 159 170);
+  border-width: 1px;
 }
 
 #easy {
   background-color:rgb(128 207 116);
 }
 
+#easy:hover {
+  background-color:rgb(34, 255, 0);
+  color: white;
+}
+
 #medium {
   background-color: rgb(238	225	112	);
 }
 
+#medium:hover {
+  background-color: rgb(255, 230, 0) ;
+  color:white;
+}
+
 #hard {
-  background-color: red;
+  background-color: rgb(210	87	53	);
+}
+
+#hard:hover {
+  background-color: rgb(255, 55, 0);
+  color:white;
+
 }
 
 
@@ -107,7 +126,8 @@ body {
   background-color:darkslateblue;
 }
 #start-new-game:hover {
-  background-color: rgb(125	156	217	);
+  background-color: rgb(0, 85, 255);
+  color: white;
 }
 
 .flex-ctr-buttons {
