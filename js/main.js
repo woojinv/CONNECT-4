@@ -289,6 +289,7 @@ function render() {
   displayWinner();
   displayDraw();
 }
+
   // helper functions for render():~~~~~~~~~~~~~~
   function displayGameMode() {
     let easyButtonEl = gameModeEl.children[0];
