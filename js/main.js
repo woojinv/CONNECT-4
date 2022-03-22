@@ -241,6 +241,8 @@ function initialize() {
   gameStatusActive = true;
   changedGameSlot = null;
   timeRemaining = timePerTurn;
+
+  stopCountDownTimer();
   resetColumnHeights();
   resetGameSlotStatus();
   emptyGameSlots();
@@ -248,6 +250,12 @@ function initialize() {
   render();
 }
   // helper functions for initialize():~~~~~~~~~~~~~~
+    function stopCountDownTimer() {
+      clearInterval(countDownId);
+      countDownId = null;
+    }
+
+
     function resetColumnHeights() {
       for (let i = 1; i <= 7; i++) {
         gameGrid[`column${i}`].height = 0;
