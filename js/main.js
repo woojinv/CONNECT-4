@@ -353,12 +353,11 @@ function render() {
 // 5. UPDATESTATEVARIABLES
 function updateStateVariables(e) {
   // IF a game mode button is selected.
-  if (e.target.className === "game-mode-buttons") {
+  if (e.target.classList[0] === "game-mode-buttons") {
     setGameMode(e);
     setTimeRemaining(gameMode);
     stopCountDownTimer();
   }
-
 
   // IF the gameGrid is selected
   let column = getColumn(e);

@@ -40,6 +40,24 @@ body {
   justify-items: center;
 }
 
+.game-mode-buttons {
+  font-size: xx-large;
+  color: white;
+  width: -webkit-fill-available;
+}
+
+#easy {
+  background-color:rgb(128 207 116);
+}
+
+#medium {
+  background-color: rgb(238	225	112	);
+}
+
+#hard {
+  background-color: red;
+}
+
 
 #game-container {
   background-color: rgb(43 53 71);
@@ -90,4 +108,11 @@ body {
 }
 #start-new-game:hover {
   background-color: rgb(125	156	217	);
+}
+
+.flex-ctr-buttons {
+  display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
 }
