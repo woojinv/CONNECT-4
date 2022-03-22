@@ -241,7 +241,6 @@ function initialize() {
   gameStatusActive = true;
   changedGameSlot = null;
   timeRemaining = timePerTurn;
-
   stopCountDownTimer();
   resetColumnHeights();
   resetGameSlotStatus();
@@ -366,6 +365,7 @@ function updateStateVariables(e) {
   if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
     emptyGameSlotIndex = getEmptyGameSlotIndex(column);
   }
+
   if (gameStatusActive === false) {
     return;
   } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
@@ -377,6 +377,9 @@ function updateStateVariables(e) {
     stopCountDownTimer();
     beginCountDown();
     render();
+    if (gameStatusActive === false) {
+      stopCountDownTimer();
+    }
   }
   
   }
@@ -387,14 +390,14 @@ function updateStateVariables(e) {
   
   function setTimeRemaining(gameMode) {
     if (gameMode === "easy") {
-      timeRemaining = 20;
-      timePerTurn = 20;
+      timeRemaining = 21;
+      timePerTurn = 21;
     } else if (gameMode === "medium") {
-      timeRemaining = 10;
-      timePerTurn = 10;
+      timeRemaining = 11;
+      timePerTurn = 11;
     } else if (gameMode === "hard") {
-      timeRemaining = 5;
-      timePerTurn = 5;
+      timeRemaining = 6;
+      timePerTurn = 6;
     }
     console.log(timeRemaining)
   }
@@ -682,6 +685,7 @@ function updateStateVariables(e) {
     {
       currentPlayer = 2;
       gameStatusActive = false;
+
     } 
 
   }
