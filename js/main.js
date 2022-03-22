@@ -73,7 +73,12 @@ const columnNumbersArr = [
 let currentPlayer;
 let gameStatusActive;
 let changedGameSlot;
+let gameMode;
 let timeRemaining;
+let timePerTurn;
+let countDownIsActive;
+let countDownId;
+
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
   const gameGrid = {
@@ -166,13 +171,15 @@ let timeRemaining;
   let column6 = gameGrid.column6.gameSlotStatus;
   let column7 = gameGrid.column7.gameSlotStatus;
 
-  let gameGridEl = document.querySelector("#game-grid");
-
   // parts of the page.
+  let gameGridEl = document.querySelector("#game-grid");
   let mainDisplayEl = document.querySelector('#main-display');
   let currentPlayerEl = document.querySelector("#current-player");
   let startNewGameEl = document.querySelector("#start-new-game");
   let gameSlotEls = document.querySelectorAll(".game-slot");
+
+  // gameMode buttons
+  let gameModeEl = document.querySelector("#game-mode");
 
 
 /*----- event listeners -----*/
@@ -182,12 +189,14 @@ let timeRemaining;
   // MOUSEOUT
   gameGridEl.addEventListener("mouseout", removeGhostPiece);
   
-
   // CLICK
   gameGridEl.addEventListener("click", updateStateVariables);
 
   // START NEW GAME
   startNewGameEl.addEventListener("click", initialize);
+
+  // GAME MODE
+  gameModeEl.addEventListener('click', updateStateVariables);
 
   
 /*----- functions -----*/
@@ -231,6 +240,8 @@ function initialize() {
   currentPlayer = 1;
   gameStatusActive = true;
   changedGameSlot = null;
+  timeRemaining = timePerTurn;
+  stopCountDownTimer();
   resetColumnHeights();
   resetGameSlotStatus();
   emptyGameSlots();
@@ -238,6 +249,12 @@ function initialize() {
   render();
 }
   // helper functions for initialize():~~~~~~~~~~~~~~
+    function stopCountDownTimer() {
+      timeRemaining = timePerTurn;
+      clearInterval(countDownId);
+      countDownId = null;
+    }
+
     function resetColumnHeights() {
       for (let i = 1; i <= 7; i++) {
         gameGrid[`column${i}`].height = 0;
@@ -335,11 +352,20 @@ function render() {
 
 // 5. UPDATESTATEVARIABLES
 function updateStateVariables(e) {
+  // IF a game mode button is selected.
+  if (e.target.classList[0] === "game-mode-buttons") {
+    setGameMode(e);
+    setTimeRemaining(gameMode);
+    stopCountDownTimer();
+  }
+
+  // IF the gameGrid is selected
   let column = getColumn(e);
   let emptyGameSlotIndex;
   if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
     emptyGameSlotIndex = getEmptyGameSlotIndex(column);
   }
+
   if (gameStatusActive === false) {
     return;
   } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
@@ -348,10 +374,33 @@ function updateStateVariables(e) {
     updateChangedGameSlot(column, emptyGameSlotIndex);
     updateCurrentPlayer();
     checkWinCondition();
+    stopCountDownTimer();
+    beginCountDown();
     render();
+    if (gameStatusActive === false) {
+      stopCountDownTimer();
+    }
   }
+  
   }
   // helper functions for updateStateVariables()
+  function setGameMode(e) {
+    gameMode = e.target.id;
+  }
+  
+  function setTimeRemaining(gameMode) {
+    if (gameMode === "easy") {
+      timeRemaining = 21;
+      timePerTurn = 21;
+    } else if (gameMode === "medium") {
+      timeRemaining = 11;
+      timePerTurn = 11;
+    } else if (gameMode === "hard") {
+      timeRemaining = 6;
+      timePerTurn = 6;
+    }
+  }
+
   function getColumn(e) {
     return e.target.classList[1] === "column" ? e.target.id : e.target.classList[2];
   }
@@ -635,9 +684,78 @@ function updateStateVariables(e) {
     {
       currentPlayer = 2;
       gameStatusActive = false;
+
     } 
 
   }
+
+  function beginCountDown() {
+    if (!countDownId) {
+      countDownId = setInterval(decTimeRemaining, 1000);
+    }
+  }
+
+    // helper function for beginCountDown()
+    function decTimeRemaining() {
+    
+      if (timeRemaining >= 0) {
+      countDownIsActive = true;
+      timeRemaining--;
+      } else return;
+
+      changeMainDisplay();
+    
+      if (timeRemaining === -1) {
+        gameStatusActive = false;
+        countDownIsActive = false;
+        currentPlayer = currentPlayer === 1 ? 2 : 1;
+        displayWinner();
+      }
+    }
+
+      // helper function for decTimeRemaining()
+      function changeMainDisplay() {
+        if (timeRemaining === 0) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(225 225 225)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining === 1) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(200 200 200)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining === 2) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(175 175 175)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining === 3) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(150 150 150)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining <= 5) {
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining <= 10) {
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.style.color = "yellow";
+        } else if (timeRemaining <= 15) {
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.style.color = "green";
+        }
+        mainDisplayEl.innerText = `${timeRemaining}`;
+      }
+
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+  
+
+
+
+  
+  
+  
+  
+  
   
