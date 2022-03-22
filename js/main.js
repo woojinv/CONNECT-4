@@ -400,7 +400,6 @@ function updateStateVariables(e) {
       timeRemaining = 6;
       timePerTurn = 6;
     }
-    console.log(timeRemaining)
   }
 
   function getColumn(e) {
@@ -703,7 +702,6 @@ function updateStateVariables(e) {
       if (timeRemaining >= 0) {
       countDownIsActive = true;
       timeRemaining--;
-      console.log(timeRemaining);
       } else return;
 
       changeMainDisplay();
@@ -718,13 +716,32 @@ function updateStateVariables(e) {
 
       // helper function for decTimeRemaining()
       function changeMainDisplay() {
-        if (timeRemaining <= 5) {
+        if (timeRemaining === 0) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(225 225 225)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining === 1) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(200 200 200)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining === 2) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(175 175 175)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining === 3) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(150 150 150)";
+          mainDisplayEl.style.color = "red";
+        } else if (timeRemaining <= 5) {
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.style.color = "red";
         } else if (timeRemaining <= 10) {
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.style.color = "yellow";
         } else if (timeRemaining <= 15) {
+          mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.style.color = "green";
         }
