@@ -283,12 +283,47 @@ function initialize() {
 
 // 4. RENDER
 function render() {
+  displayGameMode();
   placePiece();
   displayWhoseTurn();
   displayWinner();
   displayDraw();
 }
   // helper functions for render():~~~~~~~~~~~~~~
+  function displayGameMode() {
+    let easyButtonEl = gameModeEl.children[0];
+    let mediumButtonEl = gameModeEl.children[1];
+    let hardButtonEl = gameModeEl.children[2];
+    if (gameMode === "easy") {
+      easyButtonEl.style.backgroundColor = "rgb(34, 255, 0)";
+      easyButtonEl.style.color = "white";
+
+      mediumButtonEl.style.backgroundColor = "rgb(238	225	112	)";
+      mediumButtonEl.style.color = "rgb(45	53	69)";
+      hardButtonEl.style.backgroundColor = "rgb(210	87	53)";
+      hardButtonEl.style.color = "rgb(45	53	69)";
+    } else if (gameMode === "medium") {
+      mediumButtonEl.style.backgroundColor = "rgb(255, 230, 0)";
+      mediumButtonEl.style.color = "white";
+
+      easyButtonEl.style.backgroundColor = "rgb(128 207 116";
+      easyButtonEl.style.color = "rgb(45	53	69)";
+      hardButtonEl.style.backgroundColor = "rgb(210	87	53)";
+      hardButtonEl.style.color = "rgb(45	53	69)";
+
+
+    } else if (gameMode === "hard") {
+      hardButtonEl.style.backgroundColor = "rgb(255, 55, 0)";
+      hardButtonEl.style.color = "white";
+
+      easyButtonEl.style.backgroundColor = "rgb(128 207 116";
+      easyButtonEl.style.color = "rgb(45	53	69)";
+      mediumButtonEl.style.backgroundColor = "rgb(238	225	112)";
+      mediumButtonEl.style.color = "rgb(45	53	69)";
+    }
+  }
+console.dir(gameModeEl);
+
   function placePiece() {
     let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
     if (changedGameSlot !== undefined && changedGameSlot !== null && gameStatusActive === true) {
@@ -357,6 +392,7 @@ function updateStateVariables(e) {
     setGameMode(e);
     setTimeRemaining(gameMode);
     stopCountDownTimer();
+    displayGameMode();
   }
 
   // IF the gameGrid is selected
