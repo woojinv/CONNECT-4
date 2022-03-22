@@ -356,6 +356,8 @@ function updateStateVariables(e) {
   if (e.target.className === "game-mode-buttons") {
     setGameMode(e);
     setTimeRemaining(gameMode);
+    stopCountDownTimer();
+
   }
 
 
@@ -717,6 +719,10 @@ function updateStateVariables(e) {
 
       // helper function for decTimeRemaining()
       function changeMainDisplay() {
+        if (timeRemaining <= 5) {
+          mainDisplayEl.innerText = `${timeRemaining}`;
+          mainDisplayEl.style.color = "red";
+        }
         mainDisplayEl.innerText = `${timeRemaining}`;
       }
 
