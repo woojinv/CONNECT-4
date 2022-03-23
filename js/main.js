@@ -87,14 +87,11 @@ const columnNumbersArr = [
   const newGameAudio = new Audio();
   newGameAudio.src = "sound/new-game.wav";
 
-  const easyAudio = new Audio();
-  easyAudio.src = "sound/easy.wav";
+  const gameModeAudio = new Audio();
+  gameModeAudio.src = "sound/game-mode.wav";
 
-  const mediumAudio = new Audio();
-  mediumAudio.src = "sound/medium.wav";
-
-  const hardAudio = new Audio();
-  hardAudio.src = "sound/hard.wav";
+  const deselectGameModeAudio = new Audio();
+  deselectGameModeAudio.src = "sound/deselect-game-mode.wav";
 
 
 /*----- app's state (variables) -----*/
@@ -478,6 +475,7 @@ function updateStateVariables(e) {
       if (e.target.id === gameMode) {
         stopCountDownTimer();
         deselectGameMode();
+        playDeselectGameModeAudio();
       } else {
         setGameMode(e);
         setTimeRemaining(gameMode);
@@ -520,13 +518,7 @@ function updateStateVariables(e) {
   }
 
   function playGameModeSound() {
-    if (gameMode === "easy") {
-      easyAudio.play();
-    } else if (gameMode === 'medium') {
-      mediumAudio.play();
-    } else if (gameMode === 'hard') {
-      hardAudio.play();
-    }
+    gameModeAudio.play();
   }
   
   function setTimeRemaining(gameMode) {
@@ -562,6 +554,10 @@ function updateStateVariables(e) {
     countDownIsActive = undefined;
     countDownId = undefined;
     
+  }
+
+  function playDeselectGameModeAudio() {
+    deselectGameModeAudio.play();
   }
 
   function getColumn(e) {
