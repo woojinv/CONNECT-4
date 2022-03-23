@@ -189,6 +189,7 @@ let countDownId;
   let currentPlayerEl = document.querySelector("#current-player");
   let startNewGameEl = document.querySelector("#start-new-game");
   let gameSlotEls = document.querySelectorAll(".game-slot");
+  let musicBtnEl = document.querySelector("#music");
 
   // gameMode buttons
   let gameModeEl = document.querySelector("#game-mode");
@@ -210,8 +211,17 @@ let countDownId;
   // GAME MODE
   gameModeEl.addEventListener('click', updateStateVariables);
 
+  // PLAY MUSIC
+  musicBtnEl.addEventListener('click', playBackgroundMusic);
+
   
 /*----- functions -----*/
+// PLAY BACKGROUND MUSIC
+function playBackgroundMusic() {
+  backgroundAudio.play();
+  backgroundAudio.loop = true;
+}
+
 // 1. DISPLAY GHOST PIECE
 function displayGhostPiece(e) {
   if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
