@@ -93,6 +93,9 @@ const columnNumbersArr = [
   const deselectGameModeAudio = new Audio();
   deselectGameModeAudio.src = "sound/deselect-game-mode.wav";
 
+  const drawAudio = new Audio();
+  drawAudio.src = "sound/draw.wav";
+
 
 /*----- app's state (variables) -----*/
 let currentPlayer;
@@ -437,6 +440,7 @@ function render() {
       gameStatusActive = false;
       stopCountDownTimer();
       stopMusic();
+      playDrawAudio();
     }
   }
 
@@ -455,6 +459,10 @@ function render() {
       backgroundAudio.loop = true;
       musicIsOn = true;
     }
+  }
+
+  function playDrawAudio() {
+    drawAudio.play();
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
