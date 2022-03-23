@@ -74,6 +74,9 @@ backgroundAudio.src = "sound/background.wav";
 const placePieceAudio = new Audio();
 placePieceAudio.src = "sound/place-piece.wav";
 
+const countdownAudio = new Audio();
+countdownAudio.src = "sound/countdown.wav";
+
 const gameOverAudio = new Audio();
 gameOverAudio.src = "sound/game-over.wav";
 
@@ -849,18 +852,22 @@ function updateStateVariables(e) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(225 225 225)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining === 1) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(200 200 200)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining === 2) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(175 175 175)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining === 3) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(150 150 150)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining <= 5) {
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
           mainDisplayEl.innerText = `${timeRemaining}`;
