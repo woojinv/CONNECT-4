@@ -299,31 +299,35 @@ function render() {
       easyButtonEl.style.backgroundColor = "rgb(34, 255, 0)";
       easyButtonEl.style.color = "white";
 
+      // resets other buttons
       mediumButtonEl.style.backgroundColor = "rgb(238	225	112	)";
       mediumButtonEl.style.color = "rgb(45	53	69)";
       hardButtonEl.style.backgroundColor = "rgb(210	87	53)";
       hardButtonEl.style.color = "rgb(45	53	69)";
-    } else if (gameMode === "medium") {
+    } 
+    else if (gameMode === "medium") {
       mediumButtonEl.style.backgroundColor = "rgb(255, 230, 0)";
       mediumButtonEl.style.color = "white";
 
-      easyButtonEl.style.backgroundColor = "rgb(128 207 116";
+      // resets other buttons
+      easyButtonEl.style.backgroundColor = "rgb(128 207 116)";
       easyButtonEl.style.color = "rgb(45	53	69)";
       hardButtonEl.style.backgroundColor = "rgb(210	87	53)";
       hardButtonEl.style.color = "rgb(45	53	69)";
 
 
-    } else if (gameMode === "hard") {
+    } 
+    else if (gameMode === "hard") {
       hardButtonEl.style.backgroundColor = "rgb(255, 55, 0)";
       hardButtonEl.style.color = "white";
 
+      // resets other buttons
       easyButtonEl.style.backgroundColor = "rgb(128 207 116";
       easyButtonEl.style.color = "rgb(45	53	69)";
       mediumButtonEl.style.backgroundColor = "rgb(238	225	112)";
       mediumButtonEl.style.color = "rgb(45	53	69)";
     }
   }
-console.dir(gameModeEl);
 
   function placePiece() {
     let changedGameSlotEl = document.querySelector(`#${changedGameSlot}`);
