@@ -415,8 +415,9 @@ function render() {
       mainDisplayEl.innerText = `It's a Draw!`;
       mainDisplayEl.parentElement.style.backgroundColor = "rgb(238	225	112)";
       mainDisplayEl.style.color = "rgb(46 51 57)";
+      gameStatusActive = false;
       stopCountDownTimer();
-
+      stopMusic();
     }
   }
 
