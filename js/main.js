@@ -212,14 +212,21 @@ let countDownId;
   gameModeEl.addEventListener('click', updateStateVariables);
 
   // PLAY MUSIC
-  musicBtnEl.addEventListener('click', playBackgroundMusic);
+  musicBtnEl.addEventListener('click', toggleBackgroundMusic);
 
   
 /*----- functions -----*/
 // PLAY BACKGROUND MUSIC
-function playBackgroundMusic() {
-  backgroundAudio.play();
-  backgroundAudio.loop = true;
+function toggleBackgroundMusic() {
+  if (backgroundAudio.loop === true) {
+    backgroundAudio.muted = true;
+    backgroundAudio.loop = false;
+  } else {
+    console.log('working')
+    backgroundAudio.muted = false;
+    backgroundAudio.play();
+    backgroundAudio.loop = true;
+  }
 }
 
 // 1. DISPLAY GHOST PIECE
