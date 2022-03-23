@@ -889,12 +889,12 @@ function updateStateVariables(e) {
 
 // 6. TOGGLE BACKGROUND MUSIC
 function toggleBackgroundMusic() {
-  if (backgroundAudio.loop === true) {
+  if (backgroundAudio.loop === true || toggleIsOn === true) {
     backgroundAudio.muted = true;
     backgroundAudio.loop = false;
     musicIsOn = false;
     toggleIsOn = false;
-  } else {
+  } else if (toggleIsOn === false || toggleIsOn === undefined) {
     toggleIsOn = true;
     musicIsOn = true;
     backgroundAudio.muted = false;
