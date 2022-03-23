@@ -19,7 +19,7 @@ body {
   font-size: xx-large;
   border-bottom: solid;
   border-color: rgb(150 159 170);
-  border-width: 1px;
+  border-width: 2px;
 }
 
 #header {
@@ -44,9 +44,9 @@ body {
   font-size: xx-large;
   color: rgb(45	53	69);
   width: -webkit-fill-available;
-  border: solid;
+  /* border: solid; */
   border-color: rgb(150 159 170);
-  border-width: 1px;
+  border-width: 2px;
 }
 
 #easy {

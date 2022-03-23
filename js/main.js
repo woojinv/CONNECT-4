@@ -68,6 +68,9 @@ const columnNumbersArr = [
   "column7",
 ];
 
+const audio = new Audio();
+audio.src = "sound/place-piece.wav";
+
 
 /*----- app's state (variables) -----*/
 let currentPlayer;
@@ -424,6 +427,7 @@ function updateStateVariables(e) {
   if (gameStatusActive === false) {
     return;
   } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
+    audio.play();
     updateGameSlotStatus(column, emptyGameSlotIndex);
     updateColumnHeight(column);
     updateChangedGameSlot(column, emptyGameSlotIndex);
