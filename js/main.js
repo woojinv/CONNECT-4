@@ -216,18 +216,7 @@ let countDownId;
 
   
 /*----- functions -----*/
-// PLAY BACKGROUND MUSIC
-function toggleBackgroundMusic() {
-  if (backgroundAudio.loop === true) {
-    backgroundAudio.muted = true;
-    backgroundAudio.loop = false;
-  } else {
-    console.log('working')
-    backgroundAudio.muted = false;
-    backgroundAudio.play();
-    backgroundAudio.loop = true;
-  }
-}
+
 
 // 1. DISPLAY GHOST PIECE
 function displayGhostPiece(e) {
@@ -864,7 +853,18 @@ function updateStateVariables(e) {
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  
+
+// 6. TOGGLE BACKGROUND MUSIC
+function toggleBackgroundMusic() {
+  if (backgroundAudio.loop === true) {
+    backgroundAudio.muted = true;
+    backgroundAudio.loop = false;
+  } else {
+    backgroundAudio.muted = false;
+    backgroundAudio.play();
+    backgroundAudio.loop = true;
+  }
+}
 
 
 
