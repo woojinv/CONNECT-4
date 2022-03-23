@@ -74,6 +74,9 @@ placePieceAudio.src = "sound/place-piece.wav";
 const gameOverAudio = new Audio();
 gameOverAudio.src = "sound/game-over.wav";
 
+const winAudio = new Audio();
+winAudio.src ="sound/4-in-a-row.wav";
+
 
 /*----- app's state (variables) -----*/
 let currentPlayer;
@@ -366,7 +369,10 @@ function render() {
     if (gameStatusActive === false) {
       if (timeRemaining === -1) {
         gameOverAudio.play();
+      } else {
+        winAudio.play();
       }
+
       mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
       if (currentPlayer === 2) {
         mainDisplayEl.parentElement.style.backgroundColor = "rgb(40 107 48)";
