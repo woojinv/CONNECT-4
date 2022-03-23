@@ -91,6 +91,7 @@ let timePerTurn;
 let countDownIsActive;
 let countDownId;
 let musicIsOn;
+let toggleIsOn;
 
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
@@ -268,6 +269,7 @@ function initialize() {
   emptyGameSlots();
   resetMainDisplay();
   render();
+  startMusic();
 }
   // helper functions for initialize():~~~~~~~~~~~~~~
     function stopCountDownTimer() {
@@ -422,11 +424,12 @@ function render() {
     if (gameStatusActive === false) {
       backgroundAudio.muted = true;
       backgroundAudio.loop = false;
+      musicIsOn = false;
       }
   }
 
   function startMusic() {
-    if ((changedGameSlot !== undefined && changedGameSlot !== null && gameStatusActive === true) && musicIsOn === true) {
+    if (musicIsOn === true) {
       backgroundAudio.muted = false;
       backgroundAudio.play();
       backgroundAudio.loop = true;
@@ -881,7 +884,9 @@ function toggleBackgroundMusic() {
     backgroundAudio.muted = true;
     backgroundAudio.loop = false;
     musicIsOn = false;
+    toggleIsOn = false;
   } else {
+    toggleIsOn = true;
     musicIsOn = true;
     backgroundAudio.muted = false;
     backgroundAudio.play();
