@@ -68,20 +68,24 @@ const columnNumbersArr = [
   "column7",
 ];
 
-const backgroundAudio = new Audio();
-backgroundAudio.src = "sound/background.wav";
+  // for sound effects
+  const backgroundAudio = new Audio();
+  backgroundAudio.src = "sound/background.wav";
 
-const placePieceAudio = new Audio();
-placePieceAudio.src = "sound/place-piece.wav";
+  const placePieceAudio = new Audio();
+  placePieceAudio.src = "sound/place-piece.wav";
 
-const countdownAudio = new Audio();
-countdownAudio.src = "sound/countdown.wav";
+  const countdownAudio = new Audio();
+  countdownAudio.src = "sound/countdown.wav";
 
-const gameOverAudio = new Audio();
-gameOverAudio.src = "sound/game-over.wav";
+  const gameOverAudio = new Audio();
+  gameOverAudio.src = "sound/game-over.wav";
 
-const winAudio = new Audio();
-winAudio.src ="sound/4-in-a-row.wav";
+  const winAudio = new Audio();
+  winAudio.src ="sound/4-in-a-row.wav";
+
+  const newGameAudio = new Audio();
+  newGameAudio.src ="sound/new-game.wav";
 
 
 /*----- app's state (variables) -----*/
@@ -262,6 +266,7 @@ initialize();
 
 
 function initialize() {
+  if (gameStatusActive !== undefined) playNewGameSound();
   currentPlayer = 1;
   gameStatusActive = true;
   changedGameSlot = null;
@@ -273,6 +278,7 @@ function initialize() {
   resetMainDisplay();
   render();
   startMusic();
+  
 }
   // helper functions for initialize():~~~~~~~~~~~~~~
     function stopCountDownTimer() {
@@ -303,6 +309,10 @@ function initialize() {
       mainDisplayEl.innerText = "Connect Four";
       mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)";
       mainDisplayEl.style.color = "rgb(225 225 225)";
+    }
+
+    function playNewGameSound() {
+      newGameAudio.play();
     }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
