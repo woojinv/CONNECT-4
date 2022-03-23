@@ -68,8 +68,11 @@ const columnNumbersArr = [
   "column7",
 ];
 
-const audio = new Audio();
-audio.src = "sound/place-piece.wav";
+const placePieceAudio = new Audio();
+placePieceAudio.src = "sound/place-piece.wav";
+
+const gameOverAudio = new Audio();
+gameOverAudio.src = "sound/game-over.wav";
 
 
 /*----- app's state (variables) -----*/
@@ -361,6 +364,9 @@ function render() {
 
   function displayWinner() {
     if (gameStatusActive === false) {
+      if (timeRemaining === -1) {
+        gameOverAudio.play();
+      }
       mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
       if (currentPlayer === 2) {
         mainDisplayEl.parentElement.style.backgroundColor = "rgb(40 107 48)";
@@ -427,7 +433,7 @@ function updateStateVariables(e) {
   if (gameStatusActive === false) {
     return;
   } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
-    audio.play();
+    placePieceAudio.play();
     updateGameSlotStatus(column, emptyGameSlotIndex);
     updateColumnHeight(column);
     updateChangedGameSlot(column, emptyGameSlotIndex);
