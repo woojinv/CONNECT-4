@@ -82,10 +82,19 @@ const columnNumbersArr = [
   gameOverAudio.src = "sound/game-over.wav";
 
   const winAudio = new Audio();
-  winAudio.src ="sound/4-in-a-row.wav";
+  winAudio.src = "sound/4-in-a-row.wav";
 
   const newGameAudio = new Audio();
-  newGameAudio.src ="sound/new-game.wav";
+  newGameAudio.src = "sound/new-game.wav";
+
+  const easyAudio = new Audio();
+  easyAudio.src = "sound/easy.wav";
+
+  const mediumAudio = new Audio();
+  mediumAudio.src = "sound/medium.wav";
+
+  const hardAudio = new Audio();
+  hardAudio.src = "sound/hard.wav";
 
 
 /*----- app's state (variables) -----*/
@@ -463,6 +472,7 @@ function updateStateVariables(e) {
       setTimeRemaining(gameMode);
       stopCountDownTimer();
       displayGameMode();
+      playGameModeSound();
     } 
     else if (gameMode !== undefined) {
       if (e.target.id === gameMode) {
@@ -473,6 +483,7 @@ function updateStateVariables(e) {
         setTimeRemaining(gameMode);
         stopCountDownTimer();
         displayGameMode();
+        playGameModeSound();
       }
       
     }
@@ -506,6 +517,16 @@ function updateStateVariables(e) {
   // helper functions for updateStateVariables()
   function setGameMode(e) {
     gameMode = e.target.id;
+  }
+
+  function playGameModeSound() {
+    if (gameMode === "easy") {
+      easyAudio.play();
+    } else if (gameMode === 'medium') {
+      mediumAudio.play();
+    } else if (gameMode === 'hard') {
+      hardAudio.play();
+    }
   }
   
   function setTimeRemaining(gameMode) {
