@@ -136,3 +136,7 @@ body {
     align-items: flex-start;
     justify-content: center;
 }
+
+#start-new-game, .game-mode-buttons, .column, .game-slot {
+  cursor: pointer;
+}

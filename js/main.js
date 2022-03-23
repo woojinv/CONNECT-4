@@ -412,7 +412,6 @@ function updateStateVariables(e) {
       }
       
     }
-    console.log(e.target.id)
   }
 
   // IF the gameGrid is selected
