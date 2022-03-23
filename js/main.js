@@ -311,8 +311,8 @@ function render() {
   displayWhoseTurn();
   displayWinner();
   displayDraw();
-  stopMusic();
   startMusic();
+  stopMusic();
 }
 
   // helper functions for render():~~~~~~~~~~~~~~
@@ -421,7 +421,7 @@ function render() {
   }
 
   function stopMusic() {
-    if (gameStatusActive === false) {
+    if (gameStatusActive === false && toggleIsOn === true) {
       backgroundAudio.muted = true;
       backgroundAudio.loop = false;
       musicIsOn = false;
@@ -429,7 +429,7 @@ function render() {
   }
 
   function startMusic() {
-    if (musicIsOn === true) {
+    if (toggleIsOn === true) {
       backgroundAudio.muted = false;
       backgroundAudio.play();
       backgroundAudio.loop = true;
@@ -838,6 +838,7 @@ function updateStateVariables(e) {
         countDownIsActive = false;
         currentPlayer = currentPlayer === 1 ? 2 : 1;
         displayWinner();
+        stopMusic();
       }
     }
 
