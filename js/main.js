@@ -394,10 +394,15 @@ function render() {
 function updateStateVariables(e) {
   // IF a game mode button is selected.
   if (e.target.classList[0] === "game-mode-buttons") {
-    setGameMode(e);
-    setTimeRemaining(gameMode);
-    stopCountDownTimer();
-    displayGameMode();
+    if (gameMode === undefined){
+      setGameMode(e);
+      setTimeRemaining(gameMode);
+      stopCountDownTimer();
+      displayGameMode();
+    } else if (gameMode !== undefined) {
+      deselectGameMode();
+    }
+    
   }
 
   // IF the gameGrid is selected
@@ -425,6 +430,28 @@ function updateStateVariables(e) {
   
   }
   // helper functions for updateStateVariables()
+  function deselectGameMode() {
+    let easyButtonEl = gameModeEl.children[0];
+    let mediumButtonEl = gameModeEl.children[1];
+    let hardButtonEl = gameModeEl.children[2];
+    if (gameMode === "easy") {
+      easyButtonEl.style.backgroundColor = "rgb(128 207 116)";
+      easyButtonEl.style.color = "rgb(45	53	69)";
+    } else if (gameMode === "medium") {
+      mediumButtonEl.style.backgroundColor = "rgb(238	225	112	)";
+      mediumButtonEl.style.color = "rgb(45	53	69)";
+    } else if (gameMode === "hard") {
+      hardButtonEl.style.backgroundColor = "rgb(210	87	53)";
+      hardButtonEl.style.color = "rgb(45	53	69)";
+    }
+    gameMode = undefined;
+    timeRemaining = undefined;
+    timePerTurn = undefined;
+    countDownIsActive = undefined;
+    countDownId = undefined;
+    
+  }
+
   function setGameMode(e) {
     gameMode = e.target.id;
   }
