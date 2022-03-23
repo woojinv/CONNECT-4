@@ -394,13 +394,22 @@ function render() {
 function updateStateVariables(e) {
   // IF a game mode button is selected.
   if (e.target.classList[0] === "game-mode-buttons") {
+
+    // setGameMode(e);
+    // setTimeRemaining(gameMode);
+    // stopCountDownTimer();
+    // displayGameMode();
+
     if (gameMode === undefined){
       setGameMode(e);
       setTimeRemaining(gameMode);
       stopCountDownTimer();
       displayGameMode();
-    } else if (gameMode !== undefined) {
+    } 
+    else if (gameMode !== undefined) {
+      stopCountDownTimer();
       deselectGameMode();
+      
     }
     
   }
@@ -430,6 +439,23 @@ function updateStateVariables(e) {
   
   }
   // helper functions for updateStateVariables()
+  function setGameMode(e) {
+    gameMode = e.target.id;
+  }
+  
+  function setTimeRemaining(gameMode) {
+    if (gameMode === "easy") {
+      timeRemaining = 21;
+      timePerTurn = 21;
+    } else if (gameMode === "medium") {
+      timeRemaining = 11;
+      timePerTurn = 11;
+    } else if (gameMode === "hard") {
+      timeRemaining = 6;
+      timePerTurn = 6;
+    }
+  }
+
   function deselectGameMode() {
     let easyButtonEl = gameModeEl.children[0];
     let mediumButtonEl = gameModeEl.children[1];
@@ -450,23 +476,6 @@ function updateStateVariables(e) {
     countDownIsActive = undefined;
     countDownId = undefined;
     
-  }
-
-  function setGameMode(e) {
-    gameMode = e.target.id;
-  }
-  
-  function setTimeRemaining(gameMode) {
-    if (gameMode === "easy") {
-      timeRemaining = 21;
-      timePerTurn = 21;
-    } else if (gameMode === "medium") {
-      timeRemaining = 11;
-      timePerTurn = 11;
-    } else if (gameMode === "hard") {
-      timeRemaining = 6;
-      timePerTurn = 6;
-    }
   }
 
   function getColumn(e) {
