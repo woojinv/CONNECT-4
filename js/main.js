@@ -68,6 +68,9 @@ const columnNumbersArr = [
   "column7",
 ];
 
+const backgroundAudio = new Audio();
+backgroundAudio.src = "sound/background.wav";
+
 const placePieceAudio = new Audio();
 placePieceAudio.src = "sound/place-piece.wav";
 
@@ -245,6 +248,8 @@ function removeGhostPiece(e) {
 
 // 3. INITIALIZE
 initialize();
+
+
 function initialize() {
   currentPlayer = 1;
   gameStatusActive = true;
