@@ -90,6 +90,7 @@ let timeRemaining;
 let timePerTurn;
 let countDownIsActive;
 let countDownId;
+let musicIsOn;
 
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
@@ -309,6 +310,7 @@ function render() {
   displayWinner();
   displayDraw();
   stopMusic();
+  startMusic();
 }
 
   // helper functions for render():~~~~~~~~~~~~~~
@@ -421,6 +423,15 @@ function render() {
       backgroundAudio.muted = true;
       backgroundAudio.loop = false;
       }
+  }
+
+  function startMusic() {
+    if ((changedGameSlot !== undefined && changedGameSlot !== null && gameStatusActive === true) && musicIsOn === true) {
+      backgroundAudio.muted = false;
+      backgroundAudio.play();
+      backgroundAudio.loop = true;
+      musicIsOn = true;
+    }
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -869,7 +880,9 @@ function toggleBackgroundMusic() {
   if (backgroundAudio.loop === true) {
     backgroundAudio.muted = true;
     backgroundAudio.loop = false;
+    musicIsOn = false;
   } else {
+    musicIsOn = true;
     backgroundAudio.muted = false;
     backgroundAudio.play();
     backgroundAudio.loop = true;
