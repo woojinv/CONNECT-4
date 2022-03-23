@@ -394,12 +394,6 @@ function render() {
 function updateStateVariables(e) {
   // IF a game mode button is selected.
   if (e.target.classList[0] === "game-mode-buttons") {
-
-    // setGameMode(e);
-    // setTimeRemaining(gameMode);
-    // stopCountDownTimer();
-    // displayGameMode();
-
     if (gameMode === undefined){
       setGameMode(e);
       setTimeRemaining(gameMode);
@@ -409,9 +403,7 @@ function updateStateVariables(e) {
     else if (gameMode !== undefined) {
       stopCountDownTimer();
       deselectGameMode();
-      
     }
-    
   }
 
   // IF the gameGrid is selected

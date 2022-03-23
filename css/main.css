@@ -54,8 +54,8 @@ body {
 }
 
 #easy:hover {
-  background-color:rgb(34, 255, 0);
-  color: white;
+  background-color:rgb(34, 255, 0) !important;
+  color: white !important;
 }
 
 #medium {
@@ -63,8 +63,8 @@ body {
 }
 
 #medium:hover {
-  background-color: rgb(255, 230, 0) ;
-  color:white;
+  background-color: rgb(255, 230, 0) !important;
+  color:white !important;
 }
 
 #hard {
@@ -72,8 +72,8 @@ body {
 }
 
 #hard:hover {
-  background-color: rgb(255, 55, 0);
-  color:white;
+  background-color: rgb(255, 55, 0) !important;
+  color:white !important;
 
 }
 
