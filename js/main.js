@@ -68,6 +68,21 @@ const columnNumbersArr = [
   "column7",
 ];
 
+const backgroundAudio = new Audio();
+backgroundAudio.src = "sound/background.wav";
+
+const placePieceAudio = new Audio();
+placePieceAudio.src = "sound/place-piece.wav";
+
+const countdownAudio = new Audio();
+countdownAudio.src = "sound/countdown.wav";
+
+const gameOverAudio = new Audio();
+gameOverAudio.src = "sound/game-over.wav";
+
+const winAudio = new Audio();
+winAudio.src ="sound/4-in-a-row.wav";
+
 
 /*----- app's state (variables) -----*/
 let currentPlayer;
@@ -78,6 +93,8 @@ let timeRemaining;
 let timePerTurn;
 let countDownIsActive;
 let countDownId;
+let musicIsOn;
+let toggleIsOn;
 
 
   // COLUMN HEIGHT and GAME SLOT STATUS.
@@ -177,6 +194,7 @@ let countDownId;
   let currentPlayerEl = document.querySelector("#current-player");
   let startNewGameEl = document.querySelector("#start-new-game");
   let gameSlotEls = document.querySelectorAll(".game-slot");
+  let musicBtnEl = document.querySelector("#music");
 
   // gameMode buttons
   let gameModeEl = document.querySelector("#game-mode");
@@ -198,8 +216,13 @@ let countDownId;
   // GAME MODE
   gameModeEl.addEventListener('click', updateStateVariables);
 
+  // PLAY MUSIC
+  musicBtnEl.addEventListener('click', toggleBackgroundMusic);
+
   
 /*----- functions -----*/
+
+
 // 1. DISPLAY GHOST PIECE
 function displayGhostPiece(e) {
   if (e.target.classList[1] === "column" || e.target.classList[1] === "game-slot") {
@@ -236,6 +259,8 @@ function removeGhostPiece(e) {
 
 // 3. INITIALIZE
 initialize();
+
+
 function initialize() {
   currentPlayer = 1;
   gameStatusActive = true;
@@ -247,6 +272,7 @@ function initialize() {
   emptyGameSlots();
   resetMainDisplay();
   render();
+  startMusic();
 }
   // helper functions for initialize():~~~~~~~~~~~~~~
     function stopCountDownTimer() {
@@ -288,6 +314,8 @@ function render() {
   displayWhoseTurn();
   displayWinner();
   displayDraw();
+  startMusic();
+  stopMusic();
 }
 
   // helper functions for render():~~~~~~~~~~~~~~
@@ -358,6 +386,12 @@ function render() {
 
   function displayWinner() {
     if (gameStatusActive === false) {
+      if (timeRemaining === -1) {
+        gameOverAudio.play();
+      } else {
+        winAudio.play();
+      }
+
       mainDisplayEl.innerText = `Player ${currentPlayer} Wins!`;
       if (currentPlayer === 2) {
         mainDisplayEl.parentElement.style.backgroundColor = "rgb(40 107 48)";
@@ -384,6 +418,26 @@ function render() {
       mainDisplayEl.innerText = `It's a Draw!`;
       mainDisplayEl.parentElement.style.backgroundColor = "rgb(238	225	112)";
       mainDisplayEl.style.color = "rgb(46 51 57)";
+      gameStatusActive = false;
+      stopCountDownTimer();
+      stopMusic();
+    }
+  }
+
+  function stopMusic() {
+    if (gameStatusActive === false && toggleIsOn === true) {
+      backgroundAudio.muted = true;
+      backgroundAudio.loop = false;
+      musicIsOn = false;
+      }
+  }
+
+  function startMusic() {
+    if (toggleIsOn === true) {
+      backgroundAudio.muted = false;
+      backgroundAudio.play();
+      backgroundAudio.loop = true;
+      musicIsOn = true;
     }
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -394,10 +448,24 @@ function render() {
 function updateStateVariables(e) {
   // IF a game mode button is selected.
   if (e.target.classList[0] === "game-mode-buttons") {
-    setGameMode(e);
-    setTimeRemaining(gameMode);
-    stopCountDownTimer();
-    displayGameMode();
+    if (gameMode === undefined){
+      setGameMode(e);
+      setTimeRemaining(gameMode);
+      stopCountDownTimer();
+      displayGameMode();
+    } 
+    else if (gameMode !== undefined) {
+      if (e.target.id === gameMode) {
+        stopCountDownTimer();
+        deselectGameMode();
+      } else {
+        setGameMode(e);
+        setTimeRemaining(gameMode);
+        stopCountDownTimer();
+        displayGameMode();
+      }
+      
+    }
   }
 
   // IF the gameGrid is selected
@@ -410,6 +478,7 @@ function updateStateVariables(e) {
   if (gameStatusActive === false) {
     return;
   } else if (gameStatusActive === true && ((e.target.classList[1] === "column" || e.target.classList[1] === "game-slot")) && gameGrid[column].height < 6) {
+    placePieceAudio.play();
     updateGameSlotStatus(column, emptyGameSlotIndex);
     updateColumnHeight(column);
     updateChangedGameSlot(column, emptyGameSlotIndex);
@@ -440,6 +509,28 @@ function updateStateVariables(e) {
       timeRemaining = 6;
       timePerTurn = 6;
     }
+  }
+
+  function deselectGameMode() {
+    let easyButtonEl = gameModeEl.children[0];
+    let mediumButtonEl = gameModeEl.children[1];
+    let hardButtonEl = gameModeEl.children[2];
+    if (gameMode === "easy") {
+      easyButtonEl.style.backgroundColor = "rgb(128 207 116)";
+      easyButtonEl.style.color = "rgb(45	53	69)";
+    } else if (gameMode === "medium") {
+      mediumButtonEl.style.backgroundColor = "rgb(238	225	112	)";
+      mediumButtonEl.style.color = "rgb(45	53	69)";
+    } else if (gameMode === "hard") {
+      hardButtonEl.style.backgroundColor = "rgb(210	87	53)";
+      hardButtonEl.style.color = "rgb(45	53	69)";
+    }
+    gameMode = undefined;
+    timeRemaining = undefined;
+    timePerTurn = undefined;
+    countDownIsActive = undefined;
+    countDownId = undefined;
+    
   }
 
   function getColumn(e) {
@@ -751,6 +842,7 @@ function updateStateVariables(e) {
         countDownIsActive = false;
         currentPlayer = currentPlayer === 1 ? 2 : 1;
         displayWinner();
+        stopMusic();
       }
     }
 
@@ -760,18 +852,22 @@ function updateStateVariables(e) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(225 225 225)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining === 1) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(200 200 200)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining === 2) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(175 175 175)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining === 3) {
           mainDisplayEl.innerText = `${timeRemaining}`;
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(150 150 150)";
           mainDisplayEl.style.color = "red";
+          countdownAudio.play();
         } else if (timeRemaining <= 5) {
           mainDisplayEl.parentElement.style.backgroundColor = "rgb(48	51	57)"
           mainDisplayEl.innerText = `${timeRemaining}`;
@@ -790,7 +886,22 @@ function updateStateVariables(e) {
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  
+
+// 6. TOGGLE BACKGROUND MUSIC
+function toggleBackgroundMusic() {
+  if (backgroundAudio.loop === true) {
+    backgroundAudio.muted = true;
+    backgroundAudio.loop = false;
+    musicIsOn = false;
+    toggleIsOn = false;
+  } else {
+    toggleIsOn = true;
+    musicIsOn = true;
+    backgroundAudio.muted = false;
+    backgroundAudio.play();
+    backgroundAudio.loop = true;
+  }
+}
 
 
 
