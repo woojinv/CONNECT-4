@@ -401,9 +401,18 @@ function updateStateVariables(e) {
       displayGameMode();
     } 
     else if (gameMode !== undefined) {
-      stopCountDownTimer();
-      deselectGameMode();
+      if (e.target.id === gameMode) {
+        stopCountDownTimer();
+        deselectGameMode();
+      } else {
+        setGameMode(e);
+        setTimeRemaining(gameMode);
+        stopCountDownTimer();
+        displayGameMode();
+      }
+      
     }
+    console.log(e.target.id)
   }
 
   // IF the gameGrid is selected
