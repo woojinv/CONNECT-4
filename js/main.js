@@ -308,6 +308,7 @@ function render() {
   displayWhoseTurn();
   displayWinner();
   displayDraw();
+  stopMusic();
 }
 
   // helper functions for render():~~~~~~~~~~~~~~
@@ -413,6 +414,13 @@ function render() {
       stopCountDownTimer();
 
     }
+  }
+
+  function stopMusic() {
+    if (gameStatusActive === false) {
+      backgroundAudio.muted = true;
+      backgroundAudio.loop = false;
+      }
   }
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
