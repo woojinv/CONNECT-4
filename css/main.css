@@ -23,6 +23,7 @@ body {
   background-color: rgb(43 53 71);
 }
 
+/* Top Row */
 #start-new-game {
   background-color: rgb(101 153 237);
   color: rgb(46 51 58);
@@ -54,6 +55,7 @@ body {
   border-width: 1px;
   justify-items: center;
 }
+
 
 /* Left Column */
 .game-mode-buttons {
@@ -97,6 +99,7 @@ body {
   background-color: rgb(255 55 0) !important;
   color:white !important;
 }
+
 
 /* Middle Column */
 #game-container {
