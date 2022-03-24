@@ -3,7 +3,7 @@
 
 ## Description  
 
-> Players take turns placing pieces on a 7x6 game board. When a column is picked, the player's piece is placed at the *bottom-most* game slot of that column. The first person to place four of their pieces in a row wins the game. 
+Players take turns placing pieces on a 7x6 game board. When a column is picked, the player's piece is placed at the *bottom-most* game slot of that column. The first person to place four of their pieces in a row wins the game. 
 
 
 ## Wireframe
@@ -13,14 +13,14 @@
 
 ## Technologies Used
 
-> JavaScript, HTML, CSS
+JavaScript, HTML, CSS
   
 
 ## Getting Started
 
 ### Link to Website
 
-> [Connect Four](https://woojinv.github.io/CONNECT-4/)
+[Connect Four](https://woojinv.github.io/CONNECT-4/)
 
 
 ### Instructions
