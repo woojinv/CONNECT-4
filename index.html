@@ -1,34 +1,72 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
+
+    <!-- Website Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Righteous&display=swap"
       rel="stylesheet"
     />
+  
+    <!-- Meta -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
     <title>Connect Four</title>
+
+    <!-- CSS / JS -->
     <link rel="stylesheet" href="css/main.css" />
     <script defer src="js/main.js"></script>
+
   </head>
+
   <body>
+
+    <!-- Start New Game Button -->
     <button type="button" class="flex-ctr" id="start-new-game">
       Start New Game
     </button>
+
+    <!-- Main Display -->
     <div class="flex-ctr" id="header">
       <h1 class="flex-ctr" id="main-display">Connect Four</h1>
     </div>
+
+    <!-- Current Player Display -->
     <div class="flex-ctr" id="current-player">Current Player</div>
+
+    <!-- Left Column -->
     <div class="flex-ctr-buttons" id="game-mode">
-      <button type="button" class="game-mode-buttons flex-ctr" id="easy">Easy</button> 
-      <button type="button" class="game-mode-buttons flex-ctr" id="medium">Medium</button>
-      <button type="button" class="game-mode-buttons flex-ctr" id="hard">Hard</button>
+
+      <!-- Easy Button -->
+      <button type="button" class="game-mode-buttons flex-ctr" id="easy">
+        Easy
+      </button>
+
+      <!-- Medium Button -->
+      <button type="button" class="game-mode-buttons flex-ctr" id="medium">
+        Medium
+      </button>
+
+      <!-- Hard Button -->
+      <button type="button" class="game-mode-buttons flex-ctr" id="hard">
+        Hard
+      </button>
     </div>
+
+    <!-- Middle Column-->
     <div class="flex-ctr" id="game-container">
+
+      <!-- Game Grid -->
       <div class="flex-ctr" id="game-grid">
+
+        <!-- Column 1 -->
         <div class="flex-ctr column" id="column1">
           <div class="flex-ctr game-slot column1" id="gs1-1"></div>
           <div class="flex-ctr game-slot column1" id="gs1-2"></div>
@@ -38,6 +76,7 @@
           <div class="flex-ctr game-slot column1" id="gs1-6"></div>
         </div>
 
+        <!-- Column 2 -->
         <div class="flex-ctr column" id="column2">
           <div class="flex-ctr game-slot column2" id="gs2-1"></div>
           <div class="flex-ctr game-slot column2" id="gs2-2"></div>
@@ -47,6 +86,7 @@
           <div class="flex-ctr game-slot column2" id="gs2-6"></div>
         </div>
 
+        <!-- Column 3 -->
         <div class="flex-ctr column" id="column3">
           <div class="flex-ctr game-slot column3" id="gs3-1"></div>
           <div class="flex-ctr game-slot column3" id="gs3-2"></div>
@@ -56,6 +96,7 @@
           <div class="flex-ctr game-slot column3" id="gs3-6"></div>
         </div>
 
+        <!-- Column 4 -->
         <div class="flex-ctr column" id="column4">
           <div class="flex-ctr game-slot column4" id="gs4-1"></div>
           <div class="flex-ctr game-slot column4" id="gs4-2"></div>
@@ -65,6 +106,7 @@
           <div class="flex-ctr game-slot column4" id="gs4-6"></div>
         </div>
 
+        <!-- Column 5 -->
         <div class="flex-ctr column" id="column5">
           <div class="flex-ctr game-slot column5" id="gs5-1"></div>
           <div class="flex-ctr game-slot column5" id="gs5-2"></div>
@@ -74,6 +116,7 @@
           <div class="flex-ctr game-slot column5" id="gs5-6"></div>
         </div>
 
+        <!-- Column 6 -->
         <div class="flex-ctr column" id="column6">
           <div class="flex-ctr game-slot column6" id="gs6-1"></div>
           <div class="flex-ctr game-slot column6" id="gs6-2"></div>
@@ -83,6 +126,7 @@
           <div class="flex-ctr game-slot column6" id="gs6-6"></div>
         </div>
 
+        <!-- Column 7 -->
         <div class="flex-ctr column" id="column7">
           <div class="flex-ctr game-slot column7" id="gs7-1"></div>
           <div class="flex-ctr game-slot column7" id="gs7-2"></div>
@@ -93,11 +137,17 @@
         </div>
       </div>
     </div>
+
+    <!-- Right Column -->
     <div id="column-right">
+
+      <!-- Music Toggle -->
       <label class="switch">
-        <input id="music" type="checkbox">
+        <input id="music" type="checkbox" />
         <span class="slider"></span>
       </label>
+
     </div>
+    
   </body>
 </html>
