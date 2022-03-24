@@ -8,8 +8,9 @@ Players take turns placing pieces on a 7x6 game board. When a column is picked, 
 
 ## Wireframe
 
-![Empty Game Board](wireframe.png "Wireframe")
+![Empty Game Board](images/wireframe.png "Wireframe")
 
+![End Game Board](images/wireframe-win.png "Wireframe Win")
 
 ## Technologies Used
 
