@@ -96,6 +96,9 @@ const columnNumbersArr = [
   const drawAudio = new Audio();
   drawAudio.src = "sound/draw.wav";
 
+  const hoverAudio = new Audio();
+  hoverAudio.src = "sound/hover.wav";
+
 
 /*----- app's state (variables) -----*/
 let currentPlayer;
@@ -244,6 +247,7 @@ function displayGhostPiece(e) {
     let emptyGameSlot = gameSlotIds[column][emptyGameSlotIndex];
     let emptyGameSlotEl = document.querySelector(`#${emptyGameSlot}`);
     if (gameStatusActive === true && emptyGameSlotIndex <= 6) {
+      playHoverAudio();
       if (currentPlayer === 2) {
         emptyGameSlotEl.style.backgroundColor = "rgb(40 107 48)";
       } else if (currentPlayer === 1) {
@@ -252,6 +256,11 @@ function displayGhostPiece(e) {
     }
   }
 }
+
+  // helper function for displayGhostPiece
+  function playHoverAudio() {
+    hoverAudio.play();
+  }
 
 // 2. REMOVE GHOST PIECE
 function removeGhostPiece(e) {
