@@ -514,10 +514,9 @@ initialize();
   }
 
   function checkWinCondition() {
-    // horizontal
-    for (let i = 1; i < 7; i++) {
+    // Horizontal
+    for (let i = 1; i < 5; i++) {
       for (let j = 1; j < 8; j++) {
-        console.log(gameGrid[i].gameSlotStatus[6]);
         if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j] === 1 && gameGrid[i + 2].gameSlotStatus[j] === 1 && gameGrid[i + 3].gameSlotStatus[j] === 1) {
           currentPlayer = 1;
           gameStatusActive = false;
@@ -527,82 +526,46 @@ initialize();
         }
       }
     }
+
+    // Vertical
+    for (let i = 1; i < 8; i ++) {
+      for (let j = 6; j > 3; j--) {
+        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i].gameSlotStatus[j - 1] === 1 && gameGrid[i].gameSlotStatus[j - 2] === 1 && gameGrid[i].gameSlotStatus[j - 3] === 1) {
+          currentPlayer = 1;
+          gameStatusActive = false;
+        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i].gameSlotStatus[j - 1] === 2 && gameGrid[i].gameSlotStatus[j - 2] === 2 && gameGrid[i].gameSlotStatus[j - 3] === 2) {
+          currentPlayer = 2;
+          gameStatusActive = false;
+        }
+      }
+    }
+
+    // Ascending Diagonal 
+    for (let i = 1; i < 5; i++) {
+      for (let j = 6; j > 3; j--) {
+        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j - 1] === 1 && gameGrid[i + 2].gameSlotStatus[j - 2] === 1 && gameGrid[i + 3].gameSlotStatus[j - 3] === 1) {
+          currentPlayer = 1;
+          gameStatusActive = false;
+        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j - 1] === 2 && gameGrid[i + 2].gameSlotStatus[j - 2] === 2 && gameGrid[i + 3].gameSlotStatus[j - 3] === 2) {
+          currentPlayer = 2;
+          gameStatusActive = false;
+        }
+      }
+    }
+
+    // Descending Diagonal
+    for (let i = 1; i < 5; i++) {
+      for (let j = 3; j > 0; j--) {
+        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j + 1] === 1 && gameGrid[i + 2].gameSlotStatus[j + 2] === 1 && gameGrid[i + 3].gameSlotStatus[j + 3] === 1) {
+          currentPlayer = 1;
+          gameStatusActive = false;
+        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j + 1] === 2 && gameGrid[i + 2].gameSlotStatus[j + 2] === 2 && gameGrid[i + 3].gameSlotStatus[j + 3] === 2) {
+          currentPlayer = 2;
+          gameStatusActive = false;
+        }
+      }
+    }
   }
-
-    // for (const column in gameGrid) {
-    //   let numberColumn = parseInt(column);
-    //   let eachColumn = gameGrid[column];
-    //   let gameSlots = eachColumn.gameSlotStatus;
-    //   for (const slots in gameSlots) {
-    //     let numberSlots = parseInt(slots);
-    //     // Vertical
-    //     if (gameGrid[column].gameSlotStatus[numberSlots] === 1 && gameGrid[column].gameSlotStatus[numberSlots - 1] === 1 && gameGrid[column].gameSlotStatus[numberSlots - 2] === 1 && gameGrid[column].gameSlotStatus[numberSlots - 3] === 1) {
-    //       currentPlayer = 1;
-    //       gameStatusActive = false;
-    //     } else if (gameGrid[column].gameSlotStatus[numberSlots] === 2 && gameGrid[column].gameSlotStatus[numberSlots - 1] === 2 && gameGrid[column].gameSlotStatus[numberSlots - 2] === 2 && gameGrid[column].gameSlotStatus[numberSlots - 3] === 2) {
-    //       currentPlayer = 2;
-    //       gameStatusActive = false;
-    //     }
-    //   }
-    // }
-
-    // for (const column in gameGrid) {
-    //   let numberColumn = parseInt(column);
-    //   let eachColumn = gameGrid[column];
-    //   let gameSlots = eachColumn.gameSlotStatus;
-    //   for (const slots in gameSlots) {
-    //     let numberSlots = parseInt(slots);
-
-    //     // Horizontal
-    //     if ((gameGrid[numberColumn].gameSlotStatus[numberSlots] === 1 && gameGrid[numberColumn + 1].gameSlotStatus[numberSlots] === 1 && gameGrid[numberColumn + 2].gameSlotStatus[numberSlots] === 1 && gameGrid[numberColumn + 3].gameSlotStatus[numberSlots] === 1)){
-    //       currentPlayer = 1;
-    //       gameStatusActive = false;
-    //     } else if ((gameGrid[numberColumn].gameSlotStatus[numberSlots] === 2 && gameGrid[numberColumn + 1].gameSlotStatus[numberSlots] === 2 && gameGrid[numberColumn + 2].gameSlotStatus[numberSlots] === 2 && gameGrid[numberColumn + 3].gameSlotStatus[numberSlots] === 2)) {
-    //       currentPlayer = 2;
-    //       gameStatusActive = false;
-    //     }
-    //   }
-    // }
-
-    // for (const column in gameGrid) {
-    //   let numberColumn = parseInt(column);
-    //   let eachColumn = gameGrid[column];
-    //   let gameSlots = eachColumn.gameSlotStatus;
-    //   for (const slots in gameSlots) {
-    //     let numberSlots = parseInt(slots);
-
-    //     //  Ascending Diagonal
-    //     if ((gameGrid[numberColumn].gameSlotStatus[numberSlots] === 1 && gameGrid[numberColumn + 1].gameSlotStatus[numberSlots - 1] === 1 && gameGrid[numberColumn + 2].gameSlotStatus[numberSlots - 2] === 1 && gameGrid[numberColumn + 3].gameSlotStatus[numberSlots - 3] === 1)){
-    //       currentPlayer = 1;
-    //       gameStatusActive = false;
-    //     } else if ((gameGrid[numberColumn].gameSlotStatus[numberSlots] === 2 && gameGrid[numberColumn + 1].gameSlotStatus[numberSlots - 1] === 2 && gameGrid[numberColumn + 2].gameSlotStatus[numberSlots - 2] === 2 && gameGrid[numberColumn + 3].gameSlotStatus[numberSlots - 3] === 2)) {
-    //       currentPlayer = 2;
-    //       gameStatusActive = false;
-    //     }
-    //   }
-    // }
-
-    // for (const column in gameGrid) {
-    //   let numberColumn = parseInt(column);
-    //   let eachColumn = gameGrid[column];
-    //   let gameSlots = eachColumn.gameSlotStatus;
-    //   for (const slots in gameSlots) {
-    //     let numberSlots = parseInt(slots);
-
-    //     // Descending Diagonal
-    //     if ((gameGrid[numberColumn].gameSlotStatus[numberSlots] === 1 && gameGrid[numberColumn + 1].gameSlotStatus[numberSlots + 1] === 1 && gameGrid[numberColumn + 2].gameSlotStatus[numberSlots + 2] === 1 && gameGrid[numberColumn + 3].gameSlotStatus[numberSlots + 3] === 1)){
-    //       currentPlayer = 1;
-    //       gameStatusActive = false;
-    //     } else if ((gameGrid[numberColumn].gameSlotStatus[numberSlots] === 2 && gameGrid[numberColumn + 1].gameSlotStatus[numberSlots + 1] === 2 && gameGrid[numberColumn + 2].gameSlotStatus[numberSlots + 2] === 2 && gameGrid[numberColumn + 3].gameSlotStatus[numberSlots + 3] === 2)) {
-    //       currentPlayer = 2;
-    //       gameStatusActive = false;
-    //     }
-    //   }
-    // }
-  
-    
-  
-  
 
   function beginCountDown() {
     if (!countDownId) {
