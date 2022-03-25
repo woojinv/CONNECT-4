@@ -58,16 +58,6 @@ const gameSlotIds = {
   },
 };
 
-const columnNumbersArr = [
-  "column1",
-  "column2",
-  "column3",
-  "column4",
-  "column5",
-  "column6",
-  "column7",
-];
-
   // for sound effects
   const backgroundAudio = new Audio();
   backgroundAudio.src = "sound/background.wav";
