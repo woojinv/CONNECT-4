@@ -496,58 +496,69 @@ initialize();
   }
 
   function checkWinCondition() {
-    // Horizontal
-    for (let i = 1; i < 5; i++) {
-      for (let j = 1; j < 8; j++) {
-        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j] === 1 && gameGrid[i + 2].gameSlotStatus[j] === 1 && gameGrid[i + 3].gameSlotStatus[j] === 1) {
-          currentPlayer = 1;
-          gameStatusActive = false;
-        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j] === 2 && gameGrid[i + 2].gameSlotStatus[j] === 2 && gameGrid[i + 3].gameSlotStatus[j] === 2) {
-          currentPlayer = 2;
-          gameStatusActive = false;
-        }
-      }
-    }
-
-    // Vertical
-    for (let i = 1; i < 8; i ++) {
-      for (let j = 6; j > 3; j--) {
-        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i].gameSlotStatus[j - 1] === 1 && gameGrid[i].gameSlotStatus[j - 2] === 1 && gameGrid[i].gameSlotStatus[j - 3] === 1) {
-          currentPlayer = 1;
-          gameStatusActive = false;
-        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i].gameSlotStatus[j - 1] === 2 && gameGrid[i].gameSlotStatus[j - 2] === 2 && gameGrid[i].gameSlotStatus[j - 3] === 2) {
-          currentPlayer = 2;
-          gameStatusActive = false;
-        }
-      }
-    }
-
-    // Ascending Diagonal 
-    for (let i = 1; i < 5; i++) {
-      for (let j = 6; j > 3; j--) {
-        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j - 1] === 1 && gameGrid[i + 2].gameSlotStatus[j - 2] === 1 && gameGrid[i + 3].gameSlotStatus[j - 3] === 1) {
-          currentPlayer = 1;
-          gameStatusActive = false;
-        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j - 1] === 2 && gameGrid[i + 2].gameSlotStatus[j - 2] === 2 && gameGrid[i + 3].gameSlotStatus[j - 3] === 2) {
-          currentPlayer = 2;
-          gameStatusActive = false;
-        }
-      }
-    }
-
-    // Descending Diagonal
-    for (let i = 1; i < 5; i++) {
-      for (let j = 3; j > 0; j--) {
-        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j + 1] === 1 && gameGrid[i + 2].gameSlotStatus[j + 2] === 1 && gameGrid[i + 3].gameSlotStatus[j + 3] === 1) {
-          currentPlayer = 1;
-          gameStatusActive = false;
-        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j + 1] === 2 && gameGrid[i + 2].gameSlotStatus[j + 2] === 2 && gameGrid[i + 3].gameSlotStatus[j + 3] === 2) {
-          currentPlayer = 2;
-          gameStatusActive = false;
-        }
-      }
-    }
+    checkHorizontal();
+    checkVertical();
+    checkAscendingDiagonal();
+    checkDescendingDiagonal();
   }
+
+    // for CHECK WIN CONDITION
+    function checkHorizontal() {
+      for (let i = 1; i < 5; i++) {
+        for (let j = 1; j < 8; j++) {
+          if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j] === 1 && gameGrid[i + 2].gameSlotStatus[j] === 1 && gameGrid[i + 3].gameSlotStatus[j] === 1) {
+            currentPlayer = 1;
+            gameStatusActive = false;
+          } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j] === 2 && gameGrid[i + 2].gameSlotStatus[j] === 2 && gameGrid[i + 3].gameSlotStatus[j] === 2) {
+            currentPlayer = 2;
+            gameStatusActive = false;
+          }
+        }
+      }
+    }
+
+    function checkVertical() {
+      for (let i = 1; i < 8; i ++) {
+        for (let j = 6; j > 3; j--) {
+          if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i].gameSlotStatus[j - 1] === 1 && gameGrid[i].gameSlotStatus[j - 2] === 1 && gameGrid[i].gameSlotStatus[j - 3] === 1) {
+            currentPlayer = 1;
+            gameStatusActive = false;
+          } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i].gameSlotStatus[j - 1] === 2 && gameGrid[i].gameSlotStatus[j - 2] === 2 && gameGrid[i].gameSlotStatus[j - 3] === 2) {
+            currentPlayer = 2;
+            gameStatusActive = false;
+          }
+        }
+      }
+    }
+
+    function checkAscendingDiagonal() {
+      for (let i = 1; i < 5; i++) {
+        for (let j = 6; j > 3; j--) {
+          if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j - 1] === 1 && gameGrid[i + 2].gameSlotStatus[j - 2] === 1 && gameGrid[i + 3].gameSlotStatus[j - 3] === 1) {
+            currentPlayer = 1;
+            gameStatusActive = false;
+          } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j - 1] === 2 && gameGrid[i + 2].gameSlotStatus[j - 2] === 2 && gameGrid[i + 3].gameSlotStatus[j - 3] === 2) {
+            currentPlayer = 2;
+            gameStatusActive = false;
+          }
+        }
+      }
+    }
+
+    function checkDescendingDiagonal() {
+      for (let i = 1; i < 5; i++) {
+        for (let j = 3; j > 0; j--) {
+          if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j + 1] === 1 && gameGrid[i + 2].gameSlotStatus[j + 2] === 1 && gameGrid[i + 3].gameSlotStatus[j + 3] === 1) {
+            currentPlayer = 1;
+            gameStatusActive = false;
+          } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j + 1] === 2 && gameGrid[i + 2].gameSlotStatus[j + 2] === 2 && gameGrid[i + 3].gameSlotStatus[j + 3] === 2) {
+            currentPlayer = 2;
+            gameStatusActive = false;
+          }
+        }
+      }
+    }
+  
 
   function beginCountDown() {
     if (!countDownId) {
