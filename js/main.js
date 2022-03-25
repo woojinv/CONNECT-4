@@ -192,15 +192,15 @@ let toggleIsOn;
 /*----- CACHES ELEMENTS -----*/
 
   // Parts of the page
-  let gameGridEl = document.querySelector("#game-grid");
-  let mainDisplayEl = document.querySelector('#main-display');
-  let currentPlayerEl = document.querySelector("#current-player");
-  let startNewGameEl = document.querySelector("#start-new-game");
-  let gameSlotEls = document.querySelectorAll(".game-slot");
-  let musicBtnEl = document.querySelector("#music");
+  const gameGridEl = document.querySelector("#game-grid");
+  const mainDisplayEl = document.querySelector('#main-display');
+  const currentPlayerEl = document.querySelector("#current-player");
+  const startNewGameEl = document.querySelector("#start-new-game");
+  const gameSlotEls = document.querySelectorAll(".game-slot");
+  const musicBtnEl = document.querySelector("#music");
 
   // Game Mode buttons
-  let gameModeEl = document.querySelector("#game-mode");
+  const gameModeEl = document.querySelector("#game-mode");
 
 //############################################################
 
