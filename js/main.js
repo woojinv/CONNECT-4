@@ -200,14 +200,6 @@ let toggleIsOn;
 
 
 /*----- CACHES ELEMENTS -----*/
-  // For checkWinCondition() function
-  let column1 = gameGrid[1].gameSlotStatus;
-  let column2 = gameGrid[2].gameSlotStatus;
-  let column3 = gameGrid[3].gameSlotStatus;
-  let column4 = gameGrid[4].gameSlotStatus;
-  let column5 = gameGrid[5].gameSlotStatus;
-  let column6 = gameGrid[6].gameSlotStatus;
-  let column7 = gameGrid[7].gameSlotStatus;
 
   // Parts of the page
   let gameGridEl = document.querySelector("#game-grid");
