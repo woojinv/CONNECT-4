@@ -1,6 +1,6 @@
 /*----- CONSTANTS -----*/
 const gameSlotIds = {
-  column1: {
+  1: {
     1: "gs1-1",
     2: "gs1-2",
     3: "gs1-3",
@@ -8,7 +8,7 @@ const gameSlotIds = {
     5: "gs1-5",
     6: "gs1-6",
   },
-  column2: {
+  2: {
     1: "gs2-1",
     2: "gs2-2",
     3: "gs2-3",
@@ -16,7 +16,7 @@ const gameSlotIds = {
     5: "gs2-5",
     6: "gs2-6",
   },
-  column3: {
+  3: {
     1: "gs3-1",
     2: "gs3-2",
     3: "gs3-3",
@@ -24,7 +24,7 @@ const gameSlotIds = {
     5: "gs3-5",
     6: "gs3-6",
   },
-  column4: {
+  4: {
     1: "gs4-1",
     2: "gs4-2",
     3: "gs4-3",
@@ -32,7 +32,7 @@ const gameSlotIds = {
     5: "gs4-5",
     6: "gs4-6",
   },
-  column5: {
+  5: {
     1: "gs5-1",
     2: "gs5-2",
     3: "gs5-3",
@@ -40,7 +40,7 @@ const gameSlotIds = {
     5: "gs5-5",
     6: "gs5-6",
   },
-  column6: {
+  6: {
     1: "gs6-1",
     2: "gs6-2",
     3: "gs6-3",
@@ -48,7 +48,7 @@ const gameSlotIds = {
     5: "gs6-5",
     6: "gs6-6",
   },
-  column7: {
+  7: {
     1: "gs7-1",
     2: "gs7-2",
     3: "gs7-3",
@@ -57,16 +57,6 @@ const gameSlotIds = {
     6: "gs7-6",
   },
 };
-
-const columnNumbersArr = [
-  "column1",
-  "column2",
-  "column3",
-  "column4",
-  "column5",
-  "column6",
-  "column7",
-];
 
   // for sound effects
   const backgroundAudio = new Audio();
@@ -117,7 +107,7 @@ let toggleIsOn;
 
   // column height and game slot status
   const gameGrid = {
-    column1: {
+    1: {
       height: 0,
       gameSlotStatus: {
         1: null,
@@ -128,7 +118,7 @@ let toggleIsOn;
         6: null,
       },
     },
-    column2: {
+    2: {
       height: 0,
       gameSlotStatus: {
         1: null,
@@ -139,7 +129,7 @@ let toggleIsOn;
         6: null,
       },
     },
-    column3: {
+    3: {
       height: 0,
       gameSlotStatus: {
         1: null,
@@ -150,7 +140,7 @@ let toggleIsOn;
         6: null,
       },
     },
-    column4: {
+    4: {
       height: 0,
       gameSlotStatus: {
         1: null,
@@ -161,7 +151,7 @@ let toggleIsOn;
         6: null,
       },
     },
-    column5: {
+    5: {
       height: 0,
       gameSlotStatus: {
         1: null,
@@ -172,7 +162,7 @@ let toggleIsOn;
         6: null,
       },
     },
-    column6: {
+    6: {
       height: 0,
       gameSlotStatus: {
         1: null,
@@ -183,7 +173,7 @@ let toggleIsOn;
         6: null,
       },
     },
-    column7: {
+    7: {
       height: 0,
       gameSlotStatus: {
         1: null,
@@ -200,14 +190,6 @@ let toggleIsOn;
 
 
 /*----- CACHES ELEMENTS -----*/
-  // For checkWinCondition() function
-  let column1 = gameGrid.column1.gameSlotStatus;
-  let column2 = gameGrid.column2.gameSlotStatus;
-  let column3 = gameGrid.column3.gameSlotStatus;
-  let column4 = gameGrid.column4.gameSlotStatus;
-  let column5 = gameGrid.column5.gameSlotStatus;
-  let column6 = gameGrid.column6.gameSlotStatus;
-  let column7 = gameGrid.column7.gameSlotStatus;
 
   // Parts of the page
   let gameGridEl = document.querySelector("#game-grid");
@@ -355,7 +337,7 @@ initialize();
       if (currentPlayer === 1) {
         emptyGameSlotEl.style.backgroundColor = "rgb(101 108 119)";
       } else if (currentPlayer === 2) {
-        emptyGameSlotEl.style.backgroundColor = "rgb(101 108	119)";
+        emptyGameSlotEl.style.backgroundColor = "rgb(101 108 119)";
       }
     }
   }
@@ -390,14 +372,14 @@ initialize();
 
   function resetColumnHeights() {
     for (let i = 1; i <= 7; i++) {
-      gameGrid[`column${i}`].height = 0;
+      gameGrid[i].height = 0;
     }
   }
 
   function resetGameSlotStatus() {
     for (let i = 1; i <= 7; i++) {
       for (let j = 1; j <= 6; j++) {
-        gameGrid[`column${i}`].gameSlotStatus[j] = null;
+        gameGrid[i].gameSlotStatus[j] = null;
       }
     }
   }
@@ -466,7 +448,7 @@ initialize();
   }
 
   function getColumn(e) {
-    return e.target.classList[1] === "column" ? e.target.id : e.target.classList[2];
+    return e.target.classList[1] === "column" ? e.target.innerText : e.target.parentElement.innerText;
   }
 
   function getEmptyGameSlotIndex(column) {
@@ -481,6 +463,7 @@ initialize();
   function updateGameSlotStatus(column, emptyGameSlotIndex) {
     if (currentPlayer === 2) {
       gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 2;
+
     } else if (currentPlayer === 1) {
       gameGrid[column].gameSlotStatus[emptyGameSlotIndex] = 1;
     }
@@ -513,244 +496,57 @@ initialize();
   }
 
   function checkWinCondition() {
+    // Horizontal
+    for (let i = 1; i < 5; i++) {
+      for (let j = 1; j < 8; j++) {
+        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j] === 1 && gameGrid[i + 2].gameSlotStatus[j] === 1 && gameGrid[i + 3].gameSlotStatus[j] === 1) {
+          currentPlayer = 1;
+          gameStatusActive = false;
+        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j] === 2 && gameGrid[i + 2].gameSlotStatus[j] === 2 && gameGrid[i + 3].gameSlotStatus[j] === 2) {
+          currentPlayer = 2;
+          gameStatusActive = false;
+        }
+      }
+    }
 
-    // column 1
-    if ((column1[1] === 1 && column1[2] === 1 && column1[3] === 1 && column1[4] === 1) 
-    || (column1[2] === 1 && column1[3] === 1 && column1[4] === 1 && column1[5] === 1)
-    || (column1[3] === 1 && column1[4] === 1 && column1[5] === 1 && column1[6] === 1)
+    // Vertical
+    for (let i = 1; i < 8; i ++) {
+      for (let j = 6; j > 3; j--) {
+        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i].gameSlotStatus[j - 1] === 1 && gameGrid[i].gameSlotStatus[j - 2] === 1 && gameGrid[i].gameSlotStatus[j - 3] === 1) {
+          currentPlayer = 1;
+          gameStatusActive = false;
+        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i].gameSlotStatus[j - 1] === 2 && gameGrid[i].gameSlotStatus[j - 2] === 2 && gameGrid[i].gameSlotStatus[j - 3] === 2) {
+          currentPlayer = 2;
+          gameStatusActive = false;
+        }
+      }
+    }
 
-    // column 2
-    || (column2[1] === 1 && column2[2] === 1 && column2[3] === 1 && column2[4] === 1)
-    || (column2[2] === 1 && column2[3] === 1 && column2[4] === 1 && column2[5] === 1)
-    || (column2[3] === 1 && column2[4] === 1 && column2[5] === 1 && column2[6] === 1)
+    // Ascending Diagonal 
+    for (let i = 1; i < 5; i++) {
+      for (let j = 6; j > 3; j--) {
+        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j - 1] === 1 && gameGrid[i + 2].gameSlotStatus[j - 2] === 1 && gameGrid[i + 3].gameSlotStatus[j - 3] === 1) {
+          currentPlayer = 1;
+          gameStatusActive = false;
+        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j - 1] === 2 && gameGrid[i + 2].gameSlotStatus[j - 2] === 2 && gameGrid[i + 3].gameSlotStatus[j - 3] === 2) {
+          currentPlayer = 2;
+          gameStatusActive = false;
+        }
+      }
+    }
 
-    // column 3
-    || (column3[1] === 1 && column3[2] === 1 && column3[3] === 1 && column3[4] === 1)
-    || (column3[2] === 1 && column3[3] === 1 && column3[4] === 1 && column3[5] === 1)
-    || (column3[3] === 1 && column3[4] === 1 && column3[5] === 1 && column3[6] === 1)
-
-    // column 4 
-    || (column4[1] === 1 && column4[2] === 1 && column4[3] === 1 && column4[4] === 1)
-    || (column4[2] === 1 && column4[3] === 1 && column4[4] === 1 && column4[5] === 1)
-    || (column4[3] === 1 && column4[4] === 1 && column4[5] === 1 && column4[6] === 1)
-
-    // column 5
-    || (column5[1] === 1 && column5[2] === 1 && column5[3] === 1 && column5[4] === 1)
-    || (column5[2] === 1 && column5[3] === 1 && column5[4] === 1 && column5[5] === 1)
-    || (column5[3] === 1 && column5[4] === 1 && column5[5] === 1 && column5[6] === 1)
-
-    // column 6
-    || (column6[1] === 1 && column6[2] === 1 && column6[3] === 1 && column6[4] === 1)
-    || (column6[2] === 1 && column6[3] === 1 && column6[4] === 1 && column6[5] === 1)
-    || (column6[3] === 1 && column6[4] === 1 && column6[5] === 1 && column6[6] === 1)
-
-    // column 7
-    || (column7[1] === 1 && column7[2] === 1 && column7[3] === 1 && column7[4] === 1)
-    || (column7[2] === 1 && column7[3] === 1 && column7[4] === 1 && column7[5] === 1)
-    || (column7[3] === 1 && column7[4] === 1 && column7[5] === 1 && column7[6] === 1)
-
-    // Row 1 (top row)
-    || (gameGrid.column1.gameSlotStatus[1] === 1 && gameGrid.column2.gameSlotStatus[1] === 1 && gameGrid.column3.gameSlotStatus[1] === 1 && gameGrid.column4.gameSlotStatus[1] === 1)
-    || (gameGrid.column2.gameSlotStatus[1] === 1 && gameGrid.column3.gameSlotStatus[1] === 1 && gameGrid.column4.gameSlotStatus[1] === 1 && gameGrid.column5.gameSlotStatus[1] === 1)
-    || (gameGrid.column3.gameSlotStatus[1] === 1 && gameGrid.column4.gameSlotStatus[1] === 1 && gameGrid.column5.gameSlotStatus[1] === 1 && gameGrid.column6.gameSlotStatus[1] === 1)
-    || (gameGrid.column4.gameSlotStatus[1] === 1 && gameGrid.column5.gameSlotStatus[1] === 1 && gameGrid.column6.gameSlotStatus[1] === 1 && gameGrid.column7.gameSlotStatus[1] === 1)
-    
-    // Row 2 
-    || (gameGrid.column1.gameSlotStatus[2] === 1 && gameGrid.column2.gameSlotStatus[2] === 1 && gameGrid.column3.gameSlotStatus[2] === 1 && gameGrid.column4.gameSlotStatus[2] === 1)
-    || (gameGrid.column2.gameSlotStatus[2] === 1 && gameGrid.column3.gameSlotStatus[2] === 1 && gameGrid.column4.gameSlotStatus[2] === 1 && gameGrid.column5.gameSlotStatus[2] === 1)
-    || (gameGrid.column3.gameSlotStatus[2] === 1 && gameGrid.column4.gameSlotStatus[2] === 1 && gameGrid.column5.gameSlotStatus[2] === 1 && gameGrid.column6.gameSlotStatus[2] === 1)
-    || (gameGrid.column4.gameSlotStatus[2] === 1 && gameGrid.column5.gameSlotStatus[2] === 1 && gameGrid.column6.gameSlotStatus[2] === 1 && gameGrid.column7.gameSlotStatus[2] === 1)
-    
-    // Row 3
-    || (gameGrid.column1.gameSlotStatus[3] === 1 && gameGrid.column2.gameSlotStatus[3] === 1 && gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[3] === 1)
-    || (gameGrid.column2.gameSlotStatus[3] === 1 && gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[3] === 1)
-    || (gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[3] === 1 && gameGrid.column6.gameSlotStatus[3] === 1)
-    || (gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[3] === 1 && gameGrid.column6.gameSlotStatus[3] === 1 && gameGrid.column7.gameSlotStatus[3] === 1)
-    
-    // Row 4
-    || (gameGrid.column1.gameSlotStatus[4] === 1 && gameGrid.column2.gameSlotStatus[4] === 1 && gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[4] === 1)
-    || (gameGrid.column2.gameSlotStatus[4] === 1 && gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[4] === 1)
-    || (gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[4] === 1 && gameGrid.column6.gameSlotStatus[4] === 1)
-    || (gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[4] === 1 && gameGrid.column6.gameSlotStatus[4] === 1 && gameGrid.column7.gameSlotStatus[4] === 1)
-    
-    // Row 5
-    || (gameGrid.column1.gameSlotStatus[5] === 1 && gameGrid.column2.gameSlotStatus[5] === 1 && gameGrid.column3.gameSlotStatus[5] === 1 && gameGrid.column4.gameSlotStatus[5] === 1)
-    || (gameGrid.column2.gameSlotStatus[5] === 1 && gameGrid.column3.gameSlotStatus[5] === 1 && gameGrid.column4.gameSlotStatus[5] === 1 && gameGrid.column5.gameSlotStatus[5] === 1)
-    || (gameGrid.column3.gameSlotStatus[5] === 1 && gameGrid.column4.gameSlotStatus[5] === 1 && gameGrid.column5.gameSlotStatus[5] === 1 && gameGrid.column6.gameSlotStatus[5] === 1)
-    || (gameGrid.column4.gameSlotStatus[5] === 1 && gameGrid.column5.gameSlotStatus[5] === 1 && gameGrid.column6.gameSlotStatus[5] === 1 && gameGrid.column7.gameSlotStatus[5] === 1)
-    
-    // Row 6
-    || (gameGrid.column1.gameSlotStatus[6] === 1 && gameGrid.column2.gameSlotStatus[6] === 1 && gameGrid.column3.gameSlotStatus[6] === 1 && gameGrid.column4.gameSlotStatus[6] === 1)
-    || (gameGrid.column2.gameSlotStatus[6] === 1 && gameGrid.column3.gameSlotStatus[6] === 1 && gameGrid.column4.gameSlotStatus[6] === 1 && gameGrid.column5.gameSlotStatus[6] === 1)
-    || (gameGrid.column3.gameSlotStatus[6] === 1 && gameGrid.column4.gameSlotStatus[6] === 1 && gameGrid.column5.gameSlotStatus[6] === 1 && gameGrid.column6.gameSlotStatus[6] === 1)
-    || (gameGrid.column4.gameSlotStatus[6] === 1 && gameGrid.column5.gameSlotStatus[6] === 1 && gameGrid.column6.gameSlotStatus[6] === 1 && gameGrid.column7.gameSlotStatus[6] === 1)
-    
-
-    // Diagonals "/"" from left
-    || (gameGrid.column1.gameSlotStatus[4] === 1 && gameGrid.column2.gameSlotStatus[3] === 1 && gameGrid.column3.gameSlotStatus[2] === 1 && gameGrid.column4.gameSlotStatus[1] === 1)
-
-    || (gameGrid.column1.gameSlotStatus[5] === 1 && gameGrid.column2.gameSlotStatus[4] === 1 && gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[2] === 1)
-    || (gameGrid.column2.gameSlotStatus[4] === 1 && gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[2] === 1 && gameGrid.column5.gameSlotStatus[1] === 1)
-    
-    || (gameGrid.column1.gameSlotStatus[6] === 1 && gameGrid.column2.gameSlotStatus[5] === 1 && gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[3] === 1)
-    || (gameGrid.column2.gameSlotStatus[5] === 1 && gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[2] === 1)
-    || (gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[2] === 1 && gameGrid.column6.gameSlotStatus[1] === 1)
-    
-    || (gameGrid.column2.gameSlotStatus[6] === 1 && gameGrid.column3.gameSlotStatus[5] === 1 && gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[3] === 1)
-    || (gameGrid.column3.gameSlotStatus[5] === 1 && gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[3] === 1 && gameGrid.column6.gameSlotStatus[2] === 1)
-    || (gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[3] === 1 && gameGrid.column6.gameSlotStatus[2] === 1 && gameGrid.column7.gameSlotStatus[1] === 1)
-    
-    || (gameGrid.column3.gameSlotStatus[6] === 1 && gameGrid.column4.gameSlotStatus[5] === 1 && gameGrid.column5.gameSlotStatus[4] === 1 && gameGrid.column6.gameSlotStatus[3] === 1)
-    || (gameGrid.column4.gameSlotStatus[5] === 1 && gameGrid.column5.gameSlotStatus[4] === 1 && gameGrid.column6.gameSlotStatus[3] === 1 && gameGrid.column7.gameSlotStatus[2] === 1)
-
-    || (gameGrid.column4.gameSlotStatus[6] === 1 && gameGrid.column5.gameSlotStatus[5] === 1 && gameGrid.column6.gameSlotStatus[4] === 1 && gameGrid.column7.gameSlotStatus[3] === 1)
-
-
-    // Diagonals "\" from left
-    || (gameGrid.column1.gameSlotStatus[3] === 1 && gameGrid.column2.gameSlotStatus[4] === 1 && gameGrid.column3.gameSlotStatus[5] === 1 && gameGrid.column4.gameSlotStatus[6] === 1)
-
-    || (gameGrid.column1.gameSlotStatus[2] === 1 && gameGrid.column2.gameSlotStatus[3] === 1 && gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[5] === 1)
-    || (gameGrid.column2.gameSlotStatus[3] === 1 && gameGrid.column3.gameSlotStatus[4] === 1 && gameGrid.column4.gameSlotStatus[5] === 1 && gameGrid.column5.gameSlotStatus[6] === 1)
-    
-    || (gameGrid.column1.gameSlotStatus[1] === 1 && gameGrid.column2.gameSlotStatus[2] === 1 && gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[4] === 1)
-    || (gameGrid.column2.gameSlotStatus[2] === 1 && gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[5] === 1)
-    || (gameGrid.column3.gameSlotStatus[3] === 1 && gameGrid.column4.gameSlotStatus[4] === 1 && gameGrid.column5.gameSlotStatus[5] === 1 && gameGrid.column6.gameSlotStatus[6] === 1)
-    
-    || (gameGrid.column2.gameSlotStatus[1] === 1 && gameGrid.column3.gameSlotStatus[2] === 1 && gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[4] === 1)
-    || (gameGrid.column3.gameSlotStatus[2] === 1 && gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[4] === 1 && gameGrid.column6.gameSlotStatus[5] === 1)
-    || (gameGrid.column4.gameSlotStatus[3] === 1 && gameGrid.column5.gameSlotStatus[4] === 1 && gameGrid.column6.gameSlotStatus[5] === 1 && gameGrid.column7.gameSlotStatus[6] === 1)
-    
-    || (gameGrid.column3.gameSlotStatus[1] === 1 && gameGrid.column4.gameSlotStatus[2] === 1 && gameGrid.column5.gameSlotStatus[3] === 1 && gameGrid.column6.gameSlotStatus[4] === 1)
-    || (gameGrid.column4.gameSlotStatus[2] === 1 && gameGrid.column5.gameSlotStatus[3] === 1 && gameGrid.column6.gameSlotStatus[4] === 1 && gameGrid.column7.gameSlotStatus[5] === 1)
-
-    || (gameGrid.column4.gameSlotStatus[1] === 1 && gameGrid.column5.gameSlotStatus[2] === 1 && gameGrid.column6.gameSlotStatus[3] === 1 && gameGrid.column7.gameSlotStatus[4] === 1)
-  ) 
-    
-    {
-      currentPlayer = 1;
-      gameStatusActive = false;
-
-
-
-    } else if (
-    // column 1
-       (column1[1] === 2 && column1[2] === 2 && column1[3] === 2 && column1[4] === 2) 
-    || (column1[2] === 2 && column1[3] === 2 && column1[4] === 2 && column1[5] === 2)
-    || (column1[3] === 2 && column1[4] === 2 && column1[5] === 2 && column1[6] === 2)
-
-    // column 2
-    || (column2[1] === 2 && column2[2] === 2 && column2[3] === 2 && column2[4] === 2)
-    || (column2[2] === 2 && column2[3] === 2 && column2[4] === 2 && column2[5] === 2)
-    || (column2[3] === 2 && column2[4] === 2 && column2[5] === 2 && column2[6] === 2)
-
-    // column 3
-    || (column3[1] === 2 && column3[2] === 2 && column3[3] === 2 && column3[4] === 2)
-    || (column3[2] === 2 && column3[3] === 2 && column3[4] === 2 && column3[5] === 2)
-    || (column3[3] === 2 && column3[4] === 2 && column3[5] === 2 && column3[6] === 2)
-
-    // column 4 
-    || (column4[1] === 2 && column4[2] === 2 && column4[3] === 2 && column4[4] === 2)
-    || (column4[2] === 2 && column4[3] === 2 && column4[4] === 2 && column4[5] === 2)
-    || (column4[3] === 2 && column4[4] === 2 && column4[5] === 2 && column4[6] === 2)
-
-    // column 2
-    || (column5[1] === 2 && column5[2] === 2 && column5[3] === 2 && column5[4] === 2)
-    || (column5[2] === 2 && column5[3] === 2 && column5[4] === 2 && column5[5] === 2)
-    || (column5[3] === 2 && column5[4] === 2 && column5[5] === 2 && column5[6] === 2)
-
-    // column 6
-    || (column6[1] === 2 && column6[2] === 2 && column6[3] === 2 && column6[4] === 2)
-    || (column6[2] === 2 && column6[3] === 2 && column6[4] === 2 && column6[5] === 2)
-    || (column6[3] === 2 && column6[4] === 2 && column6[5] === 2 && column6[6] === 2)
-
-    // column 7
-    || (column7[1] === 2 && column7[2] === 2 && column7[3] === 2 && column7[4] === 2)
-    || (column7[2] === 2 && column7[3] === 2 && column7[4] === 2 && column7[5] === 2)
-    || (column7[3] === 2 && column7[4] === 2 && column7[5] === 2 && column7[6] === 2)
-
-    // Row 1 (top row)
-    || (gameGrid.column1.gameSlotStatus[1] === 2 && gameGrid.column2.gameSlotStatus[1] === 2 && gameGrid.column3.gameSlotStatus[1] === 2 && gameGrid.column4.gameSlotStatus[1] === 2)
-    || (gameGrid.column2.gameSlotStatus[1] === 2 && gameGrid.column3.gameSlotStatus[1] === 2 && gameGrid.column4.gameSlotStatus[1] === 2 && gameGrid.column5.gameSlotStatus[1] === 2)
-    || (gameGrid.column3.gameSlotStatus[1] === 2 && gameGrid.column4.gameSlotStatus[1] === 2 && gameGrid.column5.gameSlotStatus[1] === 2 && gameGrid.column6.gameSlotStatus[1] === 2)
-    || (gameGrid.column4.gameSlotStatus[1] === 2 && gameGrid.column5.gameSlotStatus[1] === 2 && gameGrid.column6.gameSlotStatus[1] === 2 && gameGrid.column7.gameSlotStatus[1] === 2)
-    
-    // Row 2 
-    || (gameGrid.column1.gameSlotStatus[2] === 2 && gameGrid.column2.gameSlotStatus[2] === 2 && gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[2] === 2)
-    || (gameGrid.column2.gameSlotStatus[2] === 2 && gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[2] === 2)
-    || (gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[2] === 2 && gameGrid.column6.gameSlotStatus[2] === 2)
-    || (gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[2] === 2 && gameGrid.column6.gameSlotStatus[2] === 2 && gameGrid.column7.gameSlotStatus[2] === 2)
-    
-    // Row 3
-    || (gameGrid.column1.gameSlotStatus[3] === 2 && gameGrid.column2.gameSlotStatus[3] === 2 && gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[3] === 2)
-    || (gameGrid.column2.gameSlotStatus[3] === 2 && gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[3] === 2)
-    || (gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[3] === 2)
-    || (gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[3] === 2 && gameGrid.column7.gameSlotStatus[3] === 2)
-    
-    // Row 4
-    || (gameGrid.column1.gameSlotStatus[4] === 2 && gameGrid.column2.gameSlotStatus[4] === 2 && gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[4] === 2)
-    || (gameGrid.column2.gameSlotStatus[4] === 2 && gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[4] === 2)
-    || (gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[4] === 2)
-    || (gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[4] === 2 && gameGrid.column7.gameSlotStatus[4] === 2)
-    
-    // Row 5
-    || (gameGrid.column1.gameSlotStatus[5] === 2 && gameGrid.column2.gameSlotStatus[5] === 2 && gameGrid.column3.gameSlotStatus[5] === 2 && gameGrid.column4.gameSlotStatus[5] === 2)
-    || (gameGrid.column2.gameSlotStatus[5] === 2 && gameGrid.column3.gameSlotStatus[5] === 2 && gameGrid.column4.gameSlotStatus[5] === 2 && gameGrid.column5.gameSlotStatus[5] === 2)
-    || (gameGrid.column3.gameSlotStatus[5] === 2 && gameGrid.column4.gameSlotStatus[5] === 2 && gameGrid.column5.gameSlotStatus[5] === 2 && gameGrid.column6.gameSlotStatus[5] === 2)
-    || (gameGrid.column4.gameSlotStatus[5] === 2 && gameGrid.column5.gameSlotStatus[5] === 2 && gameGrid.column6.gameSlotStatus[5] === 2 && gameGrid.column7.gameSlotStatus[5] === 2)
-    
-    // Row 6
-    || (gameGrid.column1.gameSlotStatus[6] === 2 && gameGrid.column2.gameSlotStatus[6] === 2 && gameGrid.column3.gameSlotStatus[6] === 2 && gameGrid.column4.gameSlotStatus[6] === 2)
-    || (gameGrid.column2.gameSlotStatus[6] === 2 && gameGrid.column3.gameSlotStatus[6] === 2 && gameGrid.column4.gameSlotStatus[6] === 2 && gameGrid.column5.gameSlotStatus[6] === 2)
-    || (gameGrid.column3.gameSlotStatus[6] === 2 && gameGrid.column4.gameSlotStatus[6] === 2 && gameGrid.column5.gameSlotStatus[6] === 2 && gameGrid.column6.gameSlotStatus[6] === 2)
-    || (gameGrid.column4.gameSlotStatus[6] === 2 && gameGrid.column5.gameSlotStatus[6] === 2 && gameGrid.column6.gameSlotStatus[6] === 2 && gameGrid.column7.gameSlotStatus[6] === 2)
-    
-    
-    // Diagonals "/"" from left
-    || (gameGrid.column1.gameSlotStatus[4] === 2 && gameGrid.column2.gameSlotStatus[3] === 2 && gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[1] === 2)
-
-    || (gameGrid.column1.gameSlotStatus[5] === 2 && gameGrid.column2.gameSlotStatus[4] === 2 && gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[2] === 2)
-    || (gameGrid.column2.gameSlotStatus[4] === 2 && gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[1] === 2)
-    
-    || (gameGrid.column1.gameSlotStatus[6] === 2 && gameGrid.column2.gameSlotStatus[5] === 2 && gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[3] === 2)
-    || (gameGrid.column2.gameSlotStatus[5] === 2 && gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[2] === 2)
-    || (gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[2] === 2 && gameGrid.column6.gameSlotStatus[1] === 2)
-    
-    || (gameGrid.column2.gameSlotStatus[6] === 2 && gameGrid.column3.gameSlotStatus[5] === 2 && gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[3] === 2)
-    || (gameGrid.column3.gameSlotStatus[5] === 2 && gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[2] === 2)
-    || (gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[2] === 2 && gameGrid.column7.gameSlotStatus[1] === 2)
-    
-    || (gameGrid.column3.gameSlotStatus[6] === 2 && gameGrid.column4.gameSlotStatus[5] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[3] === 2)
-    || (gameGrid.column4.gameSlotStatus[5] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[3] === 2 && gameGrid.column7.gameSlotStatus[2] === 2)
-
-    || (gameGrid.column4.gameSlotStatus[6] === 2 && gameGrid.column5.gameSlotStatus[5] === 2 && gameGrid.column6.gameSlotStatus[4] === 2 && gameGrid.column7.gameSlotStatus[3] === 2)
-
-
-    // Diagonals "\" from left
-    || (gameGrid.column1.gameSlotStatus[3] === 2 && gameGrid.column2.gameSlotStatus[4] === 2 && gameGrid.column3.gameSlotStatus[5] === 2 && gameGrid.column4.gameSlotStatus[6] === 2)
-
-    || (gameGrid.column1.gameSlotStatus[2] === 2 && gameGrid.column2.gameSlotStatus[3] === 2 && gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[5] === 2)
-    || (gameGrid.column2.gameSlotStatus[3] === 2 && gameGrid.column3.gameSlotStatus[4] === 2 && gameGrid.column4.gameSlotStatus[5] === 2 && gameGrid.column5.gameSlotStatus[6] === 2)
-    
-    || (gameGrid.column1.gameSlotStatus[1] === 2 && gameGrid.column2.gameSlotStatus[2] === 2 && gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[4] === 2)
-    || (gameGrid.column2.gameSlotStatus[2] === 2 && gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[5] === 2)
-    || (gameGrid.column3.gameSlotStatus[3] === 2 && gameGrid.column4.gameSlotStatus[4] === 2 && gameGrid.column5.gameSlotStatus[5] === 2 && gameGrid.column6.gameSlotStatus[6] === 2)
-    
-    || (gameGrid.column2.gameSlotStatus[1] === 2 && gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[4] === 2)
-    || (gameGrid.column3.gameSlotStatus[2] === 2 && gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[5] === 2)
-    || (gameGrid.column4.gameSlotStatus[3] === 2 && gameGrid.column5.gameSlotStatus[4] === 2 && gameGrid.column6.gameSlotStatus[5] === 2 && gameGrid.column7.gameSlotStatus[6] === 2)
-    
-    || (gameGrid.column3.gameSlotStatus[1] === 2 && gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[4] === 2)
-    || (gameGrid.column4.gameSlotStatus[2] === 2 && gameGrid.column5.gameSlotStatus[3] === 2 && gameGrid.column6.gameSlotStatus[4] === 2 && gameGrid.column7.gameSlotStatus[5] === 2)
-
-    || (gameGrid.column4.gameSlotStatus[1] === 2 && gameGrid.column5.gameSlotStatus[2] === 2 && gameGrid.column6.gameSlotStatus[3] === 2 && gameGrid.column7.gameSlotStatus[4] === 2)
-  ) 
-    
-    {
-      currentPlayer = 2;
-      gameStatusActive = false;
-
-    } 
-
+    // Descending Diagonal
+    for (let i = 1; i < 5; i++) {
+      for (let j = 3; j > 0; j--) {
+        if (gameGrid[i].gameSlotStatus[j] === 1 && gameGrid[i + 1].gameSlotStatus[j + 1] === 1 && gameGrid[i + 2].gameSlotStatus[j + 2] === 1 && gameGrid[i + 3].gameSlotStatus[j + 3] === 1) {
+          currentPlayer = 1;
+          gameStatusActive = false;
+        } else if (gameGrid[i].gameSlotStatus[j] === 2 && gameGrid[i + 1].gameSlotStatus[j + 1] === 2 && gameGrid[i + 2].gameSlotStatus[j + 2] === 2 && gameGrid[i + 3].gameSlotStatus[j + 3] === 2) {
+          currentPlayer = 2;
+          gameStatusActive = false;
+        }
+      }
+    }
   }
 
   function beginCountDown() {
@@ -910,7 +706,7 @@ initialize();
     let gameSlotArr = [];
     for (let i = 1; i <= 7; i++) {
       for (let j = 1; j <= 6; j++) {
-        gameSlotArr.push(gameGrid[`column${i}`].gameSlotStatus[j]);
+        gameSlotArr.push(gameGrid[i].gameSlotStatus[j]);
         }
       }
     if (gameSlotArr.includes(null) === false && mainDisplayEl.innerText !== `Player ${currentPlayer} Wins!`) {
