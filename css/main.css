@@ -122,6 +122,7 @@ body {
 
 .column {
   display: grid;
+  font-size: 0;
 }
 
 .column:hover {
