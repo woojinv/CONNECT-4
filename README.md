@@ -1,28 +1,7 @@
 
 # Connect Four 
 
-## Description  
-
 Players take turns placing pieces on a 7x6 game board. When a column is picked, the player's piece is placed at the *bottom-most* game slot of that column. The first player to place four of their pieces in a row wins the game. 
-
-
-## Wireframe
-
-![Empty Game Board](images/wireframe.png "Wireframe")
-
-![End Game Board](images/wireframe-win.png "Wireframe Win")
-
-## Technologies Used
-
-JavaScript, HTML, CSS
-  
-
-## Getting Started
-
-### Link to Website
-
-[Connect Four](https://woojinv.github.io/CONNECT-4/)
-
 
 ### Instructions
 
@@ -34,6 +13,23 @@ JavaScript, HTML, CSS
 
 - Press "Start New Game" at any time to reset the game board.
 
+Click [Here](https://woojinv.github.io/CONNECT-4/) to start playing!
+
+</br>
+
+## Screenshots
+
+![Empty Game Board](images/wireframe.png "Wireframe")
+
+![End Game Board](images/wireframe-win.png "Wireframe Win")
+
+</br>
+
+## Technologies Used
+
+JavaScript, HTML, CSS
+
+</br>
 
 ## Next Steps
 
