@@ -27,7 +27,7 @@ Click [Here](https://woojinv.github.io/CONNECT-4/) to start playing!
 
 ## Technologies Used
 
-JavaScript, HTML, CSS
+JavaScript, CSS. HTML
 
 </br>
 
