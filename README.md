@@ -13,7 +13,7 @@ Players take turns placing pieces on a 7x6 game board. When a column is picked, 
 
 - Press "Start New Game" at any time to reset the game board.
 
-Click [Here](https://woojinv.github.io/CONNECT-4/) to start playing!
+Click [Here](https://woojinv.github.io/Connect-Four/) to start playing!
 
 </br>
 
