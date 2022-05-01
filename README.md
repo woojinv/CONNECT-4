@@ -15,13 +15,11 @@ Players take turns placing pieces on a 7x6 game board. When a column is picked, 
 
 [Start playing!](https://woojinv.github.io/Connect-Four/)
 
-</br>
 
 ## What I learned
 
 I became more comfortable with the Model-View-Controller design pattern, DOM manipulation for interactivity with JavaScript, Chrome Developer Tools to debug and style, and utilizing sound effects to create an immersive experience.
 
-<br>
 
 ## Screenshots
 
@@ -29,13 +27,11 @@ I became more comfortable with the Model-View-Controller design pattern, DOM man
 
 ![End Game Board](images/wireframe-win.png "Wireframe Win")
 
-</br>
 
 ## Technologies Used
 
 JavaScript, CSS, HTML
 
-</br>
 
 ## Next Steps
 
