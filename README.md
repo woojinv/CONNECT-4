@@ -20,6 +20,8 @@ Players take turns placing pieces on a 7x6 game board. When a column is picked, 
 
 I became more comfortable with the Model-View-Controller design pattern, DOM manipulation for interactivity with JavaScript, Chrome Developer Tools to debug and style, and utilizing sound effects to create an immersive experience.
 
+This was my first real project and I learned that I truly enjoy programming. Every bug that I was able to fix gave me such a sense of joy and satisfaction that confirmed my choice to switch into this industry.
+
 
 ## Screenshots
 
