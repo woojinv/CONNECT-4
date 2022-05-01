@@ -27,7 +27,7 @@ Players take turns placing pieces on a 7x6 game board. When a column is picked, 
 
 ## Technologies Used
 
-JavaScript, CSS. HTML
+JavaScript, CSS, HTML
 
 </br>
 
