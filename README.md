@@ -17,6 +17,12 @@ Players take turns placing pieces on a 7x6 game board. When a column is picked, 
 
 </br>
 
+## What I learned
+
+I became more comfortable with the Model-View-Controller design pattern, DOM manipulation for interactivity with JavaScript, Chrome Developer Tools to debug and style, and utilizing sound effects to create an immersive experience.
+
+<br>
+
 ## Screenshots
 
 ![Empty Game Board](images/wireframe.png "Wireframe")
